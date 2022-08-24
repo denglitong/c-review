@@ -1,12 +1,22 @@
 // 预处理指令，甚至不是 C 语言的语句！
 #include <stdio.h>
 
+void printf_str();
+
+void printf_num();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
  * @return
  */
 int main() {
+    printf_str();
+    printf_num();
+    return 0;
+}
+
+void printf_str() {
     /**
      * 标识符可使用的字符数量和 C 语言的不同实现有关；
      * C99 标准允许一个标识符最多可以有 63 个字符
@@ -21,5 +31,11 @@ int main() {
     printf("Hello! ");
     printf("I am dotcpp.com\n");
     printf("This year is %d\n", number);
-    return 0;
+}
+
+void printf_num() {
+    int a;
+    while (~scanf("%d", &a)) {
+        printf("0%o %d 0x%x\n", a, a, a);
+    }
 }
