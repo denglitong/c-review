@@ -5,6 +5,10 @@ void printf_str();
 
 void printf_num();
 
+void putchar_exer();
+
+void getchar_exer();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -12,7 +16,9 @@ void printf_num();
  */
 int main() {
     printf_str();
-    printf_num();
+    // printf_num();
+    putchar_exer();
+    getchar_exer();
     return 0;
 }
 
@@ -35,7 +41,23 @@ void printf_str() {
 
 void printf_num() {
     int a;
+    printf("Please enter some num, enter Ctrl+D to terminate:");
     while (~scanf("%d", &a)) {
         printf("0%o %d 0x%x\n", a, a, a);
+    }
+}
+
+void putchar_exer() {
+    putchar('A');
+    // 换行符是回车切换到行首，接下来的putchar字符接着行首继续输出
+    putchar('\n');
+    putchar(66);
+}
+
+void getchar_exer() {
+    char c;
+    printf("Please enter some char, enter Ctrl+D to terminate:");
+    while (~(c = getchar())) {
+        putchar(c);
     }
 }
