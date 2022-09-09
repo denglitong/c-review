@@ -9,6 +9,8 @@ void putchar_exer();
 
 void getchar_exer();
 
+void printf_exer();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -17,8 +19,9 @@ void getchar_exer();
 int main() {
     printf_str();
     // printf_num();
-    putchar_exer();
-    getchar_exer();
+    // putchar_exer();
+    // getchar_exer();
+    printf_exer();
     return 0;
 }
 
@@ -60,4 +63,37 @@ void getchar_exer() {
     while (~(c = getchar())) {
         putchar(c);
     }
+}
+
+void printf_exer() {
+    int a = 12;
+    float b = 3.14159f;
+    char c = 'A';
+
+    printf("%d\n", a); // digit
+    printf("%i\n", a); // integer
+    printf("%U\n", a); // 以十进制输出无符号整数
+    printf("%f\n", b);
+    printf("%10.2f\n", b);
+    printf("0%o\n", a); // 8-base digit
+    printf("0x%x\n", a); // 16-base digit
+    printf("%c\n", c);
+
+    printf("%xe\n", b);
+    printf("%g\n", b);
+
+    // * 修饰符在 printf() 中充当占位符（宽度值/精度值）
+    unsigned width, precision;
+    int number = 256;
+    float weight = 25.5f;
+
+    // mock input width, precision
+    // scanf("%d", &width);
+    // scanf("%d", &precision);
+    width = 6;
+    precision = 3;
+    printf("number = %*d\n", width, number);
+    printf("weight = %*.*f\n", width, precision, weight);
+
+    // printf() 函数的返回值是所打印的字符的数目
 }
