@@ -11,17 +11,20 @@ void getchar_exer();
 
 void printf_exer();
 
+void scanf_exer();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
  * @return
  */
 int main() {
-    printf_str();
+    // printf_str();
     // printf_num();
     // putchar_exer();
     // getchar_exer();
-    printf_exer();
+    // printf_exer();
+    scanf_exer();
     return 0;
 }
 
@@ -96,4 +99,17 @@ void printf_exer() {
     printf("weight = %*.*f\n", width, precision, weight);
 
     // printf() 函数的返回值是所打印的字符的数目
+}
+
+// scanf() 输入格式函数：按照格式字符串的格式，从键盘上把数据输入到指定的变量之中
+// 1) 格式说明符中，可指定数据的宽度，但不能指定数据的精度
+// 2) 输入 long 类型数据必须使用 %ld, 输入 double 类型数据必须使用 %lf 或 %le
+// 3) 附加格式说明符 "*" 使对应的输入数据不赋给相应的变量(即使函数跳过相应的输入项目)
+// %s 把输入解释成一个字符串：输入的内容以第一个非空白字符作为开始，并且包含直到下一个空白字符的全部字符
+// scanf() 函数返回成功读入的项目的个数，如果没有成功读取到输入的项目时返回 0，遇到 EOF 时返回 EOF 值，一般是 -1
+void scanf_exer() {
+    int num;
+    printf("Please enter 3 number:\n");
+    scanf("%*d %*d %d", &num);
+    printf("The last number is %d\n", num);
 }
