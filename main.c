@@ -13,6 +13,8 @@ void printf_exer();
 
 void scanf_exer();
 
+void char_exer();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -23,8 +25,9 @@ int main() {
     // printf_num();
     // putchar_exer();
     // getchar_exer();
-    // printf_exer();
-    scanf_exer();
+    printf_exer();
+    // scanf_exer();
+    // char_exer();
     return 0;
 }
 
@@ -98,6 +101,12 @@ void printf_exer() {
     printf("number = %*d\n", width, number);
     printf("weight = %*.*f\n", width, precision, weight);
 
+    printf("%10d\n", 10);
+    printf("%10d\n", 1000);
+    printf("%10d\n", 1000000);
+    printf("%-10d%d\n", 10, 1);
+    printf("%-10d%d\n", 1000, 1);
+    printf("%-10d%d\n", 1000000, 1);
     // printf() 函数的返回值是所打印的字符的数目
 }
 
@@ -112,4 +121,17 @@ void scanf_exer() {
     printf("Please enter 3 number:\n");
     scanf("%*d %*d %d", &num);
     printf("The last number is %d\n", num);
+}
+
+// Sample input: China
+// Sample output: Glmre
+void char_exer() {
+    char c[32];
+    scanf("%s", c); // don't need &c
+
+    char *p = c;
+    while (*p) {
+        printf("%c", *p + 4);
+        p++;
+    }
 }
