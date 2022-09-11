@@ -17,6 +17,8 @@ void char_exer();
 
 void operator_exer();
 
+void sizeof_exer();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -30,7 +32,8 @@ int main() {
     // printf_exer();
     // scanf_exer();
     // char_exer();
-    operator_exer();
+    // operator_exer();
+    sizeof_exer();
     return 0;
 }
 
@@ -148,4 +151,11 @@ void operator_exer() {
     printf("a = %d, b = %d, c = %d\n", a, b, c);
     // printf %% 输出一个 %
     printf("a %% c = %d\n", a % c);
+}
+
+void sizeof_exer() {
+    // sizeof 是关键字，一元运算符，不是函数
+    int n;
+    int int_size = sizeof n;
+    printf("int sizeof is %d bytes\n", int_size); // 64 bit-system: 4 bytes
 }
