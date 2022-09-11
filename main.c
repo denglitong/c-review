@@ -25,8 +25,8 @@ int main() {
     // printf_num();
     // putchar_exer();
     // getchar_exer();
-    printf_exer();
-    // scanf_exer();
+    // printf_exer();
+    scanf_exer();
     // char_exer();
     return 0;
 }
@@ -118,9 +118,13 @@ void printf_exer() {
 // scanf() 函数返回成功读入的项目的个数，如果没有成功读取到输入的项目时返回 0，遇到 EOF 时返回 EOF 值，一般是 -1
 void scanf_exer() {
     int num;
-    printf("Please enter 3 number:\n");
+    printf("Please enter 3 number, seperated by empty blank:\n");
     scanf("%*d %*d %d", &num);
     printf("The last number is %d\n", num);
+    int a, b;
+    printf("Please input 2 digit, seperated by 1 char:\n");
+    int c = scanf("%d%*c%d", &a, &b);
+    printf("The input digit is %d %d, successful input count: %d\n", a, b, c);
 }
 
 // Sample input: China
