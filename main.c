@@ -1,5 +1,6 @@
 // 预处理指令，甚至不是 C 语言的语句！
 #include <stdio.h>
+// #include <math.h>
 
 void printf_str();
 
@@ -19,9 +20,17 @@ void operator_exer();
 
 void sizeof_exer();
 
+void circle_area_exer();
+
+void digit_devide_exer();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
+ *
+ * C 中一个重要的属性是每一个 C 表达式都有一个值，赋值表达式的值为等号的右值；
+ * a = 2 * 5; 这个表达式的值为 10
+ * C 语句 = C 表达式 + ;
  * @return
  */
 int main() {
@@ -33,7 +42,9 @@ int main() {
     // scanf_exer();
     // char_exer();
     // operator_exer();
-    sizeof_exer();
+    // sizeof_exer();
+    // circle_area_exer();
+    digit_devide_exer();
     return 0;
 }
 
@@ -158,4 +169,23 @@ void sizeof_exer() {
     int n;
     int int_size = sizeof n;
     printf("int sizeof is %d bytes\n", int_size); // 64 bit-system: 4 bytes
+}
+
+void circle_area_exer() {
+    float M_PI = 3.14159265358979323846f;
+    float r;
+    scanf("%f", &r);
+    printf("%.2f", M_PI * r * r);
+}
+
+void digit_devide_exer() {
+    int a;
+    scanf("%d", &a);
+    while (a > 0) {
+        printf("%d", a % 10);
+        a /= 10;
+        if (a > 0) {
+            printf(" ");
+        }
+    }
 }
