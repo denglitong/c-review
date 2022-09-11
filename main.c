@@ -15,6 +15,8 @@ void scanf_exer();
 
 void char_exer();
 
+void operator_exer();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -26,8 +28,9 @@ int main() {
     // putchar_exer();
     // getchar_exer();
     // printf_exer();
-    scanf_exer();
+    // scanf_exer();
     // char_exer();
+    operator_exer();
     return 0;
 }
 
@@ -138,4 +141,11 @@ void char_exer() {
         printf("%c", *p + 4);
         p++;
     }
+}
+
+void operator_exer() {
+    int a = 20, b = 5, c = 6;
+    printf("a = %d, b = %d, c = %d\n", a, b, c);
+    // printf %% 输出一个 %
+    printf("a %% c = %d\n", a % c);
 }
