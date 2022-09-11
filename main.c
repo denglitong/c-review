@@ -24,6 +24,8 @@ void circle_area_exer();
 
 void digit_devide_exer();
 
+void for_exer();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -44,7 +46,8 @@ int main() {
     // operator_exer();
     // sizeof_exer();
     // circle_area_exer();
-    digit_devide_exer();
+    // digit_devide_exer();
+    for_exer();
     return 0;
 }
 
@@ -187,5 +190,11 @@ void digit_devide_exer() {
         if (a > 0) {
             printf(" ");
         }
+    }
+}
+
+void for_exer() {
+    for (int i = 0; i < 10; i++) {
+        printf("count is %d\n", i);
     }
 }
