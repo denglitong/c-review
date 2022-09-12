@@ -30,6 +30,8 @@ void digit_exchange();
 
 void greatest_common_divisor();
 
+void string_classification();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -53,7 +55,8 @@ int main() {
     // digit_devide_exer();
     // for_exer();
     // digit_exchange();
-    greatest_common_divisor();
+    // greatest_common_divisor();
+    string_classification();
     return 0;
 }
 
@@ -280,4 +283,35 @@ void greatest_common_divisor() {
     // 最小公倍数 = 两数之积 / 最大公约数
     int leastCommonMultiple = a * b / greatestCommonDivisor;
     printf("%d %d", greatestCommonDivisor, leastCommonMultiple);
+}
+
+void string_classification() {
+    char *line = NULL;
+    size_t len = 0;
+    size_t lineSize = 0;
+    /**
+     * ssize_t getline(
+     *      // 指向存放该行字符的指针，如果是 NULL 则由系统帮助 malloc，需要在使用完成后 free 释放
+     *      char **lineptr,
+     *      // 如果是由系统 malloc 的指针，请填 0
+     *      size_t *n,
+     *      // 文件描述符
+     *      FILE *stream);
+     * 返回读取的字节数
+     */
+    lineSize = getline(&line, &len, stdin);
+    // printf("You entered: %s, which has %zu chars.\n", line, lineSize - 1);
+    int lettersSize = 0, digitsSize = 0, emptySpacesSize = 0, othersSize = 0;
+    for (int i = 0; i < lineSize - 1; ++i) {
+        if ((line[i] >= 'A' && line[i] <= 'Z') || (line[i] >= 'a' && line[i] <= 'z')) {
+            lettersSize++;
+        } else if (line[i] >= '0' && line[i] <= '9') {
+            digitsSize++;
+        } else if (line[i] == ' ') {
+            emptySpacesSize++;
+        } else {
+            othersSize++;
+        }
+    }
+    printf("%d %d %d %d", lettersSize, digitsSize, emptySpacesSize, othersSize);
 }
