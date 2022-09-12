@@ -28,6 +28,8 @@ void for_exer();
 
 void digit_exchange();
 
+void greatest_common_divisor();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -50,7 +52,8 @@ int main() {
     // circle_area_exer();
     // digit_devide_exer();
     // for_exer();
-    digit_exchange();
+    // digit_exchange();
+    greatest_common_divisor();
     return 0;
 }
 
@@ -230,4 +233,51 @@ void digit_exchange() {
         printf("%d", a % 10);
         a /= 10;
     }
+}
+
+void greatest_common_divisor() {
+    int a, b;
+    scanf("%d %d", &a, &b);
+
+    int a1[32], idx1 = 0, a_half = a / 2;
+    a1[idx1++] = 1;
+    for (int i = 2; i <= a_half; i++) {
+        if (a % i == 0) {
+            a1[idx1++] = i;
+        }
+    }
+    a1[idx1++] = a;
+
+    int a2[32], idx2 = 0, b_half = b / 2;
+    a2[idx2++] = 1;
+    for (int i = 2; i <= b_half; i++) {
+        if (b % i == 0) {
+            a2[idx2++] = i;
+        }
+    }
+    a2[idx2++] = b;
+
+    int greatestCommonDivisor = 1, i1 = idx1, i2 = idx2;
+    while (i1 > 0 && i2 > 0) {
+        while (a1[i1 - 1] > a2[i2 - 1]) {
+            i1--;
+            if (i1 <= 0) {
+                break;
+            }
+        }
+        if (a1[i1 - 1] == a2[i2 - 1]) {
+            greatestCommonDivisor = a1[i1 - 1];
+            break;
+        }
+        while (a2[i2 - 1] > a1[i1 - 1]) {
+            i2--;
+            if (i2 <= 0) {
+                break;
+            }
+        }
+    }
+
+    // 最小公倍数 = 两数之积 / 最大公约数
+    int leastCommonMultiple = a * b / greatestCommonDivisor;
+    printf("%d %d", greatestCommonDivisor, leastCommonMultiple);
 }
