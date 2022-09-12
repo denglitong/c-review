@@ -34,6 +34,8 @@ void string_classification();
 
 void sum_sn();
 
+void sum_sn2();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -59,7 +61,8 @@ int main() {
     // digit_exchange();
     // greatest_common_divisor();
     // string_classification();
-    sum_sn();
+    // sum_sn();
+    sum_sn2();
     return 0;
 }
 
@@ -327,4 +330,20 @@ void sum_sn() {
         sum += i * 2 * (int) pow(10, n - i);
     }
     printf("%d", sum);
+}
+
+void sum_sn2() {
+    int n;
+    scanf("%d", &n);
+    long int a[21];
+    a[0] = 0;
+    a[1] = 1;
+    for (long i = 2; i <= 20; ++i) {
+        a[i] = i * a[i - 1];
+    }
+    long int sum = 0;
+    for (int i = 1; i <= n; ++i) {
+        sum += a[i];
+    }
+    printf("%ld", sum);
 }
