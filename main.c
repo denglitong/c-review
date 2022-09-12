@@ -32,6 +32,8 @@ void greatest_common_divisor();
 
 void string_classification();
 
+void sum_sn();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -56,7 +58,8 @@ int main() {
     // for_exer();
     // digit_exchange();
     // greatest_common_divisor();
-    string_classification();
+    // string_classification();
+    sum_sn();
     return 0;
 }
 
@@ -314,4 +317,14 @@ void string_classification() {
         }
     }
     printf("%d %d %d %d", lettersSize, digitsSize, emptySpacesSize, othersSize);
+}
+
+void sum_sn() {
+    int n;
+    scanf("%d", &n);
+    int sum = 0;
+    for (int i = n; i > 0; --i) {
+        sum += i * 2 * (int) pow(10, n - i);
+    }
+    printf("%d", sum);
 }
