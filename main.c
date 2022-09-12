@@ -1,6 +1,6 @@
 // 预处理指令，甚至不是 C 语言的语句！
 #include <stdio.h>
-// #include <math.h>
+#include <math.h>
 
 void printf_str();
 
@@ -26,6 +26,8 @@ void digit_devide_exer();
 
 void for_exer();
 
+void digit_exchange();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -47,7 +49,8 @@ int main() {
     // sizeof_exer();
     // circle_area_exer();
     // digit_devide_exer();
-    for_exer();
+    // for_exer();
+    digit_exchange();
     return 0;
 }
 
@@ -105,7 +108,7 @@ void printf_exer() {
     printf("0x%x\n", a); // 16-base digit
     printf("%c\n", c);
 
-    printf("%xe\n", b);
+    printf("%e\n", b);
     printf("%g\n", b);
 
     // * 修饰符在 printf() 中充当占位符（宽度值/精度值）
@@ -175,10 +178,10 @@ void sizeof_exer() {
 }
 
 void circle_area_exer() {
-    float M_PI = 3.14159265358979323846f;
+    float pi = 3.14159265358979323846f;
     float r;
     scanf("%f", &r);
-    printf("%.2f", M_PI * r * r);
+    printf("%.2f", pi * r * r);
 }
 
 void digit_devide_exer() {
@@ -196,5 +199,35 @@ void digit_devide_exer() {
 void for_exer() {
     for (int i = 0; i < 10; i++) {
         printf("count is %d\n", i);
+    }
+}
+
+void digit_exchange() {
+    int a;
+    scanf("%d", &a);
+
+    int b = a;
+    int bits = 0;
+    while (b > 0) {
+        b /= 10;
+        bits++;
+    }
+    printf("%d\n", bits);
+
+    int c = a;
+    while (c > 0) {
+        int exp_v = (int) pow(10, --bits);
+        int bit = c / exp_v;
+        printf("%d", bit);
+        c -= bit * exp_v;
+        if (c > 0) {
+            printf(" ");
+        }
+    }
+    printf("\n");
+
+    while (a > 0) {
+        printf("%d", a % 10);
+        a /= 10;
     }
 }
