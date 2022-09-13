@@ -45,6 +45,10 @@ void completion_num();
 
 void sum_fractional_list();
 
+void calculate_distance();
+
+void calculate_peach_count();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -75,7 +79,9 @@ int main() {
     // sum_3_list();
     // daffodils_num();
     // completion_num();
-    sum_fractional_list();
+    // sum_fractional_list();
+    // calculate_distance();
+    calculate_peach_count();
     return 0;
 }
 
@@ -434,4 +440,30 @@ void sum_fractional_list() {
         sum += (double) a[i + 1] / a[i];
     }
     printf("%.2f", sum);
+}
+
+// https://www.dotcpp.com/oj/problem1019.html
+void calculate_distance() {
+    int m, n;
+    scanf("%d %d", &m, &n);
+    float a1 = m, a2 = (float) m / 2, q = (float) 1 / 2;
+    float sum1 = a1 * (1 - pow(q, n)) / (1 - q);
+    float sum2 = a2 * (1 - pow(q, n)) / (1 - q);
+    float n_height = m * pow(2, -n);
+    printf("%.2f %.2f", n_height, sum1 + sum2 - n_height);
+}
+
+// https://www.dotcpp.com/oj/problem1020.html
+void calculate_peach_count() {
+    int n;
+    scanf("%d", &n);
+
+    int a[n];
+    a[0] = 1;
+    for (int i = 1; i < n; ++i) {
+        // An - 1/2 An - 1 = An-1
+        // An = 2 * (An-1 + 1)
+        a[i] = 2 * (a[i - 1] + 1);
+    }
+    printf("%d", a[n - 1]);
 }
