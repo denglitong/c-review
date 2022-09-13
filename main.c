@@ -36,6 +36,8 @@ void sum_sn();
 
 void sum_sn2();
 
+void sum_3_list();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -62,7 +64,8 @@ int main() {
     // greatest_common_divisor();
     // string_classification();
     // sum_sn();
-    sum_sn2();
+    // sum_sn2();
+    sum_3_list();
     return 0;
 }
 
@@ -346,4 +349,18 @@ void sum_sn2() {
         sum += a[i];
     }
     printf("%ld", sum);
+}
+
+void sum_3_list() {
+    int a, b, c;
+    scanf("%d %d %d", &a, &b, &c);
+    // 等差数列: 1+2+3+...+n = (1+n)*n/2
+    long double sum = (1 + a) * a / (double) 2;
+    // 平方和数列公式: 1^2 + 2^2 + 3^2 + ... + n^2 = n(n+1)(2n+1)/6
+    sum += (double) b * (b + 1) * (2 * b + 1) / 6;
+    // 调和数列: 1/1 + 1/2 + 1/3 + 1/4 + ... + 1/n 没有一个简洁的求和公式
+    for (int i = 1; i <= c; ++i) {
+        sum += 1 / (double) i;
+    }
+    printf("%.2Lf", sum);
 }
