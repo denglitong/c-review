@@ -38,6 +38,11 @@ void sum_sn2();
 
 void sum_3_list();
 
+// 水仙花树
+void daffodils_num();
+
+void completion_num();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -65,7 +70,9 @@ int main() {
     // string_classification();
     // sum_sn();
     // sum_sn2();
-    sum_3_list();
+    // sum_3_list();
+    // daffodils_num();
+    completion_num();
     return 0;
 }
 
@@ -363,4 +370,46 @@ void sum_3_list() {
         sum += 1 / (double) i;
     }
     printf("%.2Lf", sum);
+}
+
+// 打印出所有"水仙花数"，所谓"水仙花数"是指一个三位数，其各位数字立方和等于该本身。 例如：153是一个水仙花数，因为153=1^3+5^3+3^3。
+void daffodils_num() {
+    for (int i = 100; i <= 999; ++i) {
+        int j = i, sum = 0;
+        while (j > 0) {
+            sum += (int) pow(j % 10, 3);
+            j /= 10;
+        }
+        if (sum == i) {
+            printf("%d\n", i);
+        }
+    }
+}
+
+// 一个数如果恰好等于不包含它本身所有因子之和，这个数就称为"完数"。 例如，6的因子为1、2、3，而6=1+2+3，因此6是"完数"
+void completion_num() {
+    int n;
+    scanf("%d", &n);
+    // 没有大于 10000 的完数
+    n = n > 10000 ? 10000 : n;
+    for (int i = 6; i <= n; ++i) {
+        int sum = 0, idx = 0, a[64];
+        for (int j = 1; j <= i / 2; ++j) {
+            if (i % j == 0) {
+                a[idx++] = j;
+                sum += j;
+            }
+        }
+        if (sum == i) {
+            printf("%d its factors are ", i);
+            for (int j = 0; j < idx; ++j) {
+                printf("%d", a[j]);
+                if (j < idx - 1) {
+                    printf(" ");
+                } else {
+                    printf("\n");
+                }
+            }
+        }
+    }
 }
