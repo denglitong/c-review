@@ -43,6 +43,8 @@ void daffodils_num();
 
 void completion_num();
 
+void sum_fractional_list();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -72,7 +74,8 @@ int main() {
     // sum_sn2();
     // sum_3_list();
     // daffodils_num();
-    completion_num();
+    // completion_num();
+    sum_fractional_list();
     return 0;
 }
 
@@ -412,4 +415,23 @@ void completion_num() {
             }
         }
     }
+}
+
+// 有一分数序列： 2/1 3/2 5/3 8/5 13/8 21/13...... 求出这个数列的前N项之和，保留两位小数。
+void sum_fractional_list() {
+    int n;
+    scanf("%d", &n);
+
+    int a[n + 2];
+    a[0] = 1;
+    a[1] = 2;
+    for (int i = 2; i < n + 1; ++i) {
+        a[i] = a[i - 1] + a[i - 2];
+    }
+
+    double sum = 0;
+    for (int i = 0; i < n; ++i) {
+        sum += (double) a[i + 1] / a[i];
+    }
+    printf("%.2f", sum);
 }
