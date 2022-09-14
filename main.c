@@ -81,6 +81,8 @@ void num_can_not_devide_by_8();
 
 void intimate_number();
 
+void simplest_fraction_list_of_denominator_40();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -160,7 +162,8 @@ int main() {
     // letters_count();
     // is_daffodils_num();
     // num_can_not_devide_by_8();
-    intimate_number();
+    // intimate_number();
+    simplest_fraction_list_of_denominator_40();
     return 0;
 }
 
@@ -770,6 +773,7 @@ void is_daffodils_num() {
     printf("%d", sum == val);
 }
 
+// https://www.dotcpp.com/oj/problem1121.html
 void num_can_not_devide_by_8() {
     // x / 8 = y + 1
     // y / 8 = z + 1
@@ -813,6 +817,47 @@ void intimate_number() {
         }
         if (sum == a) {
             printf("(%d,%d)", a, b);
+        }
+    }
+}
+
+// https://www.dotcpp.com/oj/problem1123.html
+void simplest_fraction_list_of_denominator_40() {
+    int factors_40[32], idx = 0;
+    // 因数（注意此处不是质因数）
+    for (int i = 2; i <= 20; ++i) {
+        if (40 % i == 0) {
+            factors_40[idx++] = i;
+        }
+    }
+
+    printf("%d/40,", 1);
+    for (int i = 3; i < 40; ++i) {
+        if (40 % i == 0) {
+            continue;
+        }
+        int factors_i[32], idx_i = 0;
+        for (int j = 2; j <= i / 2; ++j) {
+            if (i % j == 0) {
+                factors_i[idx_i++] = j;
+            }
+        }
+
+        int has_common_factor = 0;
+        for (int k = 0; has_common_factor == 0 && k < idx_i; ++k) {
+            if (40 % factors_i[k] == 0) {
+                has_common_factor = 1;
+                break;
+            }
+            for (int j = 0; j < idx; ++j) {
+                if (factors_i[k] == factors_40[j]) {
+                    has_common_factor = 1;
+                    break;
+                }
+            }
+        }
+        if (!has_common_factor) {
+            printf("%d/40,", i);
         }
     }
 }
