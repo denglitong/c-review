@@ -77,6 +77,8 @@ void add_space_to_digit();
 
 void letters_count();
 
+void num_can_not_devide_by_8();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -154,7 +156,8 @@ int main() {
     // filter_vowel_letters();
     // add_space_to_digit();
     // letters_count();
-    is_daffodils_num();
+    // is_daffodils_num();
+    num_can_not_devide_by_8();
     return 0;
 }
 
@@ -762,4 +765,19 @@ void is_daffodils_num() {
         n /= 10;
     }
     printf("%d", sum == val);
+}
+
+void num_can_not_devide_by_8() {
+    // x / 8 = y + 1
+    // y / 8 = z + 1
+    // z / 8 = a + 7
+    // x / 17 = k + 4
+    // k / 17 = 2a + 15
+
+    // 17 * (17 * 2 * a + 15) + 4 = 8 * (8 * (8 * a + 7) + 1) + 1
+    // 578a + 259 = 512a+457
+    // a = 3
+    int a = 3;
+    int x = 578 * a + 259;
+    printf("%d", x);
 }
