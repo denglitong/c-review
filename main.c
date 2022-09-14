@@ -69,6 +69,8 @@ void reverse_line();
 
 void concat_str();
 
+void filter_vowel_letters();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -142,7 +144,8 @@ int main() {
     // is_prime();
     // exchange_array();
     // reverse_line();
-    concat_str();
+    // concat_str();
+    filter_vowel_letters();
     return 0;
 }
 
@@ -667,6 +670,30 @@ void concat_str() {
     idx = 0;
     while (line2[idx] != '\0') {
         printf("%c", line2[idx]);
+        idx++;
+    }
+}
+
+// https://www.dotcpp.com/oj/problem1033.html
+void filter_vowel_letters() {
+    char line[256];
+    scanf("%s", line);
+    int idx = 0;
+    while (line[idx] != '\0') {
+        switch (line[idx]) {
+            case 'A':
+            case 'a':
+            case 'E':
+            case 'e':
+            case 'I':
+            case 'i':
+            case 'O':
+            case 'o':
+            case 'U':
+            case 'u':
+                printf("%c", line[idx]);
+                break;
+        }
         idx++;
     }
 }
