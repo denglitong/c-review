@@ -57,6 +57,8 @@ void static_exer();
 
 static int s_a = 5;
 
+void print_reverse_order();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -122,9 +124,10 @@ int main() {
     // calculate_peach_count();
     // calculate_square_root();
     // prime_number();
-    for (int i = 0; i < 10; ++i) {
-        static_exer();
-    }
+    // for (int i = 0; i < 10; ++i) {
+    //     static_exer();
+    // }
+    print_reverse_order();
     return 0;
 }
 
@@ -548,4 +551,18 @@ void prime_number() {
 void static_exer() {
     s_a *= 2;
     printf("s_a = %d\n", s_a);
+}
+
+// https://www.dotcpp.com/oj/problem1026.html
+void print_reverse_order() {
+    int a[10];
+    for (int i = 0; i < 10; ++i) {
+        scanf("%d", &a[i]);
+    }
+    for (int i = 9; i >= 0; --i) {
+        printf("%d", a[i]);
+        if (i > 0) {
+            printf(" ");
+        }
+    }
 }
