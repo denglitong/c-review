@@ -49,6 +49,8 @@ void calculate_distance();
 
 void calculate_peach_count();
 
+void calculate_square_root();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -81,7 +83,8 @@ int main() {
     // completion_num();
     // sum_fractional_list();
     // calculate_distance();
-    calculate_peach_count();
+    // calculate_peach_count();
+    calculate_square_root();
     return 0;
 }
 
@@ -466,4 +469,19 @@ void calculate_peach_count() {
         a[i] = 2 * (a[i - 1] + 1);
     }
     printf("%d", a[n - 1]);
+}
+
+// https://www.dotcpp.com/oj/problem1021.html
+void calculate_square_root() {
+    int x;
+    scanf("%d", &x);
+
+    double a = x / 2.0f;
+    double b = (a + x / a) / 2;
+
+    while (fabs(b - a) >= 0.00001f) {
+        a = b;
+        b = (a + x / a) / 2;
+    }
+    printf("%.3f", a);
 }
