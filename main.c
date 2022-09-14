@@ -112,7 +112,7 @@ int main() {
     // digit_devide_exer();
     // for_exer();
     // digit_exchange();
-    // greatest_common_divisor();
+    greatest_common_divisor();
     // string_classification();
     // sum_sn();
     // sum_sn2();
@@ -127,7 +127,7 @@ int main() {
     // for (int i = 0; i < 10; ++i) {
     //     static_exer();
     // }
-    print_reverse_order();
+    // print_reverse_order();
     return 0;
 }
 
@@ -309,6 +309,7 @@ void digit_exchange() {
     }
 }
 
+// https://www.dotcpp.com/oj/problem1027.html
 void greatest_common_divisor() {
     int a, b;
     scanf("%d %d", &a, &b);
