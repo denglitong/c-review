@@ -39,7 +39,9 @@ void sum_sn2();
 void sum_3_list();
 
 // 水仙花树
-void daffodils_num();
+void print_daffodils_num();
+
+void is_daffodils_num();
 
 void completion_num();
 
@@ -133,7 +135,7 @@ int main() {
     // sum_sn();
     // sum_sn2();
     // sum_3_list();
-    // daffodils_num();
+    // print_daffodils_num();
     // completion_num();
     // sum_fractional_list();
     // calculate_distance();
@@ -151,7 +153,8 @@ int main() {
     // concat_str();
     // filter_vowel_letters();
     // add_space_to_digit();
-    letters_count();
+    // letters_count();
+    is_daffodils_num();
     return 0;
 }
 
@@ -453,7 +456,7 @@ void sum_3_list() {
 }
 
 // 打印出所有"水仙花数"，所谓"水仙花数"是指一个三位数，其各位数字立方和等于该本身。 例如：153是一个水仙花数，因为153=1^3+5^3+3^3。
-void daffodils_num() {
+void print_daffodils_num() {
     for (int i = 100; i <= 999; ++i) {
         int j = i, sum = 0;
         while (j > 0) {
@@ -746,4 +749,17 @@ void letters_count() {
     }
 
     printf("%d %d %d %d", a, b, c, d);
+}
+
+// https://www.dotcpp.com/oj/problem1119.html
+void is_daffodils_num() {
+    int n;
+    scanf("%d", &n);
+    int sum = 0, val = n;
+    while (n > 0) {
+        int b = n % 10;
+        sum += b * b * b;
+        n /= 10;
+    }
+    printf("%d", sum == val);
 }
