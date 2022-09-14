@@ -65,6 +65,8 @@ void is_prime();
 
 void exchange_array();
 
+void reverse_line();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -136,7 +138,8 @@ int main() {
     // print_reverse_order();
     // unary_quadratic_equation();
     // is_prime();
-    exchange_array();
+    // exchange_array();
+    reverse_line();
     return 0;
 }
 
@@ -595,6 +598,7 @@ void unary_quadratic_equation() {
     }
 }
 
+// https://www.dotcpp.com/oj/problem1028.html
 void is_prime() {
     int n;
     scanf("%d", &n);
@@ -607,6 +611,7 @@ void is_prime() {
     printf("prime");
 }
 
+// https://www.dotcpp.com/oj/problem1029.html
 void exchange_array() {
     int a[3][3];
     for (int i = 0; i < 3; ++i) {
@@ -624,5 +629,23 @@ void exchange_array() {
         if (i < 2) {
             printf("\n");
         }
+    }
+}
+
+// https://www.dotcpp.com/oj/problem1031.html
+void reverse_line() {
+    char line[256] = {' '};
+    scanf("%s", line);
+
+    int len = 0;
+    while (line[len] != '\0') {
+        len++;
+    }
+
+    for (int i = len - 1; i >= 0; --i) {
+        if (line[i] == ' ') {
+            continue;
+        }
+        printf("%c", line[i]);
     }
 }
