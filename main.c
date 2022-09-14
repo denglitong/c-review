@@ -67,6 +67,8 @@ void exchange_array();
 
 void reverse_line();
 
+void concat_str();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -139,7 +141,8 @@ int main() {
     // unary_quadratic_equation();
     // is_prime();
     // exchange_array();
-    reverse_line();
+    // reverse_line();
+    concat_str();
     return 0;
 }
 
@@ -647,5 +650,23 @@ void reverse_line() {
             continue;
         }
         printf("%c", line[i]);
+    }
+}
+
+// https://www.dotcpp.com/oj/problem1032.html
+void concat_str() {
+    char line1[256], line2[256];
+    scanf("%s", line1);
+    scanf("%s", line2);
+
+    int idx = 0;
+    while (line1[idx] != '\0') {
+        printf("%c", line1[idx]);
+        idx++;
+    }
+    idx = 0;
+    while (line2[idx] != '\0') {
+        printf("%c", line2[idx]);
+        idx++;
     }
 }
