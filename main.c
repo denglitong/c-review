@@ -71,6 +71,8 @@ void concat_str();
 
 void filter_vowel_letters();
 
+void add_space_to_digit();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -145,7 +147,8 @@ int main() {
     // exchange_array();
     // reverse_line();
     // concat_str();
-    filter_vowel_letters();
+    // filter_vowel_letters();
+    add_space_to_digit();
     return 0;
 }
 
@@ -695,5 +698,28 @@ void filter_vowel_letters() {
                 break;
         }
         idx++;
+    }
+}
+
+// https://www.dotcpp.com/oj/problem1034.html
+void add_space_to_digit() {
+    // int digit_width = 4;
+    // char c1 = getchar();
+    // char c2 = getchar();
+    // char c3 = getchar();
+    // char c4 = getchar();
+    // printf("%c %c %c %c", c1, c2, c3, c4);
+    int n;
+    scanf("%d", &n);
+    int c[4], idx = 0;
+    while (n > 0) {
+        c[idx++] = n % 10;
+        n /= 10;
+    }
+    for (int i = 0; i < 4; ++i) {
+        printf("%d", c[3 - i]);
+        if (i < 3) {
+            printf(" ");
+        }
     }
 }
