@@ -83,6 +83,8 @@ void intimate_number();
 
 void simplest_fraction_list_of_denominator_40();
 
+void to_lower_case();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -163,7 +165,8 @@ int main() {
     // is_daffodils_num();
     // num_can_not_devide_by_8();
     // intimate_number();
-    simplest_fraction_list_of_denominator_40();
+    // simplest_fraction_list_of_denominator_40();
+    to_lower_case();
     return 0;
 }
 
@@ -860,4 +863,31 @@ void simplest_fraction_list_of_denominator_40() {
             printf("%d/40,", i);
         }
     }
+}
+
+// https://www.dotcpp.com/oj/problem1124.html
+void to_lower_case() {
+    // 实现 1
+    // char c;
+    // while ((scanf("%c", &c) != EOF)) {
+    //     if (c >= 'A' && c <= 'Z') {
+    //         printf("%c", c + ('a' - 'A'));
+    //     } else {
+    //         printf("%c", c);
+    //     }
+    // }
+
+    // 解法 2
+    char *line = NULL;
+    size_t len = 0, line_size = 0;
+    line_size = getline(&line, &len, stdin);
+    // 此处需要包含 最后输入的 \n 回车字符...
+    for (int i = 0; i < line_size; ++i) {
+        if (line[i] >= 'A' && line[i] <= 'Z') {
+            printf("%c", line[i] + ('a' - 'A'));
+        } else {
+            printf("%c", line[i]);
+        }
+    }
+    printf("%d", line_size);
 }
