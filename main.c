@@ -59,6 +59,8 @@ static int s_a = 5;
 
 void print_reverse_order();
 
+void unary_quadratic_equation();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -112,7 +114,7 @@ int main() {
     // digit_devide_exer();
     // for_exer();
     // digit_exchange();
-    greatest_common_divisor();
+    // greatest_common_divisor();
     // string_classification();
     // sum_sn();
     // sum_sn2();
@@ -128,6 +130,7 @@ int main() {
     //     static_exer();
     // }
     // print_reverse_order();
+    unary_quadratic_equation();
     return 0;
 }
 
@@ -565,5 +568,23 @@ void print_reverse_order() {
         if (i > 0) {
             printf(" ");
         }
+    }
+}
+
+// https://www.dotcpp.com/oj/problem1028.html
+void unary_quadratic_equation() {
+    double a, b, c;
+    scanf("%lf %lf %lf", &a, &b, &c);
+
+    double criterion = b * b - 4 * a * c;
+    if (criterion > 0.0f) {
+        printf("x1=%.3f x2=%.3f", -b + sqrt(criterion) / (2 * a), -b - sqrt(criterion) / (2 * a));
+    } else if (criterion == 0.0f) {
+        double factor = -b / (2 * a);
+        printf("x1=%.3f x2=%.3f", factor, factor);
+    } else {
+        double factor1 = -b / (2 * a);
+        double factor2 = sqrt(-criterion) / (2 * a);
+        printf("x1=%.3f+%.3fi x2=%.3f-%.3fi", factor1, factor2, factor1, factor2);
     }
 }
