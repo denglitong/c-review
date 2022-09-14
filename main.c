@@ -79,6 +79,8 @@ void letters_count();
 
 void num_can_not_devide_by_8();
 
+void intimate_number();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -157,7 +159,8 @@ int main() {
     // add_space_to_digit();
     // letters_count();
     // is_daffodils_num();
-    num_can_not_devide_by_8();
+    // num_can_not_devide_by_8();
+    intimate_number();
     return 0;
 }
 
@@ -780,4 +783,36 @@ void num_can_not_devide_by_8() {
     int a = 3;
     int x = 578 * a + 259;
     printf("%d", x);
+}
+
+// https://www.dotcpp.com/oj/problem1122.html
+void intimate_number() {
+    int factors_a[64], factors_b[64];
+    for (int a = 10; a <= 3000; ++a) {
+        int idx1 = 0, idx2 = 0;
+        for (int i = 2; i <= a / 2; ++i) {
+            if (a % i == 0) {
+                factors_a[idx1++] = i;
+            }
+        }
+        int b = 1;
+        for (int i = 0; i < idx1; ++i) {
+            b += factors_a[i];
+        }
+        if (a >= b) {
+            continue;
+        }
+        for (int i = 2; i <= b / 2; ++i) {
+            if (b % i == 0) {
+                factors_b[idx2++] = i;
+            }
+        }
+        int sum = 1;
+        for (int i = 0; i < idx2; ++i) {
+            sum += factors_b[i];
+        }
+        if (sum == a) {
+            printf("(%d,%d)", a, b);
+        }
+    }
 }
