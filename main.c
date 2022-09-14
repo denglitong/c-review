@@ -73,6 +73,8 @@ void filter_vowel_letters();
 
 void add_space_to_digit();
 
+void letters_count();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -148,7 +150,8 @@ int main() {
     // reverse_line();
     // concat_str();
     // filter_vowel_letters();
-    add_space_to_digit();
+    // add_space_to_digit();
+    letters_count();
     return 0;
 }
 
@@ -722,4 +725,25 @@ void add_space_to_digit() {
             printf(" ");
         }
     }
+}
+
+void letters_count() {
+    char *line = NULL;
+    size_t len = 0, line_size = 0;
+    line_size = getline(&line, &len, stdin);
+
+    int a = 0, b = 0, c = 0, d = 0;
+    for (int i = 0; i < line_size - 1; ++i) {
+        if ((line[i] >= 'A' && line[i] <= 'Z') || (line[i] >= 'a' && line[i] <= 'z')) {
+            a++;
+        } else if (line[i] >= '0' && line[i] <= '9') {
+            b++;
+        } else if (line[i] == ' ') {
+            c++;
+        } else {
+            d++;
+        }
+    }
+
+    printf("%d %d %d %d", a, b, c, d);
 }
