@@ -51,6 +51,8 @@ void calculate_peach_count();
 
 void calculate_square_root();
 
+void prime_number();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -84,7 +86,8 @@ int main() {
     // sum_fractional_list();
     // calculate_distance();
     // calculate_peach_count();
-    calculate_square_root();
+    // calculate_square_root();
+    prime_number();
     return 0;
 }
 
@@ -484,4 +487,23 @@ void calculate_square_root() {
         b = (a + x / a) / 2;
     }
     printf("%.3f", a);
+}
+
+// https://www.dotcpp.com/oj/problem1022.html
+void prime_number() {
+    int n;
+    scanf("%d", &n);
+
+    for (int i = 2; i <= n; ++i) {
+        int is_prime = 1;
+        for (int j = 2; j <= sqrt(i); ++j) {
+            if (i % j == 0) {
+                is_prime = 0;
+                break;
+            }
+        };
+        if (is_prime) {
+            printf("%d\n", i);
+        }
+    }
 }
