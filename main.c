@@ -61,6 +61,10 @@ void print_reverse_order();
 
 void unary_quadratic_equation();
 
+void is_prime();
+
+void exchange_array();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -130,7 +134,9 @@ int main() {
     //     static_exer();
     // }
     // print_reverse_order();
-    unary_quadratic_equation();
+    // unary_quadratic_equation();
+    // is_prime();
+    exchange_array();
     return 0;
 }
 
@@ -586,5 +592,37 @@ void unary_quadratic_equation() {
         double factor1 = -b / (2 * a);
         double factor2 = sqrt(-criterion) / (2 * a);
         printf("x1=%.3f+%.3fi x2=%.3f-%.3fi", factor1, factor2, factor1, factor2);
+    }
+}
+
+void is_prime() {
+    int n;
+    scanf("%d", &n);
+    for (int i = 2; i <= sqrt(n); ++i) {
+        if (n % i == 0) {
+            printf("not prime");
+            return;
+        }
+    }
+    printf("prime");
+}
+
+void exchange_array() {
+    int a[3][3];
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            scanf("%d", &a[i][j]);
+        }
+    }
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            printf("%d", a[j][i]);
+            if (j < 2) {
+                printf(" ");
+            }
+        }
+        if (i < 2) {
+            printf("\n");
+        }
     }
 }
