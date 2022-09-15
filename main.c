@@ -85,6 +85,10 @@ void simplest_fraction_list_of_denominator_40();
 
 void to_lower_case();
 
+void concat_reverse_str();
+
+void nicoches_num();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -166,7 +170,9 @@ int main() {
     // num_can_not_devide_by_8();
     // intimate_number();
     // simplest_fraction_list_of_denominator_40();
-    to_lower_case();
+    // to_lower_case();
+    // concat_reverse_str();
+    nicoches_num();
     return 0;
 }
 
@@ -890,4 +896,33 @@ void to_lower_case() {
         }
     }
     printf("%d", line_size);
+}
+
+// https://www.dotcpp.com/oj/problem1126.html
+void concat_reverse_str() {
+    char line[50];
+    scanf("%s", line);
+
+    int idx = 0;
+    while (line[idx] != '\0') {
+        printf("%c", line[idx]);
+        idx++;
+    }
+    idx--;
+    for (int i = idx - 1; i >= 0; --i) {
+        printf("%c", line[i]);
+    }
+}
+
+// https://www.dotcpp.com/oj/problem1127.html
+void nicoches_num() {
+    int n;
+    scanf("%d", &n);
+    printf("%d*%d*%d=%d=", n, n, n, n * n * n);
+    int a = n * n + 1 - n;
+    printf("%d", a);
+    for (int i = 1; i < n; ++i) {
+        a += 2;
+        printf("+%d", a);
+    }
 }
