@@ -89,6 +89,8 @@ void concat_reverse_str();
 
 void nicoches_num();
 
+void sort_nums();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -172,7 +174,8 @@ int main() {
     // simplest_fraction_list_of_denominator_40();
     // to_lower_case();
     // concat_reverse_str();
-    nicoches_num();
+    // nicoches_num();
+    sort_nums();
     return 0;
 }
 
@@ -924,5 +927,28 @@ void nicoches_num() {
     for (int i = 1; i < n; ++i) {
         a += 2;
         printf("+%d", a);
+    }
+}
+
+// https://www.dotcpp.com/oj/problem1129.html
+void sort_nums() {
+    int n = 10, a[n];
+    for (int i = 0; i < n; ++i) {
+        scanf("%d", &a[i]);
+    }
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n - 1; ++j) {
+            if (a[j] < a[j + 1]) {
+                int t = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = t;
+            }
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+        printf("%d", a[i]);
+        if (i < n - 1) {
+            printf(" ");
+        }
     }
 }
