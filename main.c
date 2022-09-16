@@ -100,6 +100,8 @@ void selection_sort();
 
 void sum_matrix_diagonal();
 
+void insertion_sort();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -188,7 +190,8 @@ int main() {
     // string_copy();
     // array();
     // selection_sort();
-    sum_matrix_diagonal();
+    // sum_matrix_diagonal();
+    insertion_sort();
     return 0;
 }
 
@@ -1028,4 +1031,24 @@ void sum_matrix_diagonal() {
         b += matric[i][n - 1 - i];
     }
     printf("%d %d", a, b);
+}
+
+// https://www.dotcpp.com/oj/problem1025.html
+void insertion_sort() {
+    int n = 9, arr[n];
+    for (int i = 0; i < n; ++i) {
+        scanf("%d", &arr[i]);
+    }
+    int insert = 0, has_inserted = 0;
+    scanf("%d", &insert);
+    for (int i = 0; i < n; ++i) {
+        if (has_inserted == 0 && insert < arr[i]) {
+            printf("%d\n", insert);
+            has_inserted = 1;
+        }
+        printf("%d\n", arr[i]);
+    }
+    if (insert >= arr[n - 1]) {
+        printf("%d\n", insert);
+    }
 }
