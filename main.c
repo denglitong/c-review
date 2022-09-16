@@ -110,6 +110,8 @@ void exchange_temperature();
 
 void function_value();
 
+void sum_even_values();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -203,7 +205,8 @@ int main() {
     // reverse_num();
     // ten_digit_to_eight_digit();
     // exchange_temperature();
-    function_value();
+    // function_value();
+    sum_even_values();
     return 0;
 }
 
@@ -1105,4 +1108,18 @@ void function_value() {
     } else {
         printf("%.2lf", 3 * x - 11);
     }
+}
+
+// https://www.dotcpp.com/oj/problem1058.html
+void sum_even_values() {
+    int n;
+    scanf("%d", &n);
+    int sum = 0, num = 0;
+    for (int i = 0; i < n; ++i) {
+        scanf("%d", &num);
+        if (num % 2 == 0) {
+            sum += num;
+        }
+    }
+    printf("%d", sum);
 }
