@@ -94,6 +94,8 @@ void sort_nums();
 
 void string_copy();
 
+void array();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -179,7 +181,8 @@ int main() {
     // concat_reverse_str();
     // nicoches_num();
     // sort_nums();
-    string_copy();
+    // string_copy();
+    array();
     return 0;
 }
 
@@ -962,4 +965,21 @@ void string_copy() {
     char *str1 = "www.dotcpp.com";
     strcpy(str, str1);
     printf("%s\n", str1);
+}
+
+void array() {
+    char c1[10];
+    char c2[20] = {'a', 'e', 'i', 'o', 'u'};
+    printf("%s %lu\n", c2, strlen(c2));
+    char c3[] = {"china"};
+    for (int i = 0; i < strlen(c3); ++i) {
+        printf("%c ", c3[i]);
+    }
+    printf("\n");
+    printf("c2(%s) == c3(%s) ? %d\n", c2, c3, strcmp(c2, c3));
+
+    // c2 capacity must contain the c2 len + c3 len
+    char *c4 = strcat(c2, c3);
+    printf("c2 = %s\n", c2); // c2 = aeiouchina
+    printf("c4 = %s\n", c4); // c4 = aeiouchina
 }
