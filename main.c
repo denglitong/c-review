@@ -106,6 +106,10 @@ void reverse_num();
 
 void ten_digit_to_eight_digit();
 
+void exchange_temperature();
+
+void function_value();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -197,7 +201,9 @@ int main() {
     // sum_matrix_diagonal();
     // insertion_sort();
     // reverse_num();
-    ten_digit_to_eight_digit();
+    // ten_digit_to_eight_digit();
+    // exchange_temperature();
+    function_value();
     return 0;
 }
 
@@ -1078,4 +1084,25 @@ void ten_digit_to_eight_digit() {
     int n;
     scanf("%d", &n);
     printf("%o", n);
+}
+
+// https://www.dotcpp.com/oj/problem1056.html
+void exchange_temperature() {
+    double f;
+    scanf("%lf", &f);
+    double c = 5 * (f - 32) / 9;
+    printf("%.2lf", c);
+}
+
+// https://www.dotcpp.com/oj/problem1057.html
+void function_value() {
+    double x;
+    scanf("%lf", &x);
+    if (x < 1) {
+        printf("%.2lf", x);
+    } else if (x >= 1 && x < 10) {
+        printf("%.2lf", 2 * x - 1);
+    } else {
+        printf("%.2lf", 3 * x - 11);
+    }
 }
