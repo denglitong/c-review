@@ -96,6 +96,8 @@ void string_copy();
 
 void array();
 
+void selection_sort();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -182,7 +184,8 @@ int main() {
     // nicoches_num();
     // sort_nums();
     // string_copy();
-    array();
+    // array();
+    selection_sort();
     return 0;
 }
 
@@ -982,4 +985,28 @@ void array() {
     char *c4 = strcat(c2, c3);
     printf("c2 = %s\n", c2); // c2 = aeiouchina
     printf("c4 = %s\n", c4); // c4 = aeiouchina
+}
+
+// https://www.dotcpp.com/oj/problem1023.html
+void selection_sort() {
+    int n = 10, a[n];
+    for (int i = 0; i < n; ++i) {
+        scanf("%d", &a[i]);
+    }
+    for (int i = 0; i < n; ++i) {
+        int smallest = a[i], smallest_idx = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (a[j] < smallest) {
+                smallest = a[j];
+                smallest_idx = j;
+            }
+        }
+        if (smallest_idx != i) {
+            a[smallest_idx] = a[i];
+            a[i] = smallest;
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+        printf("%d\n", a[i]);
+    }
 }
