@@ -116,6 +116,8 @@ void sum_arithmetic_progression();
 
 void count_neg_and_sum_pos();
 
+void sum_factorial_sequence();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -212,7 +214,8 @@ int main() {
     // function_value();
     // sum_even_values();
     // sum_arithmetic_progression();
-    count_neg_and_sum_pos();
+    // count_neg_and_sum_pos();
+    sum_factorial_sequence();
     return 0;
 }
 
@@ -1152,4 +1155,14 @@ void count_neg_and_sum_pos() {
         }
     }
     printf("%d\n%.2f", neg_count, (double) sum / pos_count);
+}
+
+// https://www.dotcpp.com/oj/problem1064.html
+void sum_factorial_sequence() {
+    double sum = 0, pre = 1;
+    for (int i = 1; i <= 30; ++i) {
+        pre = pre * i;
+        sum += pre;
+    }
+    printf("%.2e", sum);
 }
