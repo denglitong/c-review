@@ -114,6 +114,8 @@ void sum_even_values();
 
 void sum_arithmetic_progression();
 
+void count_neg_and_sum_pos();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -209,7 +211,8 @@ int main() {
     // exchange_temperature();
     // function_value();
     // sum_even_values();
-    sum_arithmetic_progression();
+    // sum_arithmetic_progression();
+    count_neg_and_sum_pos();
     return 0;
 }
 
@@ -1135,4 +1138,18 @@ void sum_arithmetic_progression() {
     int a1 = 3 * 1 - 1, an = 3 * n - 1;
     int sum = (a1 + an) * n / 2;
     printf("%d", sum);
+}
+
+void count_neg_and_sum_pos() {
+    int n = 20, num = 0, sum = 0, neg_count = 0, pos_count = 0;
+    for (int i = 0; i < n; ++i) {
+        scanf("%d", &num);
+        if (num < 0) {
+            neg_count++;
+        } else if (num > 0) {
+            sum += num;
+            pos_count++;
+        }
+    }
+    printf("%d\n%.2f", neg_count, (double) sum / pos_count);
 }
