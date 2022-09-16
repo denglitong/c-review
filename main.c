@@ -1,6 +1,7 @@
 // 预处理指令，甚至不是 C 语言的语句！
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 void printf_str();
 
@@ -91,6 +92,8 @@ void nicoches_num();
 
 void sort_nums();
 
+void string_copy();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -175,7 +178,8 @@ int main() {
     // to_lower_case();
     // concat_reverse_str();
     // nicoches_num();
-    sort_nums();
+    // sort_nums();
+    string_copy();
     return 0;
 }
 
@@ -951,4 +955,11 @@ void sort_nums() {
             printf(" ");
         }
     }
+}
+
+void string_copy() {
+    char str[20];
+    char *str1 = "www.dotcpp.com";
+    strcpy(str, str1);
+    printf("%s\n", str1);
 }
