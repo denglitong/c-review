@@ -102,6 +102,10 @@ void sum_matrix_diagonal();
 
 void insertion_sort();
 
+void reverse_num();
+
+void ten_digit_to_eight_digit();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -191,7 +195,9 @@ int main() {
     // array();
     // selection_sort();
     // sum_matrix_diagonal();
-    insertion_sort();
+    // insertion_sort();
+    // reverse_num();
+    ten_digit_to_eight_digit();
     return 0;
 }
 
@@ -1051,4 +1057,25 @@ void insertion_sort() {
     if (insert >= arr[n - 1]) {
         printf("%d\n", insert);
     }
+}
+
+// https://www.dotcpp.com/oj/problem1026.html
+void reverse_num() {
+    int n = 10, arr[n];
+    for (int i = 0; i < n; ++i) {
+        scanf("%d", &arr[i]);
+    }
+    for (int i = 0; i < n; ++i) {
+        printf("%d", arr[n - 1 - i]);
+        if (i < n - 1) {
+            printf(" ");
+        }
+    }
+}
+
+// https://www.dotcpp.com/oj/problem1055.html
+void ten_digit_to_eight_digit() {
+    int n;
+    scanf("%d", &n);
+    printf("%o", n);
 }
