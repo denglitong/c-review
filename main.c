@@ -112,6 +112,8 @@ void function_value();
 
 void sum_even_values();
 
+void sum_arithmetic_progression();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -206,7 +208,8 @@ int main() {
     // ten_digit_to_eight_digit();
     // exchange_temperature();
     // function_value();
-    sum_even_values();
+    // sum_even_values();
+    sum_arithmetic_progression();
     return 0;
 }
 
@@ -1121,5 +1124,15 @@ void sum_even_values() {
             sum += num;
         }
     }
+    printf("%d", sum);
+}
+
+// https://www.dotcpp.com/oj/problem1059.html
+void sum_arithmetic_progression() {
+    // an = 3n - 1
+    int n;
+    scanf("%d", &n);
+    int a1 = 3 * 1 - 1, an = 3 * n - 1;
+    int sum = (a1 + an) * n / 2;
     printf("%d", sum);
 }
