@@ -120,6 +120,8 @@ void sum_factorial_sequence();
 
 void show_var_address();
 
+void show_pointer();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -158,11 +160,19 @@ void show_var_address();
  * 全局变量：在函数之外定义的变量，其作用范围为从定义处开始到本文件结束，编译时，编译系统为其分配固定的内存单元，在程序运行时
  * 的自始至终都占用固定单元。
  *
- * 指针
- *
  * C 的设计哲学：C 充分相信程序员
- * 地址是逻辑内存空间中的一个编号，内存中的计量单位为 1 个字节(byte)，即 8比特(bit)
- * 内存中的每个字节都有对应的一个编号（逻辑内存空间中）
+ *
+ * 指针: 类型说明符 *变量名，类型说明符表示该指针变量所指向的变量为何种数据类型，C 还提供使用 * 获取地址上对应的值
+ *
+ * 地址是逻辑内存空间中的一个编号，内存中的计量单位为 1 个字节(byte)，即 8比特(bit)，内存中的每个字节都有对应的一个编号
+ *
+ * 由于指针存放的都是地址，在 32 位操作系统下，任何类型的指针变量都占 4 个字节，
+ * 同理，在 64 位操作系统下，任何类型的指针变量都占 4 个字节。
+ *
+ * C 语言规定，数组名代表数组的首地址，也就是第 0 号元素的地址
+ *
+ * 某个类型的指针 p 是个变量，可以改变 p 使它指向不同的地址，但不能改变 p 所指向的【常量】的值，
+ * 和 数组指针 有着本质的区别，数组指针里面，指针指向的都是变量，所以可以通过数组指针修改某个下标的值。
  *
  * @return
  */
@@ -225,7 +235,8 @@ int main() {
     // sum_arithmetic_progression();
     // count_neg_and_sum_pos();
     // sum_factorial_sequence();
-    show_var_address();
+    // show_var_address();
+    show_pointer();
     return 0;
 }
 
@@ -1186,4 +1197,56 @@ void show_var_address() {
     for (int i = 0; i < 10; ++i) {
         printf("ox%x %d\n", &b[i], b[i]);
     }
+}
+
+struct INFO {
+    int a;
+    char b;
+    double c;
+};
+
+void show_pointer() {
+    int num = 1024;
+    int *p = &num;
+    printf("num address = 0x%x, num = %d\n", p, num);
+    printf("p sizeof %lu bytes\n", sizeof p); // 8 bytes
+
+    struct INFO *p4;
+    printf("p4 sizeof %lu bytes\n", sizeof p4); // 8 bytes
+
+    int a[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+    printf("a[2] = %d\n", a[2]);
+    printf("a[2] = %d\n", *(a + 2));
+    int *p5 = a;
+    printf("a[2] = %d\n", *(p5 + 2));
+    int *p6 = &a[0];
+    printf("a[2] = %d\n", *(p6 + 2));
+
+    // 字符指针 str 是一个变量，可以改变 str 使它指向不同的字符串，但不能改变 str 所指向的常量区的内容
+    // str 字符指针指向了一个常量字符串的首地址，常量字符串是不可以被更改的
+    char *str = "www.dotcpp.com";
+    // string 是一个数组，可以改变数组中保存的内容，这里需要注意和字符指针的区别
+    char string[] = "www.dotcpp.com";
+    // Exception: EXC_BAD_ACCESS (code=2, address=0x10e81cee7)
+    // str[0] = 'W'; // str 指向的是常量区的内容，不能修改常量区的内容
+    printf("%c\n", *(str + 3));
+    printf("%s\n", str);
+    string[0] = 'W';
+    printf("%s\n", string); // Www.dotcpp.com
+    printf("str: ox%x\nstring: ox%x\n", str, string);
+
+    // 这个定义其实是将 2 这个值赋给了 p7 这个变量，即 p7 对应的地址为 2，所以它的表现为 undefined
+    int *p7 = {2, 1, 3};
+    // Exception: EXC_BAD_ACCESS (code=1, address=0x1)
+    // p7[1] = 0;
+    // Exception: EXC_BAD_ACCESS (code=1, address=0x1)
+    // printf("%d\n", p7[1]);
+    // Exception: EXC_BAD_ACCESS (code=1, address=0x1)
+    // printf("%d\n", *(p7 + 1));
+    printf("p7: ox%x\n", p7);
+    int p8[3] = {1, 2, 3};
+    int *p9 = p8;
+    p9[1] = 0;
+    printf("%d\n", p8[1]); // 0
+    printf("p8: ox%x\np9: ox%x", p8, p9);
 }
