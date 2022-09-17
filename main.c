@@ -118,6 +118,8 @@ void count_neg_and_sum_pos();
 
 void sum_factorial_sequence();
 
+void show_var_address();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -155,6 +157,13 @@ void sum_factorial_sequence();
  *
  * 全局变量：在函数之外定义的变量，其作用范围为从定义处开始到本文件结束，编译时，编译系统为其分配固定的内存单元，在程序运行时
  * 的自始至终都占用固定单元。
+ *
+ * 指针
+ *
+ * C 的设计哲学：C 充分相信程序员
+ * 地址是逻辑内存空间中的一个编号，内存中的计量单位为 1 个字节(byte)，即 8比特(bit)
+ * 内存中的每个字节都有对应的一个编号（逻辑内存空间中）
+ *
  * @return
  */
 int main() {
@@ -215,7 +224,8 @@ int main() {
     // sum_even_values();
     // sum_arithmetic_progression();
     // count_neg_and_sum_pos();
-    sum_factorial_sequence();
+    // sum_factorial_sequence();
+    show_var_address();
     return 0;
 }
 
@@ -1165,4 +1175,15 @@ void sum_factorial_sequence() {
         sum += pre;
     }
     printf("%.2e", sum);
+}
+
+void show_var_address() {
+    int a[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+    char b[10] = {"clanguage"};
+    for (int i = 0; i < 10; ++i) {
+        printf("ox%x %d\n", &a[i], a[i]);
+    }
+    for (int i = 0; i < 10; ++i) {
+        printf("ox%x %d\n", &b[i], b[i]);
+    }
 }
