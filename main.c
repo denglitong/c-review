@@ -130,6 +130,8 @@ void show_typedef();
 
 void show_enum();
 
+void str_cpy();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -251,7 +253,8 @@ int main() {
     // show_struct();
     // show_union();
     // show_typedef();
-    show_enum();
+    // show_enum();
+    str_cpy();
     return 0;
 }
 
@@ -1392,4 +1395,24 @@ void show_enum() {
         Oct = 30, Nov, Dec
     };
     printf("Feb = %d, May = %d, Aug = %d, Nov = %d\n", Feb, May, Aug, Nov);
+}
+
+// https://www.dotcpp.com/oj/problem1048.html
+void str_cpy() {
+    typedef struct {
+        int len;
+        int offset;
+        char *data;
+    } Str;
+
+    int n = 0, m = 0;
+    scanf("%d", &n);
+    char line[n];
+    scanf("%s", line);
+    scanf("%d", &m);
+
+    Str str = {n, m, &line[0]};
+    for (int i = str.offset - 1; i < str.len; ++i) {
+        printf("%c", *(str.data + i));
+    }
 }
