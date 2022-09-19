@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include <stdlib.h>
 
 void printf_str();
 
@@ -132,6 +133,8 @@ void show_enum();
 
 void str_cpy();
 
+void student_score_summary();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -254,7 +257,8 @@ int main() {
     // show_union();
     // show_typedef();
     // show_enum();
-    str_cpy();
+    // str_cpy();
+    student_score_summary();
     return 0;
 }
 
@@ -1415,4 +1419,56 @@ void str_cpy() {
     for (int i = str.offset - 1; i < str.len; ++i) {
         printf("%c", *(str.data + i));
     }
+}
+
+// https://www.dotcpp.com/oj/problem1051.html
+void student_score_summary() {
+    typedef struct {
+        char *id;
+        char *name;
+        int score1;
+        int score2;
+        int score3;
+    } Student;
+
+    int n;
+    scanf("%d", &n);
+    Student students[n];
+    printf("\n");
+
+    for (int i = 0; i < n; ++i) {
+        // 在堆上分配内存，然后被 Student 的引用带出去了，内存块持续存在，只是指向内存块的指针从 id,name 变为了 Student{id,name}；
+        // 这里的 id,name 是 for 循环体在栈上分配的临时变量，如果不用 malloc 动态分配，那么由于循环体的局部性，下次循环时上次循环体内定义的
+        // 临时变量就要失效，这里编译器为了加速，会复用第一次循环体定义的临时变量，所以会看到 id,name 在循环体内被复用同一个地址的现象。
+        char *id = malloc(256);
+        char *name = malloc(256);
+        int score1, score2, score3;
+        printf("id:ox%x,name:ox%x\n", id, name);
+        scanf("%s", id);
+        scanf("%s", name);
+        scanf("%d", &score1);
+        scanf("%d", &score2);
+        scanf("%d", &score3);
+        Student s = {id, name, score1, score2, score3};
+        students[i] = s;
+    }
+
+    int sum1 = 0, sum2 = 0, sum3 = 0, largest_sum = 0, largest_idx = 0;
+    for (int i = 0; i < n; ++i) {
+        sum1 += students[i].score1;
+        sum2 += students[i].score2;
+        sum3 += students[i].score3;
+        if (students[i].score1 + students[i].score2 + students[i].score3 > largest_sum) {
+            largest_sum = students[i].score1 + students[i].score2 + students[i].score3;
+            largest_idx = i;
+        }
+    }
+    printf("%d %d %d\n", sum1 / n, sum2 / n, sum3 / n);
+    printf("largest_idx: %d\n", largest_idx);
+    printf("%s %s %d %d %d\n",
+           students[largest_idx].id,
+           students[largest_idx].name,
+           students[largest_idx].score1,
+           students[largest_idx].score2,
+           students[largest_idx].score3);
 }
