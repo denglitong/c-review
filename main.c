@@ -124,6 +124,8 @@ void show_pointer();
 
 void show_struct();
 
+void show_union();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -242,7 +244,8 @@ int main() {
     // sum_factorial_sequence();
     // show_var_address();
     // show_pointer();
-    show_struct();
+    // show_struct();
+    show_union();
     return 0;
 }
 
@@ -1318,4 +1321,33 @@ void show_struct() {
         printf("%s %s %lu %lu\n", p->name, p->street, p->telephone, p->zip);
         p++;
     }
+}
+
+union ABC {
+    int a;
+    char b;
+    float c;
+    float d;
+};
+
+/**
+ * C 语言的 union 允许几种不同类型的变量存放到同一段内存单元中，union变量和成员变量的内存地址都是同一个地址；
+ * union 在同一个时间只能存放一个成员，在对新的成员赋值的时候原有成员会被覆盖；
+ *
+ * 使用的时候不能直接引用 union 变量，而只能引用 union 变量中的成员；
+ */
+void show_union() {
+    // 不能在定义union的时候对它进行初始化，也不能对 union 变量进行赋值
+    // 不能把 union 当做函数参数，也不能是函数的返回体，但可以使用指向 union 的指针
+    // union 可以出现在 struct 中，也可以定义 union array；
+    // struct 也可以出现在 union 中，array也可以出现在 union 中；
+    union ABC abc;
+    abc.a = 1;
+    abc.b = 'b';
+    abc.c = 3.14f;
+    abc.d = 2.13f;
+    printf("a:%d\n", abc.a); // undefined
+    printf("b:%c\n", abc.b); // undefined
+    printf("c:%.2f\n", abc.c); // 2.13 由于指向的地址相同，且成员定义的类型相同，所以指向最新的赋值成员
+    printf("d:%.2f\n", abc.d); // 2.13
 }
