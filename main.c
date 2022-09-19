@@ -128,6 +128,8 @@ void show_union();
 
 void show_typedef();
 
+void show_enum();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -248,7 +250,8 @@ int main() {
     // show_pointer();
     // show_struct();
     // show_union();
-    show_typedef();
+    // show_typedef();
+    show_enum();
     return 0;
 }
 
@@ -1368,4 +1371,25 @@ void show_typedef() {
     typedef struct INFO _INFO;
     _INFO info = {18, "hello world"};
     printf("%d %s\n", info.num, info.str);
+}
+
+
+// enum 枚举名 {枚举元素A(0), 枚举元素B(1), 枚举元素C(2), ...}
+// 枚举元素值是从 0 开始递增的，若想更改后续递增的值需要从某个值进行赋值开始
+void show_enum() {
+    enum Weekday {
+        MON, TUE, WED, THU, FRI, SAT, SUN
+    };
+    // 0 1 2 3 4 5 6
+    printf("%d %d %d %d %d %d %d\n", MON, TUE, WED, THU, FRI, SAT, SUN);
+    enum Weekday A = WED;
+    printf("A = %d\n", A);
+
+    enum Month {
+        Jan, Feb, Mar,
+        Apr = 10, May, June,
+        July = 20, Aug, Sep,
+        Oct = 30, Nov, Dec
+    };
+    printf("Feb = %d, May = %d, Aug = %d, Nov = %d\n", Feb, May, Aug, Nov);
 }
