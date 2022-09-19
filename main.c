@@ -126,6 +126,8 @@ void show_struct();
 
 void show_union();
 
+void show_typedef();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -245,7 +247,8 @@ int main() {
     // show_var_address();
     // show_pointer();
     // show_struct();
-    show_union();
+    // show_union();
+    show_typedef();
     return 0;
 }
 
@@ -1350,4 +1353,19 @@ void show_union() {
     printf("b:%c\n", abc.b); // undefined
     printf("c:%.2f\n", abc.c); // 2.13 由于指向的地址相同，且成员定义的类型相同，所以指向最新的赋值成员
     printf("d:%.2f\n", abc.d); // 2.13
+}
+
+// typedef 已定义类型 新类型;
+// typedef 最常用的就是给 struct 重命名
+// 许多windows开发中的许多我们未见过的数据类型，绝大部分都是通过typedef定义后的基本数据类型
+typedef struct Address Addr;
+
+void show_typedef() {
+    Addr addr = {"Litong", "Road NO.3", 666666, 7777};
+    printf("%s lives on %s, tel: %lu, zip: %ld\n", addr.name, addr.street, addr.telephone, addr.zip);
+
+    // typedef 可以在函数内部使用
+    typedef struct INFO _INFO;
+    _INFO info = {18, "hello world"};
+    printf("%d %s\n", info.num, info.str);
 }
