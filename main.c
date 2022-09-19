@@ -122,6 +122,8 @@ void show_var_address();
 
 void show_pointer();
 
+void show_struct();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -173,6 +175,9 @@ void show_pointer();
  *
  * 某个类型的指针 p 是个变量，可以改变 p 使它指向不同的地址，但不能改变 p 所指向的【常量】的值，
  * 和 数组指针 有着本质的区别，数组指针里面，指针指向的都是变量，所以可以通过数组指针修改某个下标的值。
+ *
+ * C 标准库函数可参考 https://en.cppreference.com/w/cpp/header，带示例
+ * 或者可在 Linux 环境下使用 man method_name 来查看 C 函数库 文档
  *
  * @return
  */
@@ -236,7 +241,8 @@ int main() {
     // count_neg_and_sum_pos();
     // sum_factorial_sequence();
     // show_var_address();
-    show_pointer();
+    // show_pointer();
+    show_struct();
     return 0;
 }
 
@@ -1200,15 +1206,22 @@ void show_var_address() {
 }
 
 struct INFO {
-    int a;
-    char b;
-    double c;
+    int num;
+    char str[256];
+};
+
+struct Address {
+    // 姓名
+    char name[30];
+    char street[40];
+    unsigned long telephone;
+    unsigned long zip;
 };
 
 void show_pointer() {
     int num = 1024;
     int *p = &num;
-    printf("num address = 0x%x, num = %d\n", p, num);
+    printf("num Address = 0x%x, num = %d\n", p, num);
     printf("p sizeof %lu bytes\n", sizeof p); // 8 bytes
 
     struct INFO *p4;
@@ -1227,7 +1240,7 @@ void show_pointer() {
     char *str = "www.dotcpp.com";
     // string 是一个数组，可以改变数组中保存的内容，这里需要注意和字符指针的区别
     char string[] = "www.dotcpp.com";
-    // Exception: EXC_BAD_ACCESS (code=2, address=0x10e81cee7)
+    // Exception: EXC_BAD_ACCESS (code=2, Address=0x10e81cee7)
     // str[0] = 'W'; // str 指向的是常量区的内容，不能修改常量区的内容
     printf("%c\n", *(str + 3));
     printf("%s\n", str);
@@ -1237,11 +1250,11 @@ void show_pointer() {
 
     // 这个定义其实是将 2 这个值赋给了 p7 这个变量，即 p7 对应的地址为 2，所以它的表现为 undefined
     int *p7 = {2, 1, 3};
-    // Exception: EXC_BAD_ACCESS (code=1, address=0x1)
+    // Exception: EXC_BAD_ACCESS (code=1, Address=0x1)
     // p7[1] = 0;
-    // Exception: EXC_BAD_ACCESS (code=1, address=0x1)
+    // Exception: EXC_BAD_ACCESS (code=1, Address=0x1)
     // printf("%d\n", p7[1]);
-    // Exception: EXC_BAD_ACCESS (code=1, address=0x1)
+    // Exception: EXC_BAD_ACCESS (code=1, Address=0x1)
     // printf("%d\n", *(p7 + 1));
     printf("p7: ox%x\n", p7);
     int p8[3] = {1, 2, 3};
@@ -1249,4 +1262,60 @@ void show_pointer() {
     p9[1] = 0;
     printf("%d\n", p8[1]); // 0
     printf("p8: ox%x\np9: ox%x", p8, p9);
+}
+
+void show_struct() {
+    struct INFO info;
+    info.num = 2022;
+    // Array type char[] is not assignable
+    // the array contents are modifiable, but arrays themselves are not modifiable
+    // The = operator cannot be used to copy the contents of one array to the other,
+    // you must use a library function like strcpy or strcat for strings,
+    // memcpy for non-strings(or assign array elements individually)
+    // info.str = "Welcome to dotcpp.com";
+
+    char welcome[] = {"Welcome to dotcpp.com"};
+    // Ditto: Array type char[] is not assignable
+    // info.str = welcome;
+    // strcpy(info.str, welcome);
+    // strcat(info.str, welcome);
+    memcpy(info.str, welcome, sizeof(welcome));
+    printf("This year is %d, %s\n", info.num, info.str);
+
+    // struct arrays
+    struct INFO students[] = {
+            {1, "Litong"},
+            {2, "Deng"},
+    };
+    for (int i = 0; i < sizeof(students) / sizeof(students[0]); ++i) {
+        printf("student num: %d, student name: %s\n", students[i].num, students[i].str);
+    }
+
+    // struct pointer
+    struct Address addr[3] = {
+            {"Zhang", "Road NO.1", 111111, 4444},
+            {"Wang",  "Road NO.2", 222222, 5555},
+            {"Li",    "Road NO.3", 333333, 6666},
+    };
+
+    struct Address *p = &addr[0];
+    // print first Address
+    printf("%s %s %lu %lu\n", p->name, p->street, p->telephone, p->zip);
+    // struct pointer move 1 step (move 1 struct sizeof bytes)
+    p++;
+    // print second Address
+    printf("%s %s %lu %lu\n", p->name, p->street, p->telephone, p->zip);
+    p++;
+    // print third Address
+    printf("%s %s %lu %lu\n", p->name, p->street, p->telephone, p->zip);
+    // end of arrays
+    p++;
+    // undefined
+    printf("%s %s %lu %lu\n", p->name, p->street, p->telephone, p->zip);
+
+    p = &addr[0];
+    for (int i = 0; i < 3; ++i) {
+        printf("%s %s %lu %lu\n", p->name, p->street, p->telephone, p->zip);
+        p++;
+    }
 }
