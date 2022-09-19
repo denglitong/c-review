@@ -1471,4 +1471,11 @@ void student_score_summary() {
            students[largest_idx].score1,
            students[largest_idx].score2,
            students[largest_idx].score3);
+
+    // malloc - free pair
+    // C 为了极限性能不会加很多CPU 指令的读写屏障去做一些自动化的内存管理功能，不像 Java/Go 的运行时
+    for (int i = 0; i < n; ++i) {
+        free(students[i].id);
+        free(students[i].name);
+    }
 }
