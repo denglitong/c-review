@@ -135,6 +135,8 @@ void str_cpy();
 
 void student_score_summary();
 
+void file_io();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -258,7 +260,8 @@ int main() {
     // show_typedef();
     // show_enum();
     // str_cpy();
-    student_score_summary();
+    // student_score_summary();
+    file_io();
     return 0;
 }
 
@@ -1478,4 +1481,43 @@ void student_score_summary() {
         free(students[i].id);
         free(students[i].name);
     }
+}
+
+/**
+ * 磁盘文件、系统设备 都是文件，对于文件的操作分为 3 个步骤：
+ * 1.打开文件 fopen 用来建立程序和文件的关系，获取文件在内存中的文件指针
+ * 2.读写文件 fprintf, fsacnf, fwrite, fread, fputs, getss
+ * 3.关闭文件 fclose 切断文件指针和文件的关联，避免误操作
+ */
+void file_io() {
+    char file_name[] = "./demo_file.txt";
+    FILE *fp = fopen(file_name, "w+");
+
+    fprintf(fp, "%s", "www.dotcpp.com"); // ①
+    fprintf(fp, "%c", ' '); // ②
+    fprintf(fp, "%d", 1); // ③
+    fprintf(fp, "%c", 'A'); // ④
+    fprintf(fp, "%p", &file_name); // ⑤
+    fclose(fp);
+
+    fp = fopen(file_name, "r");
+    char str[100];
+    int i;
+    char c;
+    // 读入字符串，直到遇到第一个空格
+    fscanf(fp, "%s", str); // ①
+    printf("%s\n", str);
+
+    fscanf(fp, "%c", &c); // ②
+    // 输出一个空格
+    printf("%c\n", c);
+
+    fscanf(fp, "%d", &i); // ③
+    printf("%d\n", i);
+
+    fscanf(fp, "%c", &c); // ④
+    printf("%c\n", c);
+
+    fscanf(fp, "%p", &i); // ⑤
+    printf("0x%x", i);
 }
