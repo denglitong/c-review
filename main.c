@@ -1519,5 +1519,23 @@ void file_io() {
     printf("%c\n", c);
 
     fscanf(fp, "%p", &i); // ⑤
-    printf("0x%x", i);
+    printf("0x%x\n", i);
+    // fclose(fp);
+
+    char str1[] = "www.dotcpp.com";
+    fp = fopen(file_name, "w+");
+    fwrite(str1, strlen(str1), 1, fp);
+    fclose(fp);
+
+    // www.dotcpp.com sizeof: 15, strlen: 14
+    // sizeof 统计内存里面分配的空间，包括字符串数组最后的 \0 字符
+    // strlen 统计数组的个数，遇到 \0 或者 NULL 结束，统计的结果不包括 \0 或者 NULL 自身
+    printf("%s sizeof: %lu, strlen: %lu\n", str1, sizeof str1, strlen(str1));
+
+    fp = fopen(file_name, "r");
+    char buffer[100];
+    fread(buffer, sizeof(char), strlen(str1) / 2, fp);
+    printf("%s\n", buffer);
+    // 成功关闭则返回 0，失败则返回 -1
+    fclose(fp);
 }
