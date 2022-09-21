@@ -137,6 +137,8 @@ void student_score_summary();
 
 void file_io();
 
+void show_define();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -261,7 +263,8 @@ int main() {
     // show_enum();
     // str_cpy();
     // student_score_summary();
-    file_io();
+    // file_io();
+    show_define();
     return 0;
 }
 
@@ -1538,4 +1541,33 @@ void file_io() {
     printf("%s\n", buffer);
     // 成功关闭则返回 0，失败则返回 -1
     fclose(fp);
+}
+
+// 常常对程序中反复使用的表达式进行宏定义
+#define _PI 3.14159
+
+#define M(y) y*y + y*3
+
+#define MAX(a, b) a > b ? a : b
+
+/**
+ * 预处理指令 可以改变程序设计环境，提高编程效率，
+ * 但它们并不是 C 语言本身的组成部分，不能直接对他们进行编译，必须在编译之前，对这些指令进行"预处理"。
+ * C 语言提供的预处理功能：
+ * 1.宏定义
+ *      宏定义允许在 C 源程序中用一个标识符来标识一个字符串，这个标识符称为"宏名"；
+ *      在预处理时会将所有的宏名都用宏定义的字符串去替换，这称为"宏代换"或"宏展开"；
+ *      无参数的宏定义形式:
+ *          #define 标识符 字符串;
+ *      有参数的宏定义形式：
+ *          #define 宏名(形参表) 字符串;
+ * 2.文件包含
+ * 3.条件编译
+ *
+ * 在 C 语言中凡是以 # 开头的均为预处理指令
+ */
+void show_define() {
+    printf("%.6f\n", _PI);
+    printf("%d\n", M(3));
+    printf("%d\n", MAX(10, 20));
 }
