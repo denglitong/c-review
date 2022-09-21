@@ -1556,6 +1556,8 @@ void file_io() {
 
 #define MAX(a, b) a > b ? a : b
 
+#define SWAP(a, b) a += b; b = a - b; a = a - b;
+
 /**
  * 预处理指令 可以改变程序设计环境，提高编程效率，
  * 但它们并不是 C 语言本身的组成部分，不能直接对他们进行编译，必须在编译之前，对这些指令进行"预处理"。
@@ -1581,6 +1583,13 @@ void show_define() {
     printf("%.6f\n", _PI);
     printf("%d\n", M(3));
     printf("%d\n", MAX(10, 20));
+
+    // https://www.dotcpp.com/oj/problem1036.html
+    int a = 0, b = 0;
+    scanf("%d", &a);
+    scanf("%d", &b);
+    SWAP(a, b);
+    printf("%d %d", a, b);
 }
 
 /**
