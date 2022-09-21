@@ -1,4 +1,8 @@
-// 预处理指令，甚至不是 C 语言的语句！
+// 在 C 语言中凡是以 # 开头的均为预处理指令
+// #include "stdio.h" 和 #include <stdio.h> 都是允许的，但是双引号和尖括号是有区别的：
+//  #include <> 表示引入的文件在 INCLUDE_DIR 中去查找
+//      （INCLUDE_DIR 是由系统的环境变量进行设置的，一般为系统头文件的默认存放目录，如 /usr/include 目录下）
+//  #include "" 表示首先在当前的源文件目录中查找，若为找到 INCLUDE_DIR 去查找
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
@@ -1563,8 +1567,6 @@ void file_io() {
  *          #define 宏名(形参表) 字符串;
  * 2.文件包含
  * 3.条件编译
- *
- * 在 C 语言中凡是以 # 开头的均为预处理指令
  */
 void show_define() {
     printf("%.6f\n", _PI);
