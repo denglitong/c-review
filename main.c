@@ -1558,6 +1558,26 @@ void file_io() {
 
 #define SWAP(a, b) a += b; b = a - b; a = a - b;
 
+#define MOD(a, b) a % b
+
+#define S(a, b, c) (a+b+c) / 2
+
+#define AREA(a, b, c) sqrt(S(a,b,c) * (S(a,b,c)-a) * (S(a,b,c)-b) * (S(a,b,c)-c))
+
+#define LEAP_YEAR(y) (y%100 != 0 && y%4 == 0) || (y%100 == 0 && y%400 == 0) || (y%3200 != 0 && y%172800 == 0)
+
+double max2(double a, double b) {
+    return a > b ? a : b;
+}
+
+double max3(double a, double b, double c) {
+    return max2(max2(a, b), c);
+}
+
+#define MAX2(a, b) ((a) > (b) ? (a) : (b))
+
+#define MAX3(a, b, c) MAX2(MAX2(a, b), c)
+
 /**
  * 预处理指令 可以改变程序设计环境，提高编程效率，
  * 但它们并不是 C 语言本身的组成部分，不能直接对他们进行编译，必须在编译之前，对这些指令进行"预处理"。
@@ -1585,11 +1605,37 @@ void show_define() {
     printf("%d\n", MAX(10, 20));
 
     // https://www.dotcpp.com/oj/problem1036.html
-    int a = 0, b = 0;
-    scanf("%d", &a);
-    scanf("%d", &b);
-    SWAP(a, b);
-    printf("%d %d", a, b);
+    // int a = 0, b = 0;
+    // scanf("%d", &a);
+    // scanf("%d", &b);
+    // SWAP(a, b);
+    // printf("%d %d", a, b);
+
+    // https://www.dotcpp.com/oj/problem1038.html
+    // int a = 0, b = 0;
+    // scanf("%d", &a);
+    // scanf("%d", &b);
+    // printf("%d", MOD(a, b));
+
+    // https://www.dotcpp.com/oj/problem1038.html
+    // float a, b, c;
+    // scanf("%f", &a);
+    // scanf("%f", &b);
+    // scanf("%f", &c);
+    // printf("%.3f", AREA(a, b, c));
+
+    // https://www.dotcpp.com/oj/problem1039.html
+    // int year;
+    // scanf("%d", &year);
+    // printf("%c", LEAP_YEAR(year) ? 'L' : 'N');
+
+    // https://www.dotcpp.com/oj/problem1041.html
+    double a, b, c;
+    scanf("%lf", &a);
+    scanf("%lf", &b);
+    scanf("%lf", &c);
+    printf("%.3lf\n", max3(a, b, c));
+    printf("%.3lf\n", MAX3(a, b, c));
 }
 
 /**
