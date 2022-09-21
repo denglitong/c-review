@@ -143,6 +143,8 @@ void file_io();
 
 void show_define();
 
+void show_conditional_compile();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -1567,9 +1569,62 @@ void file_io() {
  *          #define 宏名(形参表) 字符串;
  * 2.文件包含
  * 3.条件编译
+ *
+ * 宏定义的本质是文本替换，需要警惕表达式的优先级问题！
+ * 优先级是宏先展开，然后再计算表达式的值，此时需要特别注意带参数的宏的运算优先级！
+ *
+ *  可以通过添加()来规范运算的优先级问题。
+ *  #define ADD(x) ((x)+(x))
+ *  这样传入的 x 的运算优先级就是确定的了，不会有字符串替换之后引起的优先级的逻辑问题。
  */
 void show_define() {
     printf("%.6f\n", _PI);
     printf("%d\n", M(3));
     printf("%d\n", MAX(10, 20));
+}
+
+/**
+ * 条件编译可产生不同的目标代码文件，对程序的移植和调试是很有用的
+ *
+ * 1.如果定义了某个标识符：
+ *  #ifdef 标识符
+ *      程序段 1
+ *  #else
+ *      程序段 2
+ *  #endif
+ *
+ * 2.如果没有定义某个标识符：
+ *  #ifndef 标识符
+ *      程序段 1
+ *  #else
+ *      程序段 2
+ *  #endif
+ *
+ * 3.常量判别式
+ *  #if 常量表达式
+ *      程序段 1
+ *  #else
+ *      程序段 2
+ *  #endif
+ *
+ *  其他预处理指令
+ *
+ * #error 指令强制编译程序停止编译，主要用于程序调试
+ *  #error error-message
+ *
+ * #line 指令改变 __LINE__ 和 __FILE__ 的内容，主要用于调试和特殊应用；
+ * __LINE__ 和 __FILE__ 都是编译程序中预定义的标识符，表示当前编译源文件的文件名和当前正在被编译的行
+ *  #line line_number "filename"
+ *  "filename" 是可选值
+ *
+ * #progma 是编译器定义的指令，它允许传入各种指令来控制编译器的行为，
+ * 这些指令和参数是编译器已经设定好的，而不是我们可以自己定义的；
+ * 示例：
+ *  if (cameropen) {
+ *      #pragma message("camera is open")
+ *  }
+ * 使用 #progma 预处理指令可提高 C 源程序的可移植性
+ */
+void show_conditional_compile() {
+
 }
