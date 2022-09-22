@@ -153,6 +153,10 @@ void cycle_shift();
 
 void get_bits();
 
+unsigned int move(unsigned int value, int n);
+
+void show_move();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -282,7 +286,8 @@ int main() {
     // bit_operators();
     // left_shift_then_right_shift();
     // cycle_shift();
-    get_bits();
+    // get_bits();
+    show_move();
     return 0;
 }
 
@@ -1792,4 +1797,44 @@ void get_bits() {
     value >>= 32 - (n2 - n1 + 1);
     value <<= n1;
     printf("%u\n", value);
+}
+
+unsigned left_cycle_shift(unsigned value, unsigned n) {
+    while (n--) {
+        if (value & (1 << 31)) {
+            value = (value << 1) + 1;
+        } else {
+            value = (value << 1);
+        }
+    }
+    return value;
+}
+
+unsigned right_cycle_shift(unsigned value, unsigned n) {
+    while (n--) {
+        if (value & 1) {
+            value = (value >> 1) + (1 << 31);
+        } else {
+            value = value >> 1;
+        }
+    }
+    return 0;
+}
+
+unsigned int move(unsigned int value, int n) {
+    if (n < 0) {
+        return left_cycle_shift(value, -n);
+    } else {
+        return right_cycle_shift(value, n);
+    }
+    return 0;
+}
+
+// https://www.dotcpp.com/oj/problem1775.html
+void show_move() {
+    unsigned value;
+    int n;
+    scanf("%u", &value);
+    scanf("%d", &n);
+    printf("%u\n", move(value, n));
 }
