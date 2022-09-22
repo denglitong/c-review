@@ -147,7 +147,9 @@ void show_conditional_compile();
 
 void bit_operators();
 
-void left_move_then_right_move();
+void left_shift_then_right_shift();
+
+void cycle_shift();
 
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
@@ -275,7 +277,9 @@ int main() {
     // student_score_summary();
     // file_io();
     // show_define();
-    bit_operators();
+    // bit_operators();
+    // left_shift_then_right_shift();
+    cycle_shift();
     return 0;
 }
 
@@ -1738,7 +1742,7 @@ char *my_to_base(char buf[TO_BASE_N], unsigned i, int base) {
 }
 
 // https://www.dotcpp.com/oj/problem1772.html
-void left_move_then_right_move() {
+void left_shift_then_right_shift() {
     unsigned int a;
     scanf("%d", &a);
     size_t bits_len = 8 * sizeof(unsigned int);
@@ -1755,5 +1759,21 @@ void left_move_then_right_move() {
     a = a >> (bits_len - 4);
     printf("%s\n", TO_BASE(a, 2));
 
+    printf("%u\n", a);
+}
+
+// https://www.dotcpp.com/oj/problem1773.html
+void cycle_shift() {
+    unsigned int a, n;
+    scanf("%d", &a);
+    scanf("%d", &n);
+
+    while (n--) {
+        if (a & 1) {
+            a = (unsigned int) pow(2, 32 - 1) + (a >> 1);
+        } else {
+            a >>= 1;
+        }
+    }
     printf("%u\n", a);
 }
