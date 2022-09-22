@@ -151,6 +151,8 @@ void left_shift_then_right_shift();
 
 void cycle_shift();
 
+void get_bits();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -279,7 +281,8 @@ int main() {
     // show_define();
     // bit_operators();
     // left_shift_then_right_shift();
-    cycle_shift();
+    // cycle_shift();
+    get_bits();
     return 0;
 }
 
@@ -1776,4 +1779,17 @@ void cycle_shift() {
         }
     }
     printf("%u\n", a);
+}
+
+// https://www.dotcpp.com/oj/problem1774.html
+void get_bits() {
+    unsigned int value, n1 = 0, n2 = 0;
+    scanf("%u", &value);
+    scanf("%u", &n1);
+    scanf("%u", &n2);
+
+    value <<= 32 - (n2 + 1);
+    value >>= 32 - (n2 - n1 + 1);
+    value <<= n1;
+    printf("%u\n", value);
 }
