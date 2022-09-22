@@ -145,6 +145,10 @@ void show_define();
 
 void show_conditional_compile();
 
+void bit_operators();
+
+void left_move_then_right_move();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -270,7 +274,8 @@ int main() {
     // str_cpy();
     // student_score_summary();
     // file_io();
-    show_define();
+    // show_define();
+    bit_operators();
     return 0;
 }
 
@@ -1682,4 +1687,73 @@ void show_define() {
  */
 void show_conditional_compile() {
 
+}
+
+/**
+ * 位运算是以数值的二进制为单位进行操作的，包含：
+ *  << 左移   逻辑左移，最高位丢失，最低位补 0；
+ *            算术左移，依次左移一位，尾部补 0，最高的符号位保持不变；
+ *            循环左移，将最高位重新放置最低位；
+ *  >> 右移   逻辑右移，最高位补 0，最低位丢失；
+ *            算术右移，依次右移一位，符号位右移后，原位置上复制一个符号位；
+ *            循环右移，将最低位重新放置最高位；
+ *  ~  按位取反 NOT
+ *  &  按位与  AND
+ *  |  按位或  OR
+ *  ^  按位异或 XOR
+ */
+void bit_operators() {
+    int a = 13, b = 25;
+    // 左移 N 位的本质是乘以 2 的 N 次方
+    // 右移 N 位的本质是除以 2 的 N 次方
+    printf("%d %d\n", a << 2, b >> 3);
+}
+
+#include <assert.h>
+#include <limits.h>
+
+#define TO_BASE_N (sizeof(unsigned)*CHAR_BIT + 1)
+
+//                               v--compound literal--v
+#define TO_BASE(x, b) my_to_base((char [TO_BASE_N]){""}, (x), (b))
+
+// Tailor the details of the conversion function as needed
+// This one does not display unneeded leading zeros
+// Use return value, not `buf`
+char *my_to_base(char buf[TO_BASE_N], unsigned i, int base) {
+    assert(base >= 2 && base <= 36);
+    char *s = &buf[TO_BASE_N - 1];
+    *s = '\0';
+    do {
+        s--;
+        *s = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i % base];
+        i /= base;
+    } while (i);
+
+    // Could employ memmove here to move the used buffer to the beginning
+    // size_t len = &buf[TO_BASE_N] - s;
+    // memmove(buf, s, len);
+
+    return s;
+}
+
+// https://www.dotcpp.com/oj/problem1772.html
+void left_move_then_right_move() {
+    unsigned int a;
+    scanf("%d", &a);
+    size_t bits_len = 8 * sizeof(unsigned int);
+    printf("%zu\n", bits_len);
+    printf("%s\n", TO_BASE(a, 2));
+
+    a = (a << (bits_len - 8));
+    printf("%s\n", TO_BASE(a, 2));
+
+    // C/C++ 中逻辑右移和算术右移共享同一个运算符 >>，编辑器决定使用逻辑右移还是算术右移，根据的是运算数的类型
+    // 如果运算数类型是 unsigned 无符号型 则采用逻辑右移，
+    // 如果运算符类型是 signed 有符号型 则采用算术右移；
+    // 对于 signed 类型的数据，如果需要使用算数右移，或者 unsigned 类型的数据需要使用逻辑右移，都需要进行 类型转换
+    a = a >> (bits_len - 4);
+    printf("%s\n", TO_BASE(a, 2));
+
+    printf("%u\n", a);
 }
