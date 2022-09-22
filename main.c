@@ -157,6 +157,8 @@ unsigned int move(unsigned int value, int n);
 
 void show_move();
 
+void show_and();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -287,7 +289,8 @@ int main() {
     // left_shift_then_right_shift();
     // cycle_shift();
     // get_bits();
-    show_move();
+    // show_move();
+    show_and();
     return 0;
 }
 
@@ -1837,4 +1840,23 @@ void show_move() {
     scanf("%u", &value);
     scanf("%d", &n);
     printf("%u\n", move(value, n));
+}
+
+/**
+ * 按位与 & 运算符的作用：
+ *  1.清零
+ *      对某一个数与 0 按位与运算，可起到清零的作用
+ *  2.取指定位
+ *      在某些存储场景下，"第 1~3 位表示xxx"，我们需要取出 1~3位，则可以让原数值与数字7进行按位与运算，
+ *      得到的结果即为原数值的1~3位的值；
+ *  3.判断奇偶
+ *      数字的奇偶取决于二进制位的最低一位是 1 还是 0，因此只需要与 1 按位与运算，判断是 1 是 0 即可得知奇偶
+ */
+void show_and() {
+    int a = 3 % 5;
+    printf("%d\n", a);
+    printf("%d\n", a & 1);
+
+    printf("%s\n", TO_BASE(13, 2));
+    printf("%s\n", TO_BASE(13 & 7, 2));
 }
