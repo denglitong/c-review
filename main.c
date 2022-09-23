@@ -161,6 +161,8 @@ void show_and();
 
 void show_or();
 
+void show_xor();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -293,7 +295,8 @@ int main() {
     // get_bits();
     // show_move();
     // show_and();
-    show_or();
+    // show_or();
+    show_xor();
     return 0;
 }
 
@@ -1874,4 +1877,32 @@ void show_or() {
     printf("%s\n", TO_BASE(a, 2));
     printf("%s\n", TO_BASE(b, 2));
     printf("%s\n", TO_BASE(a | b, 2));
+}
+
+/**
+ * 按位异或 ^ 运算符作用：不同则为 1，反之为 0
+ *  1.指定位数的翻转：如果对某个数字的低 4 位进行翻转，则可以将这个数字与 15（0000 1111）进行按位异或运算，
+ *      即可以将元数字的第四位进行翻转，其余位不变
+ *  2.与 0 异或还是原值：
+ *      (0000 1111) 与 0 异或，1 还是 1，,0还是 0，所以位不变
+ *  3.交换两个数字：利用了 xor 两次得到原数字的原理，即 (a ^ b ) ^ b = a ^ (b ^ b) =  a ^ 0 = a
+ *      int a, b;
+ *      a = a ^ b;
+ *      b = b ^ a;
+ *      a = a ^ b;
+ *    交换两个数字的第二种方法（可能溢出）：
+ *      a = a + b;
+ *      b = a - b;
+ *      a = a - b;
+ */
+void show_xor() {
+    int a = 15, b = 17;
+    printf("%s\n", TO_BASE(a, 2));
+    printf("%s\n", TO_BASE(b, 2));
+    printf("%s\n", TO_BASE(a ^ b, 2));
+
+    a = a ^ b;
+    b = a ^ b;
+    a = b ^ a;
+    printf("a = %d, b = %d\n", a, b);
 }
