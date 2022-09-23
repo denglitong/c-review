@@ -159,6 +159,8 @@ void show_move();
 
 void show_and();
 
+void show_or();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -290,7 +292,8 @@ int main() {
     // cycle_shift();
     // get_bits();
     // show_move();
-    show_and();
+    // show_and();
+    show_or();
     return 0;
 }
 
@@ -1859,4 +1862,16 @@ void show_and() {
 
     printf("%s\n", TO_BASE(13, 2));
     printf("%s\n", TO_BASE(13 & 7, 2));
+}
+
+/**
+ * 按位或 | 运算符的作用：
+ * 如"某个数字的第 7 位"表示开关，原先是 0，需要改为 1 的状态，即可以将这个数字与 64 (2^6) 按位或，
+ * 即可得到第 7 位为 1，其余位的值依旧不变；
+ */
+void show_or() {
+    int a = 10, b = 5;
+    printf("%s\n", TO_BASE(a, 2));
+    printf("%s\n", TO_BASE(b, 2));
+    printf("%s\n", TO_BASE(a | b, 2));
 }
