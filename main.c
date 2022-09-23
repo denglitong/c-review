@@ -163,6 +163,8 @@ void show_or();
 
 void show_xor();
 
+void show_not();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -296,7 +298,8 @@ int main() {
     // show_move();
     // show_and();
     // show_or();
-    show_xor();
+    // show_xor();
+    show_not();
     return 0;
 }
 
@@ -1905,4 +1908,11 @@ void show_xor() {
     b = a ^ b;
     a = b ^ a;
     printf("a = %d, b = %d\n", a, b);
+}
+
+void show_not() {
+    unsigned int a = 1;
+    printf("~a = %u\n", ~a);
+    printf("a = %s\n", TO_BASE(a, 2));
+    printf("~a = %s\n", TO_BASE(~a, 2));
 }
