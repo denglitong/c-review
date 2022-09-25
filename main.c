@@ -170,6 +170,8 @@ void show_stack_args_order();
 
 void show_int_storage_endian();
 
+void show_operator_short_circuit();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -315,7 +317,8 @@ int main() {
     // show_not();
     // runSnake();
     // show_stack_args_order();
-    show_int_storage_endian();
+    // show_int_storage_endian();
+    show_operator_short_circuit();
     return 0;
 }
 
@@ -1972,4 +1975,11 @@ void show_int_storage_endian() {
     // 那 8 字节的数据放高位和低位时对应的 int 值是不同的
     aInt = aChar = -120;
     printf("aInt: %d\n", aInt); // 有可能是 -120，实际输出也是 -120
+}
+
+void show_operator_short_circuit() {
+    int a = 4, b = 3, c = 2, d = 1, m = 2, n = 2;
+    // && || 都是短路运算符，左侧不满足即会立即短路即右侧的表达式不会执行去求值
+    (m = a < b) && (n = c > d);
+    printf("m=%d,n=%d\n", m, n); // m=0,n=2
 }
