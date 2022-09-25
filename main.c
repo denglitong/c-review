@@ -7,6 +7,7 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
+#include "snake.h"
 
 void printf_str();
 
@@ -299,7 +300,8 @@ int main() {
     // show_and();
     // show_or();
     // show_xor();
-    show_not();
+    // show_not();
+    runSnake();
     return 0;
 }
 
@@ -1915,4 +1917,7 @@ void show_not() {
     printf("~a = %u\n", ~a);
     printf("a = %s\n", TO_BASE(a, 2));
     printf("~a = %s\n", TO_BASE(~a, 2));
+    printf("**************************\n");
+    printf("Hello World!\n");
+    printf("**************************\n");
 }
