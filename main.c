@@ -166,6 +166,8 @@ void show_xor();
 
 void show_not();
 
+void show_stack_args_order();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -228,9 +230,9 @@ int kk = 1;
 
 int main() {
     // 此时外部的 k 被屏蔽掉，右侧的 k 是一个未定义的值，既不是 0 也不是 1
-    int kk = kk;
-    printf("kk: %d\n", kk);
-    return 0;
+    // int kk = kk;
+    // printf("kk: %d\n", kk);
+    // return 0;
 
     // printf_str();
     // printf_num();
@@ -310,6 +312,7 @@ int main() {
     // show_xor();
     // show_not();
     // runSnake();
+    show_stack_args_order();
     return 0;
 }
 
@@ -1928,4 +1931,27 @@ void show_not() {
     printf("**************************\n");
     printf("Hello World!\n");
     printf("**************************\n");
+}
+
+/**
+ * c/c++中规定了函数参数的压栈顺序是从右至左，
+ * 函数调用协议会影响函数参数的入栈方式、栈内数据的清除方式、编译器函数名的修饰规则等。
+ *
+ * 参数顺序有可能影响计算结果的最好还是先计算再传参，避免 undefined behaviour
+ */
+void show_stack_args_order() {
+    int arr[] = {11, 12, 13};
+    int *ptr = arr;
+    *(ptr++) += 100;
+    // 此时 ptr -> arr[1]
+    // printf 函数进行压栈，参数压栈顺序是从右至左，
+    // 所以先运算 *(++ptr)，再运算 *ptr
+    // it should print arr[2], arr[2] but actually is arr[1], arr[2]
+    // Update in C11: 6.5 Expressions:
+    //  If a side effect on a scalar object is unsequenced relative to either a different side effect
+    //  on the same scalar object or a value computation using the value of the same scalar object,
+    //  the behavior is undefined. If there are multiple allowable orderings of the subexpressions
+    //  of an expression, the behavior is undefined if such an unsequenced side effect occurs in any
+    //  of the orderings.84).
+    printf("%d %d\n", *ptr, *(++ptr));
 }
