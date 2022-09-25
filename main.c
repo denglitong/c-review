@@ -172,6 +172,8 @@ void show_int_storage_endian();
 
 void show_operator_short_circuit();
 
+void show_sizeof_keyword();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -318,7 +320,8 @@ int main() {
     // runSnake();
     // show_stack_args_order();
     // show_int_storage_endian();
-    show_operator_short_circuit();
+    // show_operator_short_circuit();
+    show_sizeof_keyword();
     return 0;
 }
 
@@ -1982,4 +1985,16 @@ void show_operator_short_circuit() {
     // && || 都是短路运算符，左侧不满足即会立即短路即右侧的表达式不会执行去求值
     (m = a < b) && (n = c > d);
     printf("m=%d,n=%d\n", m, n); // m=0,n=2
+}
+
+// sizeof is a keyword, not a function,
+// so the value of sizeof is calculated in the compile time, not in the execution time
+void show_sizeof_keyword() {
+    int i;
+    i = 10;
+    printf("i: %d\n", i);
+    // sizeof 是关键字，是编译时就已经求值了的，是 4，并会直接替换原表达式，
+    // 所以在运行时根本不会有 i++ 这个表达式，也就不会有求值
+    printf("sizeof(i++) is: %d\n", sizeof(i++));
+    printf("i: %d\n", i);
 }
