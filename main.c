@@ -223,7 +223,15 @@ void show_not();
  *
  * @return
  */
+
+int kk = 1;
+
 int main() {
+    // 此时外部的 k 被屏蔽掉，右侧的 k 是一个未定义的值，既不是 0 也不是 1
+    int kk = kk;
+    printf("kk: %d\n", kk);
+    return 0;
+
     // printf_str();
     // printf_num();
     // putchar_exer();
@@ -301,7 +309,7 @@ int main() {
     // show_or();
     // show_xor();
     // show_not();
-    runSnake();
+    // runSnake();
     return 0;
 }
 
