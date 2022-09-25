@@ -168,6 +168,8 @@ void show_not();
 
 void show_stack_args_order();
 
+void show_int_storage_endian();
+
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
  * m * n >= 0
@@ -312,7 +314,8 @@ int main() {
     // show_xor();
     // show_not();
     // runSnake();
-    show_stack_args_order();
+    // show_stack_args_order();
+    show_int_storage_endian();
     return 0;
 }
 
@@ -1954,4 +1957,19 @@ void show_stack_args_order() {
     //  of an expression, the behavior is undefined if such an unsequenced side effect occurs in any
     //  of the orderings.84).
     printf("%d %d\n", *ptr, *(++ptr));
+}
+
+/**
+ * 判断大小端模式：
+ *  echo -n I | od -o | head -n1 | awk '{print $2}'| cut -c6
+ * 输出：1 为小端模式（数据低位存储在内存的低地址），0 为大端模式（数据低位存储于内存的高地址）
+ * Mac 上述输出 1，为小端模式
+ */
+void show_int_storage_endian() {
+    char aChar;
+    int aInt;
+    // 将 8 bit数据的 char 赋值给 32 个bit 的 int 时，涉及大小端存储问题，
+    // 那 8 字节的数据放高位和低位时对应的 int 值是不同的
+    aInt = aChar = -120;
+    printf("aInt: %d\n", aInt); // 有可能是 -120，实际输出也是 -120
 }
