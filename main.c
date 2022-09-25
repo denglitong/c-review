@@ -7,7 +7,9 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
+
 #include "snake.h"
+#include "_assert.h"
 
 void printf_str();
 
@@ -321,7 +323,8 @@ int main() {
     // show_stack_args_order();
     // show_int_storage_endian();
     // show_operator_short_circuit();
-    show_sizeof_keyword();
+    // show_sizeof_keyword();
+    show_asserts(10);
     return 0;
 }
 
