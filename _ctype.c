@@ -115,6 +115,18 @@ void show_ispunct() {
     }
 }
 
+void show_isspace() {
+    char ch;
+    printf("Input a character: ");
+    scanf("%c", &ch);
+    if (isspace(ch)) {
+        // space tab return
+        printf("%c is space.\n", ch);
+    } else {
+        printf("%c is not space.\n", ch);
+    }
+}
+
 void show_ctype() {
     // show_isascii();
     // show_isalnum();
@@ -124,5 +136,6 @@ void show_ctype() {
     // show_isgraph();
     // show_islower();
     // show_isprint();
-    show_ispunct();
+    // show_ispunct();
+    show_isspace();
 }
