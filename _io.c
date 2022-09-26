@@ -187,6 +187,21 @@ void show_lseek() {
            file_name, offset, buf2);
 }
 
+/**
+ * int tell(int handle);
+ * 获取打开文件的指针位置，失败返回-1
+ */
+void show_ftell() {
+    char *file_name = "./test.txt";
+    FILE *fp = fopen(file_name, "r");
+    int pos = ftell(fp);
+    printf("file: %s current position: %d\n", file_name, pos);
+    fseek(fp, 4, SEEK_SET);
+    pos = ftell(fp);
+    printf("after fseek 4 offset, file: %s current position: %d\n", file_name, pos);
+    fclose(fp);
+}
+
 void show_io() {
     // show_access();
     // show_chmod();
@@ -196,5 +211,6 @@ void show_io() {
     // show_stat_file_size();
     // show_isatty();
     // show_read();
-    show_lseek();
+    // show_lseek();
+    show_ftell();
 }
