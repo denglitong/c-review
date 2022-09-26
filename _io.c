@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <sys/stat.h>
+#include <sys/file.h>
 #include <unistd.h>
 
 #include "_io.h"
@@ -38,7 +39,43 @@ void show_chmod() {
     }
 }
 
+void show_remove_create_open_close() {
+    char *file_name = "./test/file.txt";
+    int fd;
+
+    // 创建成功返回文件句柄，失败返回-1
+    if ((fd = creat(file_name, S_IREAD + S_IWRITE + S_IEXEC)) == -1) {
+        printf("Can not create the file: %s\n", file_name);
+        return;
+    } else {
+        printf("Created file: %s\n", file_name);
+    }
+
+    // 创建成功返回文件句柄，失败返回-1
+    if ((fd = open(file_name, S_IREAD)) == -1) {
+        printf("Can not open the file: %s\n", file_name);
+        return;
+    } else {
+        printf("Open file: %s successfully.\n", file_name);
+    }
+
+    // 创建成功返回0，失败返回-1
+    if (close(fd) == 0) {
+        printf("Close file %s successfully, fd: %d.\n", file_name, fd);
+    } else {
+        printf("Close file %s failed, fd: %d.\n", file_name, fd);
+    }
+
+    // 创建成功返回0，失败返回-1
+    if (remove(file_name) == 0) {
+        printf("Remove file %s successfully.\n", file_name);
+    } else {
+        printf("Remove file %s failed.\n", file_name);
+    }
+}
+
 void show_io() {
     // show_access();
-    show_chmod();
+    // show_chmod();
+    show_remove_create_open_close();
 }
