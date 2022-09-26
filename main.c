@@ -11,6 +11,7 @@
 #include "snake.h"
 #include "_assert.h"
 #include "_ctype.h"
+#include "_io.h"
 
 void printf_str();
 
@@ -326,7 +327,8 @@ int main() {
     // show_operator_short_circuit();
     // show_sizeof_keyword();
     // show_asserts(10);
-    show_ctype();
+    // show_ctype();
+    show_io();
     return 0;
 }
 
