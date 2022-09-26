@@ -134,6 +134,59 @@ void show_isatty() {
     }
 }
 
+/**
+ * int read(int handle, void *buf, int len)
+ *  用于读取打开文件的内容，返回读取文件的长度
+ *  int handle 为要读取的文件
+ *  void *buf 读取内容的缓冲区
+ *  int len 读取的长度，单位为 byte
+ */
+void show_read() {
+    char *file_name = "./test.txt";
+    int fd = open(file_name, O_RDONLY);
+    if (fd == -1) {
+        printf("Can not open the file: %s\n", file_name);
+        return;
+    }
+    char buf[1024] = {'\0'};
+    int len = read(fd, buf, 1024);
+    printf("read len: %d, read buffer:\n%s\n", len, buf);
+    close(fd);
+}
+
+/**
+ * int lseek(int handle, long offset, long from_where);
+ *  用以移动打开文件的指针
+ *  int handle 为要操作的文件句柄
+ *  long offset 要移动的偏移量
+ *  long from_where 让文件指针以什么方向计算偏移量，有三个取值：
+ *      SEEK_SET 文件的开头
+ *      SEEK_CUR 文件的当前位置
+ *      SEEK_END 文件的末尾
+ */
+void show_lseek() {
+    char *file_name = "./test.txt";
+    int fd = open(file_name, O_RDONLY);
+    if (fd == -1) {
+        printf("Can not open the file: %s\n", file_name);
+        return;
+    }
+
+    int offset = 4;
+    lseek(fd, offset, SEEK_SET);
+    char buf1[20] = {'\0'};
+    read(fd, buf1, 20);
+    printf("file: %s after seek %d offset from starting content: %s\n",
+           file_name, offset, buf1);
+
+    offset = -4;
+    char buf2[20] = {'\0'};
+    lseek(fd, offset, SEEK_END);
+    read(fd, buf2, 20);
+    printf("file: %s after seek %d offset from end content: %s\n",
+           file_name, offset, buf2);
+}
+
 void show_io() {
     // show_access();
     // show_chmod();
@@ -141,5 +194,7 @@ void show_io() {
     // show_feof();
     // show_fdopen();
     // show_stat_file_size();
-    show_isatty();
+    // show_isatty();
+    // show_read();
+    show_lseek();
 }
