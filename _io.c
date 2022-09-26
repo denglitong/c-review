@@ -115,11 +115,31 @@ void show_stat_file_size() {
     printf("file: %s size is: %d bytes\n", file_name, file_size);
 }
 
+void show_isatty() {
+    // 获取标准输出设备的文件号
+    int fd = fileno(stdout);
+    // 判断是设备文件还是普通文件
+    if (isatty(fd)) {
+        printf("file descriptor %d is device\n", fd);
+    } else {
+        printf("file descriptor %d is normal file\n", fd);
+    }
+
+    char *file_name = "./test.txt";
+    fd = open(file_name, S_IREAD);
+    if (isatty(fd)) {
+        printf("file: %s(%d) is device\n", file_name, fd);
+    } else {
+        printf("file: %s(%d) is normal file\n", file_name, fd);
+    }
+}
+
 void show_io() {
     // show_access();
     // show_chmod();
     // show_remove_create_open_close();
     // show_feof();
     // show_fdopen();
-    show_stat_file_size();
+    // show_stat_file_size();
+    show_isatty();
 }
