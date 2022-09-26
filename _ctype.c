@@ -58,11 +58,23 @@ void show_isdigit() {
     char ch;
     printf("Input a character: ");
     scanf("%c", &ch);
-    // [0-9]
+    // [0-9] 十进制字符
     if (isdigit(ch)) {
         printf("%c is digit.\n", ch);
     } else {
         printf("%c is not digit.\n", ch);
+    }
+}
+
+void show_isxdigit() {
+    char ch;
+    printf("Input a character: ");
+    scanf("%c", &ch);
+    // [0-9A-Fa-f] 十六进制字符
+    if (isxdigit(ch)) {
+        printf("%c is hex digit.\n", ch);
+    } else {
+        printf("%c is not hex digit.\n", ch);
     }
 }
 
@@ -133,9 +145,10 @@ void show_ctype() {
     // show_isalpha();
     // show_iscntrl();
     // show_isdigit();
+    show_isxdigit();
     // show_isgraph();
     // show_islower();
     // show_isprint();
     // show_ispunct();
-    show_isspace();
+    // show_isspace();
 }
