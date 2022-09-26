@@ -45,7 +45,7 @@ void show_iscntrl() {
     char ch;
     printf("Input a character: ");
     scanf("%c", &ch);
-    // is control character, not pritable
+    // is control character, not printable
     if (iscntrl(ch)) {
         // Del(10)
         printf("%c(%d) is control character.\n", ch, ch);
@@ -54,9 +54,22 @@ void show_iscntrl() {
     }
 }
 
+void show_isdigit() {
+    char ch;
+    printf("Input a character: ");
+    scanf("%c", &ch);
+    // [0-9]
+    if (isdigit(ch)) {
+        printf("%c is digit.\n", ch);
+    } else {
+        printf("%c is not digit.\n", ch);
+    }
+}
+
 void show_ctype() {
     // show_isascii();
     // show_isalnum();
     // show_isalpha();
-    show_iscntrl();
+    // show_iscntrl();
+    show_isdigit();
 }
