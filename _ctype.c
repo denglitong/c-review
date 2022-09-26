@@ -151,6 +151,16 @@ void show_isspace() {
     }
 }
 
+void show_toascii() {
+    int ch1;
+    printf("Input a character: ");
+    scanf("%d", &ch1);
+
+    ch1 += 128;
+    char ch2 = toascii(ch1);
+    printf("transform %d to %c\n", ch1, ch2);
+}
+
 void show_ctype() {
     // show_isascii();
     // show_isalnum();
@@ -160,8 +170,9 @@ void show_ctype() {
     // show_isxdigit();
     // show_isgraph();
     // show_islower();
-    show_isupper();
+    // show_isupper();
     // show_isprint();
     // show_ispunct();
     // show_isspace();
+    show_toascii();
 }
