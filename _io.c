@@ -74,8 +74,25 @@ void show_remove_create_open_close() {
     }
 }
 
+void show_feof() {
+    char *file_name = "./CMakeCache.txt";
+
+    FILE *fp = fopen(file_name, "r");
+    int ch = 0;
+    while (!feof(fp)) {
+        ch = getc(fp);
+        printf("%c", ch);
+    }
+    printf("\n");
+    if (feof(fp)) {
+        printf("\nReached to the end of file.\n");
+    }
+    fclose(fp);
+}
+
 void show_io() {
     // show_access();
     // show_chmod();
-    show_remove_create_open_close();
+    // show_remove_create_open_close();
+    show_feof();
 }
