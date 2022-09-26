@@ -114,6 +114,22 @@ void show_isupper() {
     }
 }
 
+void show_tolower() {
+    char ch;
+    printf("Input a character: ");
+    scanf("%c", &ch);
+    // [A-Z] -> [a-z]
+    printf("transform %c to %c\n", ch, tolower(ch));
+}
+
+void show_toupper() {
+    char ch;
+    printf("Input a character: ");
+    scanf("%c", &ch);
+    // [a-z] -> [A-Z]
+    printf("transform %c to %c\n", ch, toupper(ch));
+}
+
 void show_isprint() {
     char ch;
     printf("Input a character: ");
@@ -171,8 +187,10 @@ void show_ctype() {
     // show_isgraph();
     // show_islower();
     // show_isupper();
+    // show_tolower();
+    show_toupper();
     // show_isprint();
     // show_ispunct();
     // show_isspace();
-    show_toascii();
+    // show_toascii();
 }
