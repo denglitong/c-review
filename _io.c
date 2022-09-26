@@ -6,6 +6,7 @@
 #include <sys/stat.h>
 #include <sys/file.h>
 #include <unistd.h>
+#include <string.h>
 
 #include "_io.h"
 
@@ -202,6 +203,25 @@ void show_ftell() {
     fclose(fp);
 }
 
+/**
+ * int write(int handle, void *buf, int len);
+ *  写入内容到文件，返回实际写入文件内容的长度
+ */
+void show_write() {
+    char *file_name = "./test.txt";
+    int fd = open(file_name, O_RDWR + O_CREAT);
+    char buf_write[1024] = {"Hello!\nWelcome to www.dotcpp.com."};
+    int len = write(fd, buf_write, strlen(buf_write));
+    printf("Write to file: %s content len: %d\n", file_name, len);
+
+    char buf_read[1024] = {'\0'};
+    lseek(fd, 0, SEEK_SET);
+    int len2 = read(fd, buf_read, 1024);
+    printf("file content (%d bytes):\n%s\n", len2, buf_read);
+
+    close(fd);
+}
+
 void show_io() {
     // show_access();
     // show_chmod();
@@ -212,5 +232,6 @@ void show_io() {
     // show_isatty();
     // show_read();
     // show_lseek();
-    show_ftell();
+    // show_ftell();
+    show_write();
 }
