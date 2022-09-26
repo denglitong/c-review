@@ -107,10 +107,19 @@ void show_fdopen() {
     printf("fdopen works fine.\n");
 }
 
+void show_stat_file_size() {
+    char *file_name = "./test.txt";
+    struct stat st;
+    stat(file_name, &st);
+    int file_size = st.st_size;
+    printf("file: %s size is: %d bytes\n", file_name, file_size);
+}
+
 void show_io() {
     // show_access();
     // show_chmod();
     // show_remove_create_open_close();
     // show_feof();
-    show_fdopen();
+    // show_fdopen();
+    show_stat_file_size();
 }
