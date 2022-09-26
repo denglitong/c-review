@@ -3,6 +3,7 @@
 //
 
 #include <stdio.h>
+#include <sys/stat.h>
 #include <unistd.h>
 
 #include "_io.h"
@@ -15,7 +16,7 @@
  *      测试结果为允许返回 0，否则返回 -1
  */
 void show_access() {
-    char file_name[] = "/tmp";
+    char *file_name = "/tmp";
     if (access(file_name, 0) == 0) {
         printf("%s exists.\n", file_name);
     } else {
@@ -28,6 +29,16 @@ void show_access() {
     }
 }
 
+void show_chmod() {
+    char *file_name = "./c_review";
+    if (chmod(file_name, S_IREAD) == 0) {
+        printf("Made %s read-only", file_name);
+    } else {
+        printf("Couldn't make %s read-only", file_name);
+    }
+}
+
 void show_io() {
-    show_access();
+    // show_access();
+    show_chmod();
 }
