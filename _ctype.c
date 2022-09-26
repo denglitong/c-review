@@ -102,6 +102,19 @@ void show_isprint() {
     }
 }
 
+void show_ispunct() {
+    char ch;
+    printf("Input a character: ");
+    scanf("%c", &ch);
+    // 判断是否是标点符号
+    if (ispunct(ch)) {
+        // .,?;:'"/\|[]{}<>-_+=
+        printf("%c is punct.\n", ch);
+    } else {
+        printf("%c is not punct.\n", ch);
+    }
+}
+
 void show_ctype() {
     // show_isascii();
     // show_isalnum();
@@ -110,5 +123,6 @@ void show_ctype() {
     // show_isdigit();
     // show_isgraph();
     // show_islower();
-    show_isprint();
+    // show_isprint();
+    show_ispunct();
 }
