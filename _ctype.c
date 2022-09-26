@@ -41,8 +41,22 @@ void show_isalpha() {
     }
 }
 
+void show_iscntrl() {
+    char ch;
+    printf("Input a character: ");
+    scanf("%c", &ch);
+    // is control character, not pritable
+    if (iscntrl(ch)) {
+        // Del(10)
+        printf("%c(%d) is control character.\n", ch, ch);
+    } else {
+        printf("%c(%d) is not control character.\n", ch, ch);
+    }
+}
+
 void show_ctype() {
     // show_isascii();
     // show_isalnum();
-    show_isalpha();
+    // show_isalpha();
+    show_iscntrl();
 }
