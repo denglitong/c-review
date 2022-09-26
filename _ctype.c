@@ -102,6 +102,18 @@ void show_islower() {
     }
 }
 
+void show_isupper() {
+    char ch;
+    printf("Input a character: ");
+    scanf("%c", &ch);
+    // [A-Z]
+    if (isupper(ch)) {
+        printf("%c is upper.\n", ch);
+    } else {
+        printf("%c is not upper.\n", ch);
+    }
+}
+
 void show_isprint() {
     char ch;
     printf("Input a character: ");
@@ -145,9 +157,10 @@ void show_ctype() {
     // show_isalpha();
     // show_iscntrl();
     // show_isdigit();
-    show_isxdigit();
+    // show_isxdigit();
     // show_isgraph();
     // show_islower();
+    show_isupper();
     // show_isprint();
     // show_ispunct();
     // show_isspace();
