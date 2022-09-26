@@ -66,10 +66,23 @@ void show_isdigit() {
     }
 }
 
+void show_isgraph() {
+    char ch;
+    printf("Input a character: ");
+    scanf("%c", &ch);
+    // 判断 ch 是否是除了空格之外可打印的字符
+    if (isgraph(ch)) {
+        printf("%c is graph.\n", ch);
+    } else {
+        printf("%c is not graph.\n", ch);
+    }
+}
+
 void show_ctype() {
     // show_isascii();
     // show_isalnum();
     // show_isalpha();
     // show_iscntrl();
-    show_isdigit();
+    // show_isdigit();
+    show_isgraph();
 }
