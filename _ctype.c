@@ -78,11 +78,24 @@ void show_isgraph() {
     }
 }
 
+void show_islower() {
+    char ch;
+    printf("Input a character: ");
+    scanf("%c", &ch);
+    // [a-z]
+    if (islower(ch)) {
+        printf("%c is lower.\n", ch);
+    } else {
+        printf("%c is not lower.\n", ch);
+    }
+}
+
 void show_ctype() {
     // show_isascii();
     // show_isalnum();
     // show_isalpha();
     // show_iscntrl();
     // show_isdigit();
-    show_isgraph();
+    // show_isgraph();
+    show_islower();
 }
