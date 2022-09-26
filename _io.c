@@ -90,9 +90,27 @@ void show_feof() {
     fclose(fp);
 }
 
+void show_fdopen() {
+    char *file_name = "./test.txt";
+    int fd = open(file_name, O_RDWR + O_CREAT);
+    if (fd == -1) {
+        printf("Can not open the file: %s\n", file_name);
+        return;
+    }
+
+    chmod(file_name, S_IREAD + S_IWRITE + S_IEXEC);
+
+    FILE *fp = fdopen(fd, "w");
+    fprintf(fp, "www.dotcpp.com\n");
+    fclose(fp);
+
+    printf("fdopen works fine.\n");
+}
+
 void show_io() {
     // show_access();
     // show_chmod();
     // show_remove_create_open_close();
-    show_feof();
+    // show_feof();
+    show_fdopen();
 }

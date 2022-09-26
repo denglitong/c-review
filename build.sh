@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cmake --build . --clean-first
+cmake --build . --target clean
 make
 clear
 ./c_review
