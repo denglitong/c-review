@@ -90,6 +90,18 @@ void show_islower() {
     }
 }
 
+void show_isprint() {
+    char ch;
+    printf("Input a character: ");
+    scanf("%c", &ch);
+    // is printable, including space
+    if (isprint(ch)) {
+        printf("%c is printable.\n", ch);
+    } else {
+        printf("%c is not printable.\n", ch);
+    }
+}
+
 void show_ctype() {
     // show_isascii();
     // show_isalnum();
@@ -97,5 +109,6 @@ void show_ctype() {
     // show_iscntrl();
     // show_isdigit();
     // show_isgraph();
-    show_islower();
+    // show_islower();
+    show_isprint();
 }
