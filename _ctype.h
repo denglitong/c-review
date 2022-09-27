@@ -7,4 +7,4 @@
 
 void show_ctype();
 
-#endif //C_REVIEW__CTYPE_H
+#endif  // C_REVIEW__CTYPE_H

@@ -7,4 +7,4 @@
 
 void show_asserts(int num);
 
-#endif //C_REVIEW__ASSERT_H
+#endif  // C_REVIEW__ASSERT_H

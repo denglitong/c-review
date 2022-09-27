@@ -5,11 +5,11 @@
 #define COL 30
 // 用来标记界面最上面那一行
 #define STARTING_ROW 4
-#define SCORE_ROW (STARTING_ROW-1)
+#define SCORE_ROW (STARTING_ROW - 1)
 #define SCORE_COL STARTING_ROW
-#define LIFE_ROW (STARTING_ROW-1)
-#define LIFE_COL (COL-9)
-#define MAX_SNAKE_LEN ((ROW-STARTING_ROW-2)*(COL-2))
+#define LIFE_ROW (STARTING_ROW - 1)
+#define LIFE_COL (COL - 9)
+#define MAX_SNAKE_LEN ((ROW - STARTING_ROW - 2) * (COL - 2))
 
 //  ANSI escape code
 #define ESC 033
@@ -29,10 +29,9 @@
  * y
  */
 struct Coordinates {
-    int x; // col
-    int y; // row
+  int x;  // col
+  int y;  // row
 };
-
 
 void runSnake();
 

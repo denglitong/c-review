@@ -7,4 +7,4 @@
 
 void show_io();
 
-#endif //C_REVIEW__IO_H
+#endif  // C_REVIEW__IO_H
