@@ -43,4 +43,8 @@ void show_math() {
 
   long l = -12345678L;
   printf("number: %ld absolute value: %ld\n", l, labs(l));
+
+  x = 2.0;
+  double y = 3.0;
+  printf("%lf raised to %lf is %lf\n", x, y, pow(x, y));
 }
