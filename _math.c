@@ -89,4 +89,9 @@ void show_math() {
   x = 8.0;
   mantissa = frexp(x, &exponent);
   printf("%lf = %lf * (2 ^ %d)\n", x, mantissa, exponent);
+
+  x = 5.0, y = 12.0;
+  // 直角三角形斜边长度
+  result = hypot(x, y);
+  printf("The hypotenuse is: %lf\n", result);
 }
