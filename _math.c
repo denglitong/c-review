@@ -55,4 +55,8 @@ void show_math() {
   x = 30 * PI / 180;  //将 30° 角转换成弧度
   result = sin(x);
   printf("The sin() of %lf is %lf\n", x, result);
+
+  x = 60 * PI / 180;
+  result = cos(x);
+  printf("The cos() of %lf is %lf\n", x, result);
 }
