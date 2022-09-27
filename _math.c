@@ -65,6 +65,10 @@ void show_math() {
   printf("The tan() of %lf is %lf\n", x, result);
 
   x = 800.6872;
-  result = log10(x);
+  result = log10(x);  // 以 10 为底数
   printf("The common log of %lf is %lf\n", x, result);
+
+  x = 8.6872;
+  result = log(x);  // 以自然数 e 为底数
+  printf("The natural log of %lf is %lf\n", x, result);
 }
