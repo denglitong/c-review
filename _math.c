@@ -77,4 +77,8 @@ void show_math() {
   fraction = modf(x, &integer);  // 小数部分 = modf(x, 整数部分的指针)
   printf("The whole and fractional parts of %lf are %lf and %lf\n", fraction,
          integer);
+
+  x = 5.0, y = 2.0;
+  result = fmod(x, y);
+  printf("The remainder of (%lf / %lf) is %lf\n", x, y, result);
 }
