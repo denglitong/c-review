@@ -22,4 +22,8 @@ void show_math() {
 
   result = asin(x) * 180 / PI;
   printf("The arc sin of %lf is %lf\n", x, result);
+
+  x = 1;
+  result = atan(x) * 180 / PI;
+  printf("The arc tan of %lf is %lf\n", x, result);
 }
