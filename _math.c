@@ -37,4 +37,7 @@ void show_math() {
   x = 4.0;
   result = exp(x);  // e的x次方
   printf("'e' raised to the power of %lf (e ^%lf) = %lf\n", x, x, result);
+
+  x = -123.45;
+  printf("number: %f absolute value: %f\n", x, fabs(x));
 }
