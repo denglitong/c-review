@@ -63,4 +63,8 @@ void show_math() {
   x = 45 * PI / 180;
   result = tan(x);
   printf("The tan() of %lf is %lf\n", x, result);
+
+  x = 800.6872;
+  result = log10(x);
+  printf("The common log of %lf is %lf\n", x, result);
 }
