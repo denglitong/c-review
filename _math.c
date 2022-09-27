@@ -94,4 +94,9 @@ void show_math() {
   // 直角三角形斜边长度
   result = hypot(x, y);
   printf("The hypotenuse is: %lf\n", result);
+
+  x = 2, y = 3;
+  // result = x * (2 ^ y)
+  result = ldexp(x, 3);
+  printf("The ldexp value is: %lf\n", result);
 }
