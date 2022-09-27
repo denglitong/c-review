@@ -33,4 +33,8 @@ void show_math() {
   up = ceil(x);
   printf("original: %5.2lf, rounded down %5.2lf, rounded up %5.2lf\n", x, down,
          up);
+
+  x = 4.0;
+  result = exp(x);  // e的x次方
+  printf("'e' raised to the power of %lf (e ^%lf) = %lf\n", x, x, result);
 }
