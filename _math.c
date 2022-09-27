@@ -109,4 +109,17 @@ void show_math() {
   double x2 = 3, y2 = 5;
   result = atan2(y2 - y1, x2 - x1) * 180 / PI;
   printf("atan2(%lf) is %lf\n", (y2 - y1) / (x2 - x1), result);
+
+  x = 0.5;
+  // cosh(x)=(e^x+e^(-x))/2
+  result = cosh(x);
+  printf("The hyperbolic cosine of %lf is %lf\n", x, result);
+
+  // sinh(x)=(e^x-e^(-x))/2
+  result = sinh(x);
+  printf("The hyperbolic sin of %lf is %lf\n", x, result);
+
+  // tanh(x) = sinh(x) / cosh(x)
+  result = tanh(x);
+  printf("The hyperbolic tangent of %lf is %lf\n", x, result);
 }
