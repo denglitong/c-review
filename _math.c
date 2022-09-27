@@ -71,4 +71,10 @@ void show_math() {
   x = 8.6872;
   result = log(x);  // 以自然数 e 为底数
   printf("The natural log of %lf is %lf\n", x, result);
+
+  double fraction, integer;
+  x = 100000.567;
+  fraction = modf(x, &integer);  // 小数部分 = modf(x, 整数部分的指针)
+  printf("The whole and fractional parts of %lf are %lf and %lf\n", fraction,
+         integer);
 }
