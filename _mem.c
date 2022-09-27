@@ -16,13 +16,31 @@
 void show_memccpy() {
   char src[] = "source";
   char dst[20], ch = 'r';
-  char *p = memccpy(dst, src, ch, strlen(src));
-  if (p) {
-    *p = '\0';
+  char *ptr = memccpy(dst, src, ch, strlen(src));
+  if (ptr) {
+    *ptr = '\0';
     printf("Found '%c' in '%s' return '%s'\n", ch, src, dst);
   } else {
     printf("Can not found '%c' in '%s'\n", ch, src);
   }
 }
 
-void show_mem() { show_memccpy(); }
+/**
+ * void* memchr(void *src, char c, unsigned m);
+ * 在 src 的前 m 个字节中搜索字符 c，返回c第一次出现位置的指针
+ */
+void show_memchr() {
+  char *src = "I love www.dotcpp.com";
+  char ch = 'w';
+  char *ptr = memchr(src, ch, strlen(src));
+  if (ptr) {
+    printf("Found '%c' in '%src' return '%s'\n", ch, src, ptr);
+  } else {
+    printf("Can not found '%c' in '%s'\n", ch, src);
+  }
+}
+
+void show_mem() {
+  // show_memccpy();
+  show_memchr();
+}
