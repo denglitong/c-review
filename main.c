@@ -16,6 +16,7 @@
 #include "_ctype.h"
 #include "_io.h"
 #include "_math.h"
+#include "_mem.h"
 #include "snake.h"
 
 void printf_str();
@@ -342,7 +343,8 @@ int main() {
   // show_asserts(10);
   // show_ctype();
   // show_io();
-  show_math();
+  // show_math();
+  show_mem();
   return 0;
 }
 
