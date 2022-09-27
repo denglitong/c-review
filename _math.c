@@ -19,4 +19,7 @@ void show_math() {
   double result = 0, x = 0.5;
   result = acos(x) * 180 / PI;
   printf("The arc cosine of %lf is %lf\n", x, result);
+
+  result = asin(x) * 180 / PI;
+  printf("The arc sin of %lf is %lf\n", x, result);
 }
