@@ -26,4 +26,11 @@ void show_math() {
   x = 1;
   result = atan(x) * 180 / PI;
   printf("The arc tan of %lf is %lf\n", x, result);
+
+  x = 123.45;
+  double down, up;
+  down = floor(x);
+  up = ceil(x);
+  printf("original: %5.2lf, rounded down %5.2lf, rounded up %5.2lf\n", x, down,
+         up);
 }
