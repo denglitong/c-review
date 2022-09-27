@@ -40,7 +40,21 @@ void show_memchr() {
   }
 }
 
+void show_memcmp() {
+  char *s1 = "I love www.dotcpp.com!";
+  char *s2 = "I like www.dotcpp.com!";
+  int res = memcmp(s1, s2, strlen(s1));
+  if (res < 0) {
+    printf("s1 < s2");
+  } else if (res == 0) {
+    printf("s1 == s2");
+  } else {
+    printf("s1 > s2");
+  }
+}
+
 void show_mem() {
   // show_memccpy();
-  show_memchr();
+  // show_memchr();
+  show_memcmp();
 }
