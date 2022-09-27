@@ -51,4 +51,8 @@ void show_math() {
   x = 2.0;
   result = sqrt(x);
   printf("The square root of %lf is %lf\n", x, result);
+
+  x = 30 * PI / 180;  //将 30° 角转换成弧度
+  result = sin(x);
+  printf("The sin() of %lf is %lf\n", x, result);
 }
