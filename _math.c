@@ -81,4 +81,12 @@ void show_math() {
   x = 5.0, y = 2.0;
   result = fmod(x, y);
   printf("The remainder of (%lf / %lf) is %lf\n", x, y, result);
+
+  // m = frexp(x, &e);
+  // x = m * pow(2, e), m [0.5, 1)
+  double mantissa;
+  int exponent;
+  x = 8.0;
+  mantissa = frexp(x, &exponent);
+  printf("%lf = %lf * (2 ^ %d)\n", x, mantissa, exponent);
 }
