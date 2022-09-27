@@ -52,11 +52,15 @@ void show_math() {
   result = sqrt(x);
   printf("The square root of %lf is %lf\n", x, result);
 
-  x = 30 * PI / 180;  //将 30° 角转换成弧度
+  x = 30 * PI / 180;  //将 30° 角转换成弧度，1°=π/180°弧度
   result = sin(x);
   printf("The sin() of %lf is %lf\n", x, result);
 
   x = 60 * PI / 180;
   result = cos(x);
   printf("The cos() of %lf is %lf\n", x, result);
+
+  x = 45 * PI / 180;
+  result = tan(x);
+  printf("The tan() of %lf is %lf\n", x, result);
 }
