@@ -47,4 +47,8 @@ void show_math() {
   x = 2.0;
   double y = 3.0;
   printf("%lf raised to %lf is %lf\n", x, y, pow(x, y));
+
+  x = 2.0;
+  result = sqrt(x);
+  printf("The square root of %lf is %lf\n", x, result);
 }
