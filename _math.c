@@ -99,4 +99,14 @@ void show_math() {
   // result = x * (2 ^ y)
   result = ldexp(x, 3);
   printf("The ldexp value is: %lf\n", result);
+
+  double x1 = 1, y1 = 1;
+  // 计算点 (x1,y1) 到原点的弧度
+  float angle = atan2(y1, x1);
+  result = angle * 180 / PI;
+  printf("atan2(%lf) is %lf\n", y1 / x1, result);
+
+  double x2 = 3, y2 = 5;
+  result = atan2(y2 - y1, x2 - x1) * 180 / PI;
+  printf("atan2(%lf) is %lf\n", (y2 - y1) / (x2 - x1), result);
 }
