@@ -40,4 +40,7 @@ void show_math() {
 
   x = -123.45;
   printf("number: %f absolute value: %f\n", x, fabs(x));
+
+  long l = -12345678L;
+  printf("number: %ld absolute value: %ld\n", l, labs(l));
 }
