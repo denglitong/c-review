@@ -30,7 +30,21 @@ void show_atexit() {
   atexit(f2);
 }
 
+// 定义了一个函数指针类型 Function，其函数原型为 int *Function(int, int)
+typedef int (*Function)(int, int);
+
+int add(int a, int b) { return a + b; }
+
+int multiple(int a, int b) { return a * b; }
+
+void show_typedef_function() {
+  Function f1 = add, f2 = multiple;
+  printf("3 + 4 = %d\n", f1(3, 4));
+  printf("3 * 4 = %d\n", f2(3, 4));
+}
+
 void show_stdlib() {
   // show_abort();
-  show_atexit();
+  // show_atexit();
+  show_typedef_function();
 }
