@@ -43,8 +43,15 @@ void show_typedef_function() {
   printf("3 * 4 = %d\n", f2(3, 4));
 }
 
+void show_atof() {
+  char *s = "3.14159265";
+  float f = atof(s);
+  printf("float value: %.4f\n", f);
+}
+
 void show_stdlib() {
   // show_abort();
   // show_atexit();
-  show_typedef_function();
+  // show_typedef_function();
+  show_atof();
 }
