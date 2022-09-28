@@ -334,6 +334,15 @@ void show_putw() {
   printf("\nThe return value is %d\n", res);
 }
 
+void show_remove() {
+  char *filename = "test.txt";
+  if (remove(filename) == 0) {
+    printf("Removed %s.\n", filename);
+  } else {
+    perror("Remove file fail");
+  }
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -353,5 +362,6 @@ void show_stdio() {
   // show_perror();
   // show_putc();
   // show_puts();
-  show_putw();
+  // show_putw();
+  show_remove();
 }
