@@ -280,6 +280,13 @@ void show_getchar() {
   printf("Input char from stdin: %c\n", ch);
 }
 
+void show_fgets_stdin() {
+  char str[64];
+  printf("Input a str:\n");
+  fgets(str, sizeof(str) + 1, stdin);
+  printf("The string input was:\n%s\n", str);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -293,5 +300,6 @@ void show_stdio() {
   // show_fsetpos();
   // show_fwrite();
   // show_getc();
-  show_getchar();
+  // show_getchar();
+  show_fgets_stdin();
 }
