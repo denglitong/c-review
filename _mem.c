@@ -54,17 +54,30 @@ void show_memcmp() {
   }
 }
 
+void show_strcmp() {
+  char *s1 = "I LOVE WWW.DOTCPP.COM!";
+  char *s2 = "I love www.dotcpp.com!";
+  int t = strncmp(s1, s2, strlen(s1));
+  if (t > 0) {
+    printf("case sensitive compare : s1 > s2\n");
+  } else if (t == 0) {
+    printf("case sensitive compare: s1 = s2\n");
+  } else {
+    printf("case sensitive compare: s1 < s2\n");
+  }
+}
+
 void show_strncasecmp() {
   char *s1 = "I LOVE WWW.DOTCPP.COM!";
   char *s2 = "I love www.dotcpp.com! Hello";
   // string compare, ignore case
   int t = strcasecmp(s1, s2);
   if (t > 0) {
-    printf("case compare : s1 > s2\n");
+    printf("case insensitive compare : s1 > s2\n");
   } else if (t == 0) {
-    printf("case compare: s1 = s2\n");
+    printf("case insensitive compare: s1 = s2\n");
   } else {
-    printf("case compare: s1 < s2\n");
+    printf("case insensitive compare: s1 < s2\n");
   }
 
   int size = strlen(s1);
@@ -94,6 +107,7 @@ void show_mem() {
   // show_memccpy();
   // show_memchr();
   // show_memcmp();
-  show_strncasecmp();
+  show_strcmp();
+  // show_strncasecmp();
   // show_memcpy();
 }
