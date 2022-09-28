@@ -310,6 +310,14 @@ void show_perror() {
   }
 }
 
+void show_putc() {
+  char msg[] = "www.dotcpp.com\n";
+  int i = 0;
+  while (msg[i]) {
+    putc(msg[i++], stdout);
+  }
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -326,5 +334,6 @@ void show_stdio() {
   // show_getchar();
   // show_fgets_stdin();
   // show_getw();
-  show_perror();
+  // show_perror();
+  show_putc();
 }
