@@ -53,8 +53,20 @@ void show_memcmp() {
   }
 }
 
+void show_memcpy() {
+  char dst[30] = {"0"};
+  char *src = "I love www.dotcpp.com!";
+  char *ptr = memcpy(dst, src, strlen(src));
+  if (ptr) {
+    printf("destination after memcpy: %s\n", dst);
+  } else {
+    printf("memcpy failed\n");
+  }
+}
+
 void show_mem() {
   // show_memccpy();
   // show_memchr();
-  show_memcmp();
+  // show_memcmp();
+  show_memcpy();
 }
