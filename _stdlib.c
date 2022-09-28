@@ -16,4 +16,21 @@ void show_abort() {
   abort();
 }
 
-void show_stdlib() { show_abort(); }
+// 定义了一个函数指针类型 Fun，其函数原型为 void()
+typedef void (*Fun)();
+
+void f1() { printf("exit first called\n"); }
+
+void f2() { printf("exit second called\n"); }
+
+// register a function to be called when exit
+void show_atexit() {
+  Fun fun1 = f1, fun2 = f2;
+  atexit(f1);
+  atexit(f2);
+}
+
+void show_stdlib() {
+  // show_abort();
+  show_atexit();
+}
