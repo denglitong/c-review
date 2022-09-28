@@ -107,9 +107,21 @@ void show_fgets() {
   fclose(stream);
 }
 
+void show_fopen() {
+  char *filename = "1.txt";
+  FILE *stream = fopen(filename, "w+");
+  if (!stream) {
+    printf("Can not open file: %s\n", filename);
+    return;
+  }
+  fputs("www.dotcpp.com!\n", stream);
+  fclose(stream);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
   // show_fgetpos();
-  show_fgets();
+  // show_fgets();
+  show_fopen();
 }
