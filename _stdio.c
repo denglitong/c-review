@@ -177,6 +177,37 @@ void show_freopen() {
   fclose(stdout);
 }
 
+void show_fscanf() {
+  int i;
+  printf("Input an integer: ");
+  if (fscanf(stdin, "%d", &i)) {
+    printf("Read integer: %d\n", i);
+  } else {
+    fprintf(stderr, "Error reading an integer from stdin.\n");
+    exit(1);
+  }
+
+  char *filename = "out.txt";
+  FILE *stream = fopen(filename, "r");
+  fscanf(stream, "%d", &i);
+  printf("Read file %s integer: %d\n", filename, i);
+
+  char line[1024];
+  // read line until the empty space
+  // 执行成功返回转换和存储输入字段的个数，失败或遇到文件结束返回 EOF
+  int len = fscanf(stream, "%s", line);
+  printf("Read file %s string: %s\n", filename, line);
+  printf("%d\n", len);
+
+  len = fscanf(stream, "%s", line);
+  printf("Read file %s string: %s\n", filename, line);
+  printf("%d\n", len);
+
+  len = fscanf(stream, "%s", line);
+  printf("Read file %s string: %s\n", filename, line);
+  printf("%d\n", len);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -185,5 +216,6 @@ void show_stdio() {
   // show_fopen();
   // show_fprintf();
   // show_fread();
-  show_freopen();
+  // show_freopen();
+  show_fscanf();
 }
