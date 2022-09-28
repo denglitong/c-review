@@ -51,6 +51,16 @@ void show_memmove() {
   printf("after memmove str: %s\n", dst);
 }
 
+void show_memset() {
+  char src[] = {"I love www.dotcpp.com"};
+  char c = '#';
+  int len = 7;
+  // replace each char in src[0,len] with c
+  char *ptr = memset(src, c, 7);
+  // ptr == src
+  printf("str after memset: %s\n", ptr);
+}
+
 void show_memcmp() {
   char *s1 = "I love www.dotcpp.com!";
   char *s2 = "I like www.dotcpp.com!";
@@ -115,7 +125,8 @@ void show_memcpy() {
 
 void show_mem() {
   // show_memccpy();
-  show_memmove();
+  // show_memmove();
+  show_memset();
   // show_memchr();
   // show_memcmp();
   // show_strcmp();
