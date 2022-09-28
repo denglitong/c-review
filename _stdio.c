@@ -12,7 +12,7 @@ void show_clearerr() {
   char *filename = "1.txt";
   // 以只写方式打开，此时文件不可读
   FILE *stream = fopen(filename, "w");
-  // 读取文件的一个字符
+  // 从流中读取下一个字符，失败、文件结束或出错时 返回 EOF
   char ch = fgetc(stream);
 
   // test the error indicator for the stream, returning non-zero if it's set
@@ -40,6 +40,12 @@ void show_clearerr() {
 
   // 关闭 stream, 刷新所有的缓冲区；成功返回 0，失败返回 EOF
   fclose(stream);
+
+  stream = fopen(filename, "r");
+  while ((ch = fgetc(stream)) != EOF) {
+    putchar(ch);
+  }
+  putchar('\n');
 }
 
 void show_stdio() { show_clearerr(); }
