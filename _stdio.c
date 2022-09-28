@@ -414,6 +414,20 @@ void show_tmpname() {
   printf("temporary name: %s\n", filename);
 }
 
+char BUFFER[1024];
+
+void show_setbuf() {
+  setbuf(stdout, BUFFER);
+  printf("This is a test of buffered output.\n\n");
+  printf("This output will go into BUFFER\n");
+
+  perror("test error output");
+
+  printf("and won't appear until the BUFFER\n");
+  printf("fills up or we flush the stream.\n");
+  fflush(stdout);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -439,5 +453,6 @@ void show_stdio() {
   // show_rewind();
   // show_ungetc();
   // show_tmpfile();
-  show_tmpname();
+  // show_tmpname();
+  show_setbuf();
 }
