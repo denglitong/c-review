@@ -314,7 +314,10 @@ void show_putc() {
   char msg[] = "www.dotcpp.com\n";
   int i = 0;
   while (msg[i]) {
-    putc(msg[i++], stdout);
+    putc(msg[i], stdout);
+    // equal to putc(msg[i], stdout)
+    putchar(msg[i]);
+    i++;
   }
 }
 
