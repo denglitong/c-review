@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <strings.h>
 
 /**
  * void* memccpy(void *des, void *src, unsigned char c, unsigned m);
@@ -53,6 +54,31 @@ void show_memcmp() {
   }
 }
 
+void show_strncasecmp() {
+  char *s1 = "I LOVE WWW.DOTCPP.COM!";
+  char *s2 = "I love www.dotcpp.com! Hello";
+  // string compare, ignore case
+  int t = strcasecmp(s1, s2);
+  if (t > 0) {
+    printf("case compare : s1 > s2\n");
+  } else if (t == 0) {
+    printf("case compare: s1 = s2\n");
+  } else {
+    printf("case compare: s1 < s2\n");
+  }
+
+  int size = strlen(s1);
+  // string compare with len, ignore case
+  t = strncasecmp(s1, s2, size);
+  if (t > 0) {
+    printf("case compare with %d bytes : s1 > s2\n", size);
+  } else if (t == 0) {
+    printf("case compare with %d bytes: s1 = s2\n", size);
+  } else {
+    printf("case compare with %d bytes: s1 < s2\n", size);
+  }
+}
+
 void show_memcpy() {
   char dst[30] = {"0"};
   char *src = "I love www.dotcpp.com!";
@@ -68,5 +94,6 @@ void show_mem() {
   // show_memccpy();
   // show_memchr();
   // show_memcmp();
-  show_memcpy();
+  show_strncasecmp();
+  // show_memcpy();
 }
