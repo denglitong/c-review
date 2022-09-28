@@ -258,6 +258,28 @@ void show_fwrite() {
   fclose(stream);
 }
 
+void show_getc() {
+  char ch;
+  printf("Input a character: ");
+  // 从标准获取一个字符，以回车结束
+  ch = getc(stdin);
+  printf("Input char: %c\n", ch);
+
+  char *filename = "out.txt";
+  FILE *stream = fopen(filename, "r");
+  ch = getc(stream);
+  printf("Read char '%c' from binary file: %s", ch, filename);
+  fclose(stream);
+}
+
+void show_getchar() {
+  char ch;
+  // 从标准获取一个字符，以回车结束
+  printf("Input a character: ");
+  ch = getchar();
+  printf("Input char from stdin: %c\n", ch);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -269,5 +291,7 @@ void show_stdio() {
   // show_freopen();
   // show_fscanf();
   // show_fsetpos();
-  show_fwrite();
+  // show_fwrite();
+  // show_getc();
+  show_getchar();
 }
