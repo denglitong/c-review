@@ -118,10 +118,38 @@ void show_fopen() {
   fclose(stream);
 }
 
+void show_fprintf() {
+  char *input_name = "1.txt", *output_name = "2.txt";
+  FILE *input = fopen(input_name, "r");
+  FILE *output = fopen(output_name, "w");
+
+  if (!input) {
+    fprintf(stderr, "Cannot open input file: %s\n", input_name);
+    return;
+  }
+  if (!output) {
+    fprintf(stderr, "Cannot open output file: %s\n", output_name);
+    fclose(input);
+    input = NULL;
+    return;
+  }
+
+  char ch;
+  while ((ch = fgetc(input)) != EOF) {
+    fprintf(output, "%c", ch);
+  }
+
+  fclose(input);
+  input = NULL;
+  fclose(output);
+  output = NULL;
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
   // show_fgetpos();
   // show_fgets();
-  show_fopen();
+  // show_fopen();
+  show_fprintf();
 }
