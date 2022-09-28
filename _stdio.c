@@ -301,6 +301,15 @@ void show_getw() {
   printf("Read word: %d from file: %s\n", word, filename);
 }
 
+void show_perror() {
+  FILE *stream = fopen("perror.dat", "r");
+  if (!stream) {
+    // print system error message
+    // Unable to open file for reading: No such file or directory
+    perror("Unable to open file for reading");
+  }
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -316,5 +325,6 @@ void show_stdio() {
   // show_getc();
   // show_getchar();
   // show_fgets_stdin();
-  show_getw();
+  // show_getw();
+  show_perror();
 }
