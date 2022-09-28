@@ -61,7 +61,27 @@ void show_fgetc() {
   printf("The character fgetc is: '%c'\n", ch);
 }
 
+void show_fgetpos() {
+  char *message = "This is a test";
+  fpos_t filepos;
+  FILE *stream = fopen("DUMMY.FIL", "w+");
+
+  printf("Write: %s\n", message);
+  fwrite(message, strlen(message), 1, stream);
+  fgetpos(stream, &filepos);
+  printf("The file pointer is at byte %ld\n", filepos);
+
+  message = "hello";
+  printf("Write: %s\n", message);
+  fwrite(message, strlen(message), 1, stream);
+  fgetpos(stream, &filepos);
+  printf("The file pointer is at byte %ld\n", filepos);
+
+  fclose(stream);
+}
+
 void show_stdio() {
   // show_clearerr();
-  show_fgetc();
+  // show_fgetc();
+  show_fgetpos();
 }
