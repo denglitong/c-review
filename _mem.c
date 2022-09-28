@@ -41,6 +41,16 @@ void show_memchr() {
   }
 }
 
+void show_memmove() {
+  char *src = "i like www.dotcpp.com";
+  char dst[40] = {"I love WWW.DOTCPP.COM"};
+  int len = 7;
+  // replace dst[0, len] with src[0, len]
+  char *ptr = memmove(dst, src, len);
+  // ptr == dst
+  printf("after memmove str: %s\n", dst);
+}
+
 void show_memcmp() {
   char *s1 = "I love www.dotcpp.com!";
   char *s2 = "I like www.dotcpp.com!";
@@ -105,9 +115,10 @@ void show_memcpy() {
 
 void show_mem() {
   // show_memccpy();
+  show_memmove();
   // show_memchr();
   // show_memcmp();
-  show_strcmp();
+  // show_strcmp();
   // show_strncasecmp();
   // show_memcpy();
 }
