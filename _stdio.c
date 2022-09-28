@@ -407,6 +407,13 @@ void show_tmpfile() {
   }
 }
 
+void show_tmpname() {
+  char filename[32];
+  // deprecated fucntion
+  tmpnam(filename);
+  printf("temporary name: %s\n", filename);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -431,5 +438,6 @@ void show_stdio() {
   // show_rename();
   // show_rewind();
   // show_ungetc();
-  show_tmpfile();
+  // show_tmpfile();
+  show_tmpname();
 }
