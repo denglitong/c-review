@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 void show_clearerr() {
   char *filename = "1.txt";
@@ -428,6 +429,47 @@ void show_setbuf() {
   fflush(stdout);
 }
 
+void show_setvbuf_output() {
+  int size = 1024;
+  char buf[size];
+  memset(buf, '\0', sizeof(buf));
+
+  fprintf(stdout, "启用全缓冲\n");
+  setvbuf(stdout, buf, _IOFBF, size);
+
+  fprintf(stdout, "这里是 www.dotcpp.com\n");
+  fprintf(stdout, "该输出将保存在 buf\n");
+  fflush(stdout);
+
+  fprintf(stdout, "最后休眠3秒钟\n");
+  usleep(3 * 1000 * 1000);
+  // 在程序结束之前，剩余的输出会被发送到 stdout
+}
+
+/**
+ * The setvbuf() function may be used at any time, but may have peculiar
+ * side effects (such as discarding input or flushing output) if the stream
+ * is ``active''.  Portable applications should call it only once on any
+ * given stream, and before any I/O is performed.
+ */
+void show_setvbuf_input() {
+  char buf[1024];
+
+  setvbuf(stdin, buf, _IOFBF, sizeof(buf));
+
+  char *msg = "Input a character: ";
+  fwrite(msg, strlen(msg), 1, stdout);
+
+  // input line, but nothing happen.
+  char line[1024];
+  fread(&line, sizeof(line), 1, stdin);
+
+  fwrite(buf, sizeof(buf), 1, stdout);
+
+  fflush(stdout);
+  fflush(stdin);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -454,5 +496,7 @@ void show_stdio() {
   // show_ungetc();
   // show_tmpfile();
   // show_tmpname();
-  show_setbuf();
+  // show_setbuf();
+  // show_setvbuf_output();
+  show_setvbuf_input();
 }
