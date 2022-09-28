@@ -208,6 +208,24 @@ void show_fscanf() {
   printf("%d\n", len);
 }
 
+void show_fsetpos() {
+  char *filename = "out.txt";
+  FILE *stream = fopen(filename, "r");
+
+  fpos_t filepos;
+  fgetpos(stream, &filepos);
+
+  filepos += 2;
+  fsetpos(stream, &filepos);
+
+  int i;
+  fscanf(stream, "%d", &i);
+  // 1024 -> pos+=2 -> 24
+  printf("after fsetpos += 2 read integer: %d", i);
+
+  fclose(stream);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -217,5 +235,6 @@ void show_stdio() {
   // show_fprintf();
   // show_fread();
   // show_freopen();
-  show_fscanf();
+  // show_fscanf();
+  show_fsetpos();
 }
