@@ -4,6 +4,7 @@
 
 #include "_stdio.h"
 
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -470,6 +471,12 @@ void show_setvbuf_input() {
   fflush(stdin);
 }
 
+void show_sprintf() {
+  char *msg;
+  sprintf(msg, "An approximation of Pi is %.2f", M_PI);
+  puts(msg);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -498,5 +505,6 @@ void show_stdio() {
   // show_tmpname();
   // show_setbuf();
   // show_setvbuf_output();
-  show_setvbuf_input();
+  // show_setvbuf_input();
+  show_sprintf();
 }
