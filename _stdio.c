@@ -368,6 +368,35 @@ void show_rewind() {
   fclose(stream);
 }
 
+void show_ungetc() {
+  char *filename = "out.txt";
+  FILE *stream = fopen(filename, "r");
+  fseek(stream, 5, SEEK_SET);
+
+  char ch;
+  for (int i = 1; i <= 3; ++i) {
+    ch = getc(stream);
+    printf("%d: %c\n", i, ch);
+  }
+
+  // 给当前 stream pointer 所在的位置插入 ch
+  // hello -> hel&lo
+  ungetc('&', stream);
+
+  for (int i = 1; i <= 3; ++i) {
+    ch = getc(stream);
+    printf("%d: %c\n", i, ch);
+  }
+  fclose(stream);
+
+  printf("Input a lower case letter: ");
+  ch = getchar();
+  ch += 'A' - 'a';
+  ungetc(ch, stdin);
+  ch = getchar();
+  printf("%c\n", ch);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -390,5 +419,6 @@ void show_stdio() {
   // show_putw();
   // show_remove();
   // show_rename();
-  show_rewind();
+  // show_rewind();
+  show_ungetc();
 }
