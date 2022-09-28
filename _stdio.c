@@ -164,6 +164,19 @@ void show_fread() {
   fclose(stream);
 }
 
+void show_freopen() {
+  char *filename = "out.txt";
+  if (freopen(filename, "w", stdout) == NULL) {
+    fprintf(stderr, "error redirecting stdout to file\n");
+    return;
+  }
+  // 原本要在控制台输出的字符串，输出到了文件中
+  printf("1024\n");
+  printf("hello world\n");
+  printf("www.dotcpp.com\n");
+  fclose(stdout);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -171,5 +184,6 @@ void show_stdio() {
   // show_fgets();
   // show_fopen();
   // show_fprintf();
-  show_fread();
+  // show_fread();
+  show_freopen();
 }
