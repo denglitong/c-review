@@ -321,6 +321,12 @@ void show_putc() {
   }
 }
 
+void show_puts() {
+  char msg[] = "www.dotcpp.com\n";
+  // print strig to stdout
+  puts(msg);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -338,5 +344,6 @@ void show_stdio() {
   // show_fgets_stdin();
   // show_getw();
   // show_perror();
-  show_putc();
+  // show_putc();
+  show_puts();
 }
