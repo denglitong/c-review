@@ -397,6 +397,16 @@ void show_ungetc() {
   printf("%c\n", ch);
 }
 
+void show_tmpfile() {
+  // create a temporary file with binary format
+  FILE *stream = tmpfile();
+  if (stream) {
+    printf("Created temporary file.\n");
+  } else {
+    perror("Unable to create temporary file\n");
+  }
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -420,5 +430,6 @@ void show_stdio() {
   // show_remove();
   // show_rename();
   // show_rewind();
-  show_ungetc();
+  // show_ungetc();
+  show_tmpfile();
 }
