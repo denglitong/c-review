@@ -221,7 +221,15 @@ void show_fsetpos() {
   int i;
   fscanf(stream, "%d", &i);
   // 1024 -> pos+=2 -> 24
-  printf("after fsetpos += 2 read integer: %d", i);
+  printf("after fsetpos += 2 read integer: %d\n", i);
+
+  // file position went through: 1024
+  fgetpos(stream, &filepos);
+  printf("file position: %lld\n", filepos);  // 4
+
+  // 成功返回文件指针的位置，出错返回 -1L
+  long pos_offset = ftell(stream);
+  printf("ftell offset bytes: %ld\n", pos_offset);  // 4
 
   fclose(stream);
 }
