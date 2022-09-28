@@ -353,6 +353,21 @@ void show_rename() {
   }
 }
 
+void show_rewind() {
+  char *filename = "out.txt";
+  FILE *stream = fopen(filename, "r");
+
+  fseek(stream, 0, SEEK_END);
+  int first = ftell(stream);
+
+  rewind(stream);
+  int second = ftell(stream);
+
+  printf("First pointer: %d, after rewind: %d\n", first, second);
+
+  fclose(stream);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -374,5 +389,6 @@ void show_stdio() {
   // show_puts();
   // show_putw();
   // show_remove();
-  show_rename();
+  // show_rename();
+  show_rewind();
 }
