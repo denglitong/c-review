@@ -343,6 +343,16 @@ void show_remove() {
   }
 }
 
+void show_rename() {
+  char *old_filename = "MY_STRUCT";
+  char *new_filename = "MY_STRUCT_NEW";
+  if (rename(old_filename, new_filename) == 0) {
+    printf("Rename %s to %s.\n", old_filename, new_filename);
+  } else {
+    perror("Rename file fail.");
+  }
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -363,5 +373,6 @@ void show_stdio() {
   // show_putc();
   // show_puts();
   // show_putw();
-  show_remove();
+  // show_remove();
+  show_rename();
 }
