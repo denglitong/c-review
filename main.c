@@ -17,6 +17,7 @@
 #include "_io.h"
 #include "_math.h"
 #include "_mem.h"
+#include "_setjmp.h"
 #include "snake.h"
 
 void printf_str();
@@ -344,7 +345,8 @@ int main() {
   // show_ctype();
   // show_io();
   // show_math();
-  show_mem();
+  // show_mem();
+  show_setjmp_longjmp();
   return 0;
 }
 
