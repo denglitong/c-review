@@ -145,11 +145,31 @@ void show_fprintf() {
   output = NULL;
 }
 
+void show_fread() {
+  char *filename = "1.txt";
+  FILE *stream;
+  if ((stream = fopen(filename, "w+")) == NULL) {
+    fprintf(stderr, "Can not open file");
+    return;
+  }
+
+  char msg[] = "Hello world, this year is 2022.";
+  fwrite(msg, strlen(msg), 1, stream);
+
+  char buf[20];
+  fseek(stream, 0, SEEK_SET);
+  fread(buf, strlen(msg) + 1, 1, stream);
+  printf("Read: %s\n", buf);
+
+  fclose(stream);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
   // show_fgetpos();
   // show_fgets();
   // show_fopen();
-  show_fprintf();
+  // show_fprintf();
+  show_fread();
 }
