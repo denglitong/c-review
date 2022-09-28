@@ -327,6 +327,13 @@ void show_puts() {
   puts(msg);
 }
 
+void show_putw() {
+  int word = 49;
+  // return 0 for success, EOF for failures
+  int res = putw(word, stdout);
+  printf("\nThe return value is %d\n", res);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -345,5 +352,6 @@ void show_stdio() {
   // show_getw();
   // show_perror();
   // show_putc();
-  show_puts();
+  // show_puts();
+  show_putw();
 }
