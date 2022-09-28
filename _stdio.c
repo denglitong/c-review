@@ -234,6 +234,30 @@ void show_fsetpos() {
   fclose(stream);
 }
 
+typedef struct {
+  int i;
+  char ch;
+} MY_STRUCT;
+
+void show_fwrite() {
+  char *filename = "MY_STRUCT";
+  FILE *stream = fopen(filename, "wb");
+  if (!stream) {
+    fprintf(stderr, "Can not open file.\n");
+    exit(1);
+  }
+
+  MY_STRUCT s = {32, 'C'};
+  if (fwrite(&s, sizeof(s), 1, stream) == 1) {
+    printf("write to file: %s successful\n", filename);
+  } else {
+    printf("write to file: %s failed.\n", filename);
+  }
+
+  // 以十六进制查看文件内容: xxd MY_STRUCT
+  fclose(stream);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -244,5 +268,6 @@ void show_stdio() {
   // show_fread();
   // show_freopen();
   // show_fscanf();
-  show_fsetpos();
+  // show_fsetpos();
+  show_fwrite();
 }
