@@ -80,8 +80,36 @@ void show_fgetpos() {
   fclose(stream);
 }
 
+void show_fgets() {
+  char *filename = "1.txt";
+  FILE *stream = fopen(filename, "w+");
+
+  char str[] = "This is a test\nhello world";
+  fwrite(str, strlen(str), 1, stream);
+  fseek(stream, 0, SEEK_SET);
+
+  char msg[20] = {"\0"};
+  int size = strlen(str) + 1;
+  /**
+   * 从 stream 中读取 size-1 个字符，直到遇到换行符为止，读出的内容包含\n
+   */
+  fgets(msg, strlen(str) + 1, stream);
+  printf("%s\n", msg);
+
+  size = 8;
+  fseek(stream, 0, SEEK_SET);
+  // 执行成功返回所读出的字符串
+  char *ptr = fgets(msg, size, stream);
+  printf("%s\n", msg);
+  // ptr == msg
+  printf("%s\n", ptr);
+
+  fclose(stream);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
-  show_fgetpos();
+  // show_fgetpos();
+  show_fgets();
 }
