@@ -48,4 +48,20 @@ void show_clearerr() {
   putchar('\n');
 }
 
-void show_stdio() { show_clearerr(); }
+void show_fgetc() {
+  char ch;
+  // printf("Enter a character followed by Enter:\n");
+  // ch = getchar();
+  // printf("The character getchar is: '%c'\n", ch);
+
+  printf("Enter a character followed by Enter:\n");
+  // obtains the next input character (if present) from the stream,
+  // or the next character pushed back on the stream via ungetc()
+  ch = fgetc(stdin);
+  printf("The character fgetc is: '%c'\n", ch);
+}
+
+void show_stdio() {
+  // show_clearerr();
+  show_fgetc();
+}
