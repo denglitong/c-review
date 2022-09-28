@@ -477,6 +477,18 @@ void show_sprintf() {
   puts(msg);
 }
 
+void show_sscanf() {
+  char s1[] = "1024 3.14 hello";
+  int i = 0;
+  float f = 0;
+  char *s2;
+  int match_size = sscanf(s1, "%d %f %s", &i, &f, s2);
+  printf("integer: %d\n", i);  // 1024
+  printf("float: %f\n", f);    // 3.140000
+  printf("string: %s\n", s2);  // hello
+  printf("match size: %d\n", match_size);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -506,5 +518,6 @@ void show_stdio() {
   // show_setbuf();
   // show_setvbuf_output();
   // show_setvbuf_input();
-  show_sprintf();
+  // show_sprintf();
+  show_sscanf();
 }
