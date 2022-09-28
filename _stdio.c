@@ -287,6 +287,20 @@ void show_fgets_stdin() {
   printf("The string input was:\n%s\n", str);
 }
 
+void show_getw() {
+  char *filename = "test.txt";
+  FILE *stream = fopen(filename, "w");
+  int word = 94;
+  // write binary format data, so we shall open with "wb" mode
+  putw(word, stream);
+  fclose(stream);
+
+  stream = fopen(filename, "r");
+  // read next word(int) from stream
+  word = getw(stream);
+  printf("Read word: %d from file: %s\n", word, filename);
+}
+
 void show_stdio() {
   // show_clearerr();
   // show_fgetc();
@@ -301,5 +315,6 @@ void show_stdio() {
   // show_fwrite();
   // show_getc();
   // show_getchar();
-  show_fgets_stdin();
+  // show_fgets_stdin();
+  show_getw();
 }
