@@ -85,6 +85,25 @@ void show_strtod() {
   printf("c = %lf, endptr: %s\n", d, endptr);
 }
 
+void show_strtol() {
+  char *endptr;
+  int base = 10;
+  long l;
+
+  char *a = "100000";
+  char *b = "234500";
+  char *c = "cd";
+
+  l = strtol(a, &endptr, base);
+  printf("a = %ld, endptr: %s\n", l, endptr);
+
+  l = strtol(b, &endptr, base);
+  printf("b = %ld, endptr: %s\n", l, endptr);
+
+  l = strtol(c, &endptr, base);
+  printf("c = %ld, endptr: %s\n", l, endptr);
+}
+
 typedef int (*fc)(const void *, const void *);
 
 int numcmp(const void *p1, const void *p2) {
@@ -387,5 +406,6 @@ void show_stdlib() {
   // show_putenv();
   // show_sprintf_cvt_int_to_str();
   // show_rand();
-  show_strtod();
+  // show_strtod();
+  show_strtol();
 }
