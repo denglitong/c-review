@@ -83,6 +83,13 @@ void show_bsearch() {
   }
 }
 
+void show_calloc() {
+  int *ptr = calloc(1, sizeof(int));
+  *ptr = 8;
+  printf("address: 0x%x, value: %d\n", ptr, *ptr);
+  free(ptr);
+}
+
 void show_stdlib() {
   // show_abort();
   // show_atexit();
@@ -90,5 +97,6 @@ void show_stdlib() {
   // show_atof();
   // show_atoi();
   // show_atol();
-  show_bsearch();
+  // show_bsearch();
+  show_calloc();
 }
