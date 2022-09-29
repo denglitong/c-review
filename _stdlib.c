@@ -134,6 +134,40 @@ void show_calloc() {
   free(ptr);
 }
 
+/**
+ * The realloc() function tries to change the size of the allocation pointed
+to by ptr to size, and returns ptr.  If there is not enough room to
+enlarge the memory allocation pointed to by ptr, realloc() creates a new
+allocation, copies as much of the old data pointed to by ptr as will fit
+to the new allocation, frees the old allocation, and returns a pointer to
+the allocated memory.  If ptr is NULL, realloc() is identical to a call
+to malloc() for size bytes.  If size is zero and ptr is not NULL, a new,
+minimum sized object is allocated and the original object is freed.  When
+extending a region allocated with calloc(3), realloc(3) does not
+guarantee that the additional memory is also zero-filled.
+ */
+void show_realloc() {
+  int *i = malloc(sizeof(int));
+  *i = 90;
+  double *d = realloc(i, sizeof(double));
+  // 在有足够的空间时，realloc()
+  // 不会去申请另一个新的内存地址段，所以这里两个地址相同
+  printf("original int pointer: ox%x\n", i);  // ox2798000
+  printf("  new double pointer: ox%x\n", d);  // ox2798000
+  printf("   int value: %d\n", *i);           // 90
+  printf("double value: %lf\n", *d);          // 0.000000
+
+  // 类似 union 的内存复用擦写技术，
+  //  即在同一个内存段可以表示不同类型的值，但在某个时刻只有一种类型的值；
+  // 此处 *d = 3.14 赋值后 i 即失效，所以获取值时表现为 undefined
+  *d = 3.14;
+  printf("original int pointer: ox%x\n", i);  // ox2798000
+  printf("  new double pointer: ox%x\n", d);  // ox2798000
+  printf("   int value: %d\n", *i);           // 1374389535 (undefined)
+  printf("double value: %lf\n", *d);          // 3.140000
+  free(d);
+}
+
 void show_div() {
   // 整数相除，返回包含商和余数的结构体
   div_t a = div(210, 25);
@@ -276,8 +310,9 @@ void show_stdlib() {
   // show_atol();
   // show_bsearch();
   // show_lfind();
-  show_lsearch();
+  // show_lsearch();
   // show_calloc();
+  show_realloc();
   // show_div();
   // show_ldiv();
   // show_ecvt();
