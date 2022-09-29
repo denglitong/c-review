@@ -49,9 +49,16 @@ void show_atof() {
   printf("float value: %.4f\n", f);
 }
 
+void show_atoi() {
+  char *s = "512";
+  int i = atoi(s);
+  printf("int value: %d\n", i);
+}
+
 void show_stdlib() {
   // show_abort();
   // show_atexit();
   // show_typedef_function();
-  show_atof();
+  // show_atof();
+  show_atoi();
 }
