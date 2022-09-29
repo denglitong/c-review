@@ -297,6 +297,24 @@ void show_getenv() {
   printf("USER: %s\n", s);
 }
 
+void show_putenv() {
+  char *path, *ptr;
+  int i = 0;
+  ptr = getenv("PATH");
+
+  path = malloc(strlen(ptr) + 5);
+  strcpy(path, "PATH=");
+  strcat(path, ptr);
+  putenv(path);
+
+  // predefined array in POSIX stand
+  extern char **environ;
+
+  while (environ[i]) {
+    printf("%s\n", environ[i++]);
+  }
+}
+
 void show_sprintf_cvt_int_to_str() {
   int i = 1725;
   char buf[10] = {"\0"};
@@ -320,7 +338,7 @@ void show_stdlib() {
   // show_lfind();
   // show_lsearch();
   // show_calloc();
-  show_malloc();
+  // show_malloc();
   // show_realloc();
   // show_div();
   // show_ldiv();
@@ -329,5 +347,6 @@ void show_stdlib() {
   // show_exit();
   // show_gcvt();
   // show_getenv();
+  show_putenv();
   // show_sprintf_cvt_int_to_str();
 }
