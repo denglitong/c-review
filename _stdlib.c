@@ -382,6 +382,18 @@ void show_rand() {
   }
 }
 
+void show_swab() {
+  char src[20] = "www.dotcpp.com";
+  char dst[20] = {"\0"};
+  // swap byte: 交换 src 中临近的字节，然后存入到 dst 中，即两两相领的字节互换
+  swab(src, dst, strlen(src));
+  printf("src: %s\n", src);  // www.dotcpp.com
+  printf("dst: %s\n", dst);  // ww.wodctppc.mo
+
+  swab(dst, dst, strlen(dst));
+  printf("swab(dst): %s\n", dst);  // www.dotcpp.com
+}
+
 void show_stdlib() {
   // show_abort();
   // show_atexit();
@@ -407,5 +419,6 @@ void show_stdlib() {
   // show_sprintf_cvt_int_to_str();
   // show_rand();
   // show_strtod();
-  show_strtol();
+  // show_strtol();
+  show_swab();
 }
