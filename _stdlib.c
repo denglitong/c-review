@@ -205,6 +205,12 @@ void show_exit() {
   printf("this is not reachable\n");
 }
 
+void show_getenv() {
+  // 返回给定的环境变量值，如未定义则返回 NULL
+  char *s = getenv("USER");
+  printf("USER: %s\n", s);
+}
+
 void show_stdlib() {
   // show_abort();
   // show_atexit();
@@ -218,5 +224,6 @@ void show_stdlib() {
   // show_ecvt();
   // show_fcvt();
   // show_exit();
-  show_gcvt();
+  // show_gcvt();
+  show_getenv();
 }
