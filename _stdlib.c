@@ -218,6 +218,11 @@ void show_sprintf_cvt_int_to_str() {
   printf("%s\n", buf);
 }
 
+void show_ldiv() {
+  ldiv_t lx = ldiv(165000L, 35500L);
+  printf("165000 / 35500 = %ld remainder %ld\n", lx.quot, lx.rem);
+}
+
 void show_stdlib() {
   // show_abort();
   // show_atexit();
@@ -228,10 +233,11 @@ void show_stdlib() {
   // show_bsearch();
   // show_calloc();
   // show_div();
+  show_ldiv();
   // show_ecvt();
   // show_fcvt();
   // show_exit();
   // show_gcvt();
   // show_getenv();
-  show_sprintf_cvt_int_to_str();
+  // show_sprintf_cvt_int_to_str();
 }
