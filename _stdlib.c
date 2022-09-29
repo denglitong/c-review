@@ -90,6 +90,12 @@ void show_calloc() {
   free(ptr);
 }
 
+void show_div() {
+  // 整数相除，返回包含商和余数的结构体
+  div_t a = div(210, 25);
+  printf("210 / 25 = %d remainder %d\n", a.quot, a.rem);
+}
+
 void show_stdlib() {
   // show_abort();
   // show_atexit();
@@ -98,5 +104,6 @@ void show_stdlib() {
   // show_atoi();
   // show_atol();
   // show_bsearch();
-  show_calloc();
+  // show_calloc();
+  show_div();
 }
