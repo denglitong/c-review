@@ -18,6 +18,7 @@
 #include "_math.h"
 #include "_mem.h"
 #include "_setjmp.h"
+#include "_signal.h"
 #include "_stdio.h"
 #include "_stdlib.h"
 #include "snake.h"
@@ -338,11 +339,14 @@ int main() {
   // show_or();
   // show_xor();
   // show_not();
+
   // runSnake();
+
   // show_stack_args_order();
   // show_int_storage_endian();
   // show_operator_short_circuit();
   // show_sizeof_keyword();
+
   // show_asserts(10);
   // show_ctype();
   // show_io();
@@ -350,7 +354,8 @@ int main() {
   // show_mem();
   // show_setjmp_longjmp();
   // show_stdio();
-  show_stdlib();
+  // show_stdlib();
+  show_signal();
   return 0;
 }
 
