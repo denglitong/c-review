@@ -63,6 +63,28 @@ void show_atol() {
   printf("long value: %ld\n", l);
 }
 
+void show_sprintf_cvt_int_to_str() {
+  int i = 1725;
+  char buf[10] = {"\0"};
+  sprintf(buf, "%d", i);
+  printf("%s\n", buf);
+}
+
+void show_strtod() {
+  char *endptr;
+  double d;
+  char a[] = "12345.6789";
+  char b[] = "1234.567qwer";
+  char c[] = "-232.23e4";
+
+  d = strtod(a, &endptr);
+  printf("a = %lf, endptr: %s\n", d, endptr);
+  d = strtod(b, &endptr);
+  printf("b = %lf, endptr: %s\n", d, endptr);
+  d = strtod(c, &endptr);
+  printf("c = %lf, endptr: %s\n", d, endptr);
+}
+
 typedef int (*fc)(const void *, const void *);
 
 int numcmp(const void *p1, const void *p2) {
@@ -324,28 +346,6 @@ void show_putenv() {
   while (environ[i]) {
     printf("%s\n", environ[i++]);
   }
-}
-
-void show_sprintf_cvt_int_to_str() {
-  int i = 1725;
-  char buf[10] = {"\0"};
-  sprintf(buf, "%d", i);
-  printf("%s\n", buf);
-}
-
-void show_strtod() {
-  char *endptr;
-  double d;
-  char a[] = "12345.6789";
-  char b[] = "1234.567qwer";
-  char c[] = "-232.23e4";
-
-  d = strtod(a, &endptr);
-  printf("a = %lf, endptr: %s\n", d, endptr);
-  d = strtod(b, &endptr);
-  printf("b = %lf, endptr: %s\n", d, endptr);
-  d = strtod(c, &endptr);
-  printf("c = %lf, endptr: %s\n", d, endptr);
 }
 
 void show_ldiv() {
