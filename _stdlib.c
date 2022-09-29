@@ -394,6 +394,15 @@ void show_swab() {
   printf("swab(dst): %s\n", dst);  // www.dotcpp.com
 }
 
+void show_system() {
+  printf("Input a DOS command:\n");
+  char *line = NULL;
+  size_t len = 0;
+  getline(&line, &len, stdin);
+
+  system(line);
+}
+
 void show_stdlib() {
   // show_abort();
   // show_atexit();
@@ -420,5 +429,6 @@ void show_stdlib() {
   // show_rand();
   // show_strtod();
   // show_strtol();
-  show_swab();
+  // show_swab();
+  show_system();
 }
