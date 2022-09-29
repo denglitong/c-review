@@ -128,6 +128,17 @@ void show_lsearch() {
   printf("\n");
 }
 
+void show_qsort() {
+  int arr[10] = {1, 6, 5, 7, 8, 9, 11, 24, 3, 10};
+  size_t len = 10, width = sizeof(int);
+  fc comparator = numcmp;
+  qsort(arr, len, width, comparator);
+  for (int i = 0; i < len; ++i) {
+    printf("%d ", arr[i]);
+  }
+  printf("\n");
+}
+
 void show_calloc() {
   int *ptr = calloc(1, sizeof(int));
   *ptr = 8;
@@ -337,6 +348,7 @@ void show_stdlib() {
   // show_bsearch();
   // show_lfind();
   // show_lsearch();
+  show_qsort();
   // show_calloc();
   // show_malloc();
   // show_realloc();
@@ -347,6 +359,6 @@ void show_stdlib() {
   // show_exit();
   // show_gcvt();
   // show_getenv();
-  show_putenv();
+  // show_putenv();
   // show_sprintf_cvt_int_to_str();
 }
