@@ -211,6 +211,13 @@ void show_getenv() {
   printf("USER: %s\n", s);
 }
 
+void show_sprintf_cvt_int_to_str() {
+  int i = 1725;
+  char buf[10] = {"\0"};
+  sprintf(buf, "%d", i);
+  printf("%s\n", buf);
+}
+
 void show_stdlib() {
   // show_abort();
   // show_atexit();
@@ -225,5 +232,6 @@ void show_stdlib() {
   // show_fcvt();
   // show_exit();
   // show_gcvt();
-  show_getenv();
+  // show_getenv();
+  show_sprintf_cvt_int_to_str();
 }
