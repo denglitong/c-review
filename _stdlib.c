@@ -166,6 +166,18 @@ void show_fcvt() {
          pos_symbol);
 }
 
+void show_exit() {
+  int a, status;
+  do {
+    printf("Input a order: 1--go    others--exit\n");
+    scanf("%d", &a);
+  } while (a == 1);
+
+  printf("a = %d\n", a);
+  exit(0);
+  printf("this is not reachable\n");
+}
+
 void show_stdlib() {
   // show_abort();
   // show_atexit();
@@ -177,5 +189,6 @@ void show_stdlib() {
   // show_calloc();
   // show_div();
   // show_ecvt();
-  show_fcvt();
+  // show_fcvt();
+  show_exit();
 }
