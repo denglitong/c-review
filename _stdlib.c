@@ -7,6 +7,7 @@
 #include <printf.h>
 #include <search.h>
 #include <stdlib.h>
+#include <string.h>
 
 void show_abort() {
   // Calling abort()
@@ -168,6 +169,13 @@ void show_realloc() {
   free(d);
 }
 
+void show_malloc() {
+  char *p = malloc(20);
+  strcpy(p, "www.dotcpp.com");
+  printf("string is %s\n", p);
+  free(p);
+}
+
 void show_div() {
   // 整数相除，返回包含商和余数的结构体
   div_t a = div(210, 25);
@@ -312,7 +320,8 @@ void show_stdlib() {
   // show_lfind();
   // show_lsearch();
   // show_calloc();
-  show_realloc();
+  show_malloc();
+  // show_realloc();
   // show_div();
   // show_ldiv();
   // show_ecvt();
