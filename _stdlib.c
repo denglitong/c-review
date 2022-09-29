@@ -50,9 +50,15 @@ void show_atof() {
 }
 
 void show_atoi() {
-  char *s = "512";
+  char *s = "512.13";
   int i = atoi(s);
   printf("int value: %d\n", i);
+}
+
+void show_atol() {
+  char *s = "525713.14";
+  long l = atol(s);
+  printf("long value: %ld\n", l);
 }
 
 void show_stdlib() {
@@ -60,5 +66,6 @@ void show_stdlib() {
   // show_atexit();
   // show_typedef_function();
   // show_atof();
-  show_atoi();
+  // show_atoi();
+  show_atol();
 }
