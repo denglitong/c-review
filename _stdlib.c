@@ -333,6 +333,21 @@ void show_sprintf_cvt_int_to_str() {
   printf("%s\n", buf);
 }
 
+void show_strtod() {
+  char *endptr;
+  double d;
+  char a[] = "12345.6789";
+  char b[] = "1234.567qwer";
+  char c[] = "-232.23e4";
+
+  d = strtod(a, &endptr);
+  printf("a = %lf, endptr: %s\n", d, endptr);
+  d = strtod(b, &endptr);
+  printf("b = %lf, endptr: %s\n", d, endptr);
+  d = strtod(c, &endptr);
+  printf("c = %lf, endptr: %s\n", d, endptr);
+}
+
 void show_ldiv() {
   ldiv_t lx = ldiv(165000L, 35500L);
   printf("165000 / 35500 = %ld remainder %ld\n", lx.quot, lx.rem);
@@ -371,5 +386,6 @@ void show_stdlib() {
   // show_getenv();
   // show_putenv();
   // show_sprintf_cvt_int_to_str();
-  show_rand();
+  // show_rand();
+  show_strtod();
 }
