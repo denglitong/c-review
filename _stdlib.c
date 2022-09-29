@@ -96,6 +96,41 @@ void show_div() {
   printf("210 / 25 = %d remainder %d\n", a.quot, a.rem);
 }
 
+void show_ecvt() {
+  char *str;
+  int width = 10;   // 转换后str的位数宽度
+  int pos_symbol;   // 正负标识，0 为正，1 为负
+  int decimal_ptr;  // 一个指向返回值的小数点位置的指针，如 3
+                    // 表示在返回值str中左起第 3 位是原来的小数点
+
+  double f;
+
+  f = 5.21;
+  str = ecvt(f, width, &decimal_ptr, &pos_symbol);
+  printf("string=%s decimal_ptr=%d pos_symbol=%d\n", str, decimal_ptr,
+         pos_symbol);
+
+  f = -103.23;
+  str = ecvt(f, width, &decimal_ptr, &pos_symbol);
+  printf("string=%s decimal_ptr=%d pos_symbol=%d\n", str, decimal_ptr,
+         pos_symbol);
+
+  f = 0.123;
+  str = ecvt(f, width, &decimal_ptr, &pos_symbol);
+  printf("string=%s decimal_ptr=%d pos_symbol=%d\n", str, decimal_ptr,
+         pos_symbol);
+
+  f = 4e5;
+  str = ecvt(f, width, &decimal_ptr, &pos_symbol);
+  printf("string=%s decimal_ptr=%d pos_symbol=%d\n", str, decimal_ptr,
+         pos_symbol);
+
+  f = -103.2314159265;
+  str = ecvt(f, width, &decimal_ptr, &pos_symbol);
+  printf("string=%s decimal_ptr=%d pos_symbol=%d\n", str, decimal_ptr,
+         pos_symbol);
+}
+
 void show_stdlib() {
   // show_abort();
   // show_atexit();
@@ -105,5 +140,6 @@ void show_stdlib() {
   // show_atol();
   // show_bsearch();
   // show_calloc();
-  show_div();
+  // show_div();
+  show_ecvt();
 }
