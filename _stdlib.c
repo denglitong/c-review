@@ -61,11 +61,34 @@ void show_atol() {
   printf("long value: %ld\n", l);
 }
 
+typedef int (*fc)(const void *, const void *);
+
+int numcmp(const void *p1, const void *p2) {
+  int *pi1 = (int *)p1;
+  int *pi2 = (int *)p2;
+  return (*pi1 - *pi2);
+}
+
+void show_bsearch() {
+  int arr[] = {123, 456, 789, 654, 312, 714};
+  int item_width = sizeof(int);
+  int arr_len = sizeof(arr) / item_width;
+  int key = 456;
+  fc comparator = numcmp;
+  int *ptr = bsearch(&key, arr, arr_len, item_width, comparator);
+  if (ptr) {
+    printf("%d is in the list.\n", *ptr);
+  } else {
+    printf("%d is not in the list.\n", key);
+  }
+}
+
 void show_stdlib() {
   // show_abort();
   // show_atexit();
   // show_typedef_function();
   // show_atof();
   // show_atoi();
-  show_atol();
+  // show_atol();
+  show_bsearch();
 }
