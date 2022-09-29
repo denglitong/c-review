@@ -21,6 +21,7 @@
 #include "_signal.h"
 #include "_stdio.h"
 #include "_stdlib.h"
+#include "_string.h"
 #include "snake.h"
 
 void printf_str();
@@ -355,7 +356,8 @@ int main() {
   // show_setjmp_longjmp();
   // show_stdio();
   // show_stdlib();
-  show_signal();
+  // show_signal();
+  show_string();
   return 0;
 }
 
