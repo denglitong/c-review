@@ -70,14 +70,14 @@ int numcmp(const void *p1, const void *p2) {
   return (*pi1 - *pi2);
 }
 
-// 二分搜索
+// 二分搜索，找到则返回 key 对应的地址，否则返回 NULL
 void show_bsearch() {
   int arr[] = {123, 456, 789, 654, 312, 714};
-  int item_width = sizeof(int);
-  int arr_len = sizeof(arr) / item_width;
+  size_t item_width = sizeof(int);
+  size_t search_len = sizeof(arr) / item_width;
   int key = 456;
   fc comparator = numcmp;
-  int *ptr = bsearch(&key, arr, arr_len, item_width, comparator);
+  int *ptr = bsearch(&key, arr, search_len, item_width, comparator);
   if (ptr) {
     printf("%d is in the list.\n", *ptr);
   } else {
@@ -85,19 +85,46 @@ void show_bsearch() {
   }
 }
 
-// 线性搜索
+// 线性搜索，找到则返回 key 对应的地址，否则返回 NULL
 void show_lfind() {
   int arr[] = {123, 456, 789, 654, 312, 714};
-  int item_width = sizeof(int);
-  size_t arr_len = sizeof(arr) / item_width;
+  size_t item_width = sizeof(int);
+  size_t search_len = sizeof(arr) / item_width;
   int key = 456;
   fc comparator = numcmp;
-  int *ptr = lfind(&key, arr, &arr_len, item_width, comparator);
+  int *ptr = lfind(&key, arr, &search_len, item_width, comparator);
   if (ptr) {
     printf("%d is in the list.\n", *ptr);
   } else {
     printf("%d is not in the list.\n", key);
   }
+}
+
+/**
+ * 线性搜索，找到则返回 key 对应的地址，
+ * 否则在末尾添加该 key 再返回新的地址，出错则返回 NULL
+ */
+void show_lsearch() {
+  // 数组容量至少要比实际长度大 1，用来容纳可能新增的新元素
+  int arr[7] = {123, 456, 789, 654, 312, 714};
+  size_t item_width = sizeof(int);
+  size_t search_len = 6;
+  int key = 1000;
+  fc comparator = numcmp;
+
+  printf("search_len before search: %lu, arr[6]=%d\n", search_len, arr[6]);
+  int *ptr = lsearch(&key, arr, &search_len, item_width, comparator);
+  if (ptr) {
+    printf("%d is in the list.\n", *ptr);
+  } else {
+    printf("%d is not in the list.\n", key);
+  }
+  printf("search_len after search: %lu, arr[6]=%d\n", search_len, arr[6]);
+
+  for (int i = 0; i < 7; ++i) {
+    printf("arr[%d]=%d ", i, arr[i]);
+  }
+  printf("\n");
 }
 
 void show_calloc() {
@@ -248,7 +275,8 @@ void show_stdlib() {
   // show_atoi();
   // show_atol();
   // show_bsearch();
-  show_lfind();
+  // show_lfind();
+  show_lsearch();
   // show_calloc();
   // show_div();
   // show_ldiv();
