@@ -5,6 +5,7 @@
 #include "_stdlib.h"
 
 #include <printf.h>
+#include <search.h>
 #include <stdlib.h>
 
 void show_abort() {
@@ -69,6 +70,7 @@ int numcmp(const void *p1, const void *p2) {
   return (*pi1 - *pi2);
 }
 
+// 二分搜索
 void show_bsearch() {
   int arr[] = {123, 456, 789, 654, 312, 714};
   int item_width = sizeof(int);
@@ -76,6 +78,21 @@ void show_bsearch() {
   int key = 456;
   fc comparator = numcmp;
   int *ptr = bsearch(&key, arr, arr_len, item_width, comparator);
+  if (ptr) {
+    printf("%d is in the list.\n", *ptr);
+  } else {
+    printf("%d is not in the list.\n", key);
+  }
+}
+
+// 线性搜索
+void show_lfind() {
+  int arr[] = {123, 456, 789, 654, 312, 714};
+  int item_width = sizeof(int);
+  size_t arr_len = sizeof(arr) / item_width;
+  int key = 456;
+  fc comparator = numcmp;
+  int *ptr = lfind(&key, arr, &arr_len, item_width, comparator);
   if (ptr) {
     printf("%d is in the list.\n", *ptr);
   } else {
@@ -231,9 +248,10 @@ void show_stdlib() {
   // show_atoi();
   // show_atol();
   // show_bsearch();
+  show_lfind();
   // show_calloc();
   // show_div();
-  show_ldiv();
+  // show_ldiv();
   // show_ecvt();
   // show_fcvt();
   // show_exit();
