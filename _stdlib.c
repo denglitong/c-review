@@ -338,6 +338,16 @@ void show_ldiv() {
   printf("165000 / 35500 = %ld remainder %ld\n", lx.quot, lx.rem);
 }
 
+void show_rand() {
+  srand(time(NULL));
+  int b, i = 2;
+  while (i--) {
+    // 伪随机数，产生的随机序列和 srand 有关
+    b = rand() % 90 + 10;
+    printf("b%d = %d\n", 2 - i, b);
+  }
+}
+
 void show_stdlib() {
   // show_abort();
   // show_atexit();
@@ -348,7 +358,7 @@ void show_stdlib() {
   // show_bsearch();
   // show_lfind();
   // show_lsearch();
-  show_qsort();
+  // show_qsort();
   // show_calloc();
   // show_malloc();
   // show_realloc();
@@ -361,4 +371,5 @@ void show_stdlib() {
   // show_getenv();
   // show_putenv();
   // show_sprintf_cvt_int_to_str();
+  show_rand();
 }
