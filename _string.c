@@ -16,4 +16,18 @@ void show_strcpy() {
   printf("dst: %s\n", dst);
 }
 
-void show_string() { show_strcpy(); }
+void show_strcat() {
+  char dst[20] = {"\0"};
+  char *s1 = "www.";
+  char s2[] = "dotcpp.";
+  char s3[] = "com";
+  strcat(dst, s1);
+  strcat(dst, s2);
+  strcat(dst, s3);
+  printf("dst: %s\n", dst);
+}
+
+void show_string() {
+  // show_strcpy();
+  show_strcat();
+}
