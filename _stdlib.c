@@ -166,6 +166,33 @@ void show_fcvt() {
          pos_symbol);
 }
 
+void show_gcvt() {
+  char *str;
+  int width = 10;  // 转换后str的位数宽度
+  char buf[20] = {'\0'};
+  double f;
+
+  f = 5.21;
+  str = gcvt(f, width, buf);
+  printf("string=%s buf=%s\n", str, buf);
+
+  f = -103.23;
+  str = gcvt(f, width, buf);
+  printf("string=%s buf=%s\n", str, buf);
+
+  f = 0.123;
+  str = gcvt(f, width, buf);
+  printf("string=%s buf=%s\n", str, buf);
+
+  f = 4e5;
+  str = gcvt(f, width, buf);
+  printf("string=%s buf=%s\n", str, buf);
+
+  f = -103.2314159265;
+  str = gcvt(f, width, buf);
+  printf("string=%s buf=%s\n", str, buf);
+}
+
 void show_exit() {
   int a, status;
   do {
@@ -190,5 +217,6 @@ void show_stdlib() {
   // show_div();
   // show_ecvt();
   // show_fcvt();
-  show_exit();
+  // show_exit();
+  show_gcvt();
 }
