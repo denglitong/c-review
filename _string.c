@@ -92,7 +92,20 @@ void show_string_compare_insensitive() {
 void show_strchr() {
   char *str = "www.dotcpp.com";
   char key = 'c';
+  // 查找字符第一次出现的位置
   char *ptr = strchr(str, key);
+  if (ptr) {
+    printf("'%c' find in '%s' at position: %ld\n", key, str, ptr - str);
+  } else {
+    printf("'%c' not found\n", key);
+  }
+}
+
+void show_strrchr() {
+  char *str = "www.dotcpp.com";
+  char key = 'c';
+  // 查找字符最后次出现的位置
+  char *ptr = strrchr(str, key);
   if (ptr) {
     printf("'%c' find in '%s' at position: %ld\n", key, str, ptr - str);
   } else {
@@ -166,12 +179,13 @@ void show_string() {
   // show_strncpy();
   // show_string_compare();
   // show_strncmp();
-  // show_strchr();
+  show_strchr();
+  show_strrchr();
   // show_strpbrk();
   // show_string_compare_insensitive();
   // show_strcspn();
   // show_strcsp();
   // show_strdup();
   // show_strstr();
-  show_strtok();
+  // show_strtok();
 }
