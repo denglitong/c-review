@@ -6,6 +6,7 @@
 
 #include <i386/limits.h>
 #include <printf.h>
+#include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -91,10 +92,22 @@ void show_gmtime() {
   printf("GMT: %s\n", asctime(gm_time));
 }
 
+void show_tzset() {
+  if (putenv("TZ=PST8PDT") == -1) {  // 设置 TZ 环境变量
+    perror("Unable to set tz\n");
+    exit(1);
+  }
+  tzset();  // 设置 UNIX 时间兼容
+  time_t td;
+  localtime(&td);
+  printf("Current time: %s\n", ctime(&td));
+}
+
 void show_time() {
   show_asctime();
   show_ctime();
   // show_clock();
   // show_difftime();
-  show_gmtime();
+  // show_gmtime();
+  show_tzset();
 }
