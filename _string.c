@@ -47,6 +47,18 @@ void show_string_compare() {
   }
 }
 
+void show_strncmp() {
+  char *buf1 = "aaa", *buf2 = "aaabbb";
+  int ptr = strncmp(buf1, buf2, strlen(buf1));
+  if (ptr > 0) {
+    printf("%s > %s\n", buf1, buf2);
+  } else if (ptr == 0) {
+    printf("%s = %s\n", buf1, buf2);
+  } else {
+    printf("%s < %s\n", buf1, buf2);
+  }
+}
+
 int min(int a, int b) { return a < b ? a : b; }
 
 void show_string_compare_insensitive() {
@@ -107,8 +119,9 @@ void show_strdup() {
 void show_string() {
   // show_strcpy();
   // show_strcat();
-  show_strncat();
+  // show_strncat();
   // show_string_compare();
+  show_strncmp();
   // show_strchr();
   // show_string_compare_insensitive();
   // show_strcspn();
