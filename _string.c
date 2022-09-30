@@ -39,8 +39,20 @@ void show_string_compare() {
   }
 }
 
+void show_strchr() {
+  char *str = "www.dotcpp.com";
+  char key = 'c';
+  char *ptr = strchr(str, key);
+  if (ptr) {
+    printf("'%c' find in '%s' at position: %ld\n", key, str, ptr - str);
+  } else {
+    printf("'%c' not found\n", key);
+  }
+}
+
 void show_string() {
   // show_strcpy();
   // show_strcat();
-  show_string_compare();
+  // show_string_compare();
+  show_strchr();
 }
