@@ -25,13 +25,14 @@
  */
 void show_asctime() {
   struct tm t;
-  t.tm_isdst = 0;           // 不试行夏令时
-  t.tm_year = 2022 - 1900;  // 自 1900.01.01:00:00:00 后的时间
-  t.tm_mon = 8;             // 一年中的第几月，0-11
-  t.tm_mday = 30;           // 1-31
-  t.tm_wday = 5;            // 一周的第几天，从周日开始算，0-6
-  t.tm_hour = 10;
-  t.tm_min = 59;
+  // 夏令时，正数表示实行夏令时，0表示不实行夏令时，负数表示不了解
+  t.tm_isdst = 0;
+  t.tm_year = 2022 - 1900;  //从1900年算起至今的年数，所以要+1900
+  t.tm_mon = 8;             //代表目前月份, 从一月算起, 范围从0-11
+  t.tm_mday = 30;           ///目前月份的日数, 范围01-31
+  t.tm_wday = 5;            //一星期的日数, 从周日算起, 范围为0-6
+  t.tm_hour = 10;           //从午夜算起的时数, 范围为0-23
+  t.tm_min = 59;            //代表目前分数, 范围0-59
   t.tm_sec = 46;
   char *str;
   str = asctime(&t);
@@ -78,9 +79,22 @@ void show_difftime() {
   printf("Diff time: %f seconds\n", difftime(end, start));
 }
 
+// 将系统时间time_t转换为结构体struct tm
+void show_gmtime() {
+  struct tm *gm_time, *local_time;
+  time_t t = time(NULL);
+  // 本地时间
+  local_time = localtime(&t);
+  // 格林尼治时间
+  gm_time = gmtime(&t);
+  printf("local_time: %s\n", asctime(local_time));
+  printf("GMT: %s\n", asctime(gm_time));
+}
+
 void show_time() {
   show_asctime();
   show_ctime();
   // show_clock();
-  show_difftime();
+  // show_difftime();
+  show_gmtime();
 }
