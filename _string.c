@@ -73,10 +73,20 @@ void show_strchr() {
   }
 }
 
+void show_strcspn() {
+  char *str1 = "1234567890";
+  char *str2 = "747DC8";
+  // 若返回的数值为 n，则代表字符串 str1 开头连续有n个字符都不含字符串 str2
+  // 中的字符
+  int len = strcspn(str1, str2);
+  printf("Character where strings intersect is at position %d\n", len);
+}
+
 void show_string() {
   // show_strcpy();
   // show_strcat();
   // show_string_compare();
   // show_strchr();
-  show_string_compare_insensitive();
+  // show_string_compare_insensitive();
+  show_strcspn();
 }
