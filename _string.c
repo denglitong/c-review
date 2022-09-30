@@ -5,6 +5,7 @@
 #include "_string.h"
 
 #include <printf.h>
+#include <stdlib.h>
 #include <string.h>
 
 void show_strcpy() {
@@ -89,6 +90,13 @@ void show_strcsp() {
   printf("Character where strings differ is at position %d\n", len);
 }
 
+void show_strdup() {
+  char str[] = "www.dotcpp.com";
+  char *ptr = strdup(str);
+  printf("ptr: %s\n", ptr);
+  free(ptr);
+}
+
 void show_string() {
   // show_strcpy();
   // show_strcat();
@@ -96,5 +104,6 @@ void show_string() {
   // show_strchr();
   // show_string_compare_insensitive();
   // show_strcspn();
-  show_strcsp();
+  // show_strcsp();
+  show_strdup();
 }
