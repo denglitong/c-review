@@ -39,6 +39,29 @@ void show_string_compare() {
   }
 }
 
+int min(int a, int b) { return a < b ? a : b; }
+
+void show_string_compare_insensitive() {
+  char *buf1 = "aaB", *buf2 = "AAb";
+  int size1 = strlen(buf1), size2 = strlen(buf2);
+  size_t size = min(size1, size2);
+  int res = strncasecmp(buf1, buf2, size);
+
+  if (res > 0) {
+    printf("%s > %s", buf1, buf2);
+  } else if (res < 0) {
+    printf("%s < %s", buf1, buf2);
+  } else {
+    if (size1 > size2) {
+      printf("%s > %s", buf1, buf2);
+    } else if (size1 < size2) {
+      printf("%s < %s", buf1, buf2);
+    } else {
+      printf("%s = %s", buf1, buf2);
+    }
+  }
+}
+
 void show_strchr() {
   char *str = "www.dotcpp.com";
   char key = 'c';
@@ -54,5 +77,6 @@ void show_string() {
   // show_strcpy();
   // show_strcat();
   // show_string_compare();
-  show_strchr();
+  // show_strchr();
+  show_string_compare_insensitive();
 }
