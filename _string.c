@@ -100,6 +100,19 @@ void show_strchr() {
   }
 }
 
+void show_strpbrk() {
+  char *str1 = "www.dotcpp.com";
+  char *str2 = "cde";
+  // 比较字符串str1和str2中是否有相同的字符，返回指向str1中第一个匹配的字符的指针，
+  // 若查找失败，则返回NULL
+  char *ptr = strpbrk(str1, str2);
+  if (ptr) {
+    printf("strpbrk found first common character: %c\n", *ptr);
+  } else {
+    printf("strpbrk didn't find common character in set\n");
+  }
+}
+
 void show_strcspn() {
   char *str1 = "1234567890";
   char *str2 = "747DC8";
@@ -127,10 +140,11 @@ void show_string() {
   // show_strcpy();
   // show_strcat();
   // show_strncat();
-  show_strncpy();
+  // show_strncpy();
   // show_string_compare();
   // show_strncmp();
   // show_strchr();
+  show_strpbrk();
   // show_string_compare_insensitive();
   // show_strcspn();
   // show_strcsp();
