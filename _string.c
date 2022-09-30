@@ -76,10 +76,17 @@ void show_strchr() {
 void show_strcspn() {
   char *str1 = "1234567890";
   char *str2 = "747DC8";
-  // 若返回的数值为 n，则代表字符串 str1 开头连续有n个字符都不含字符串 str2
-  // 中的字符
+  // 返回字符串str1开头连续都不包含字符串str2内的字符数目
   int len = strcspn(str1, str2);
   printf("Character where strings intersect is at position %d\n", len);
+}
+
+void show_strcsp() {
+  char *str1 = "1234567890";
+  char *str2 = "1234DC8";
+  // 返回字符串str1开头连续包含字符串str2内的字符数目
+  int len = strspn(str1, str2);
+  printf("Character where strings differ is at position %d\n", len);
 }
 
 void show_string() {
@@ -88,5 +95,6 @@ void show_string() {
   // show_string_compare();
   // show_strchr();
   // show_string_compare_insensitive();
-  show_strcspn();
+  // show_strcspn();
+  show_strcsp();
 }
