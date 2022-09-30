@@ -70,8 +70,17 @@ void show_clock() {
   printf("Time consumed: %lf\n", (end - start) * 1.0 / CLK_TCK);
 }
 
+void show_difftime() {
+  time_t start, end;
+  time(&start);
+  sleep(3);
+  time(&end);
+  printf("Diff time: %f seconds\n", difftime(end, start));
+}
+
 void show_time() {
   show_asctime();
   show_ctime();
   // show_clock();
+  show_difftime();
 }
