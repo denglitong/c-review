@@ -28,6 +28,13 @@ void show_strcat() {
   printf("dst: %s\n", dst);
 }
 
+void show_strncat() {
+  char dst[20] = {"I like "};
+  char *src = "www.dotcpp.com";
+  strncat(dst, src, 3);
+  printf("dst: %s\n", dst);  // dst: I like www
+}
+
 void show_string_compare() {
   char *buf1 = "aaa", *buf2 = "bbb";
   int ptr = strcmp(buf1, buf2);
@@ -100,10 +107,11 @@ void show_strdup() {
 void show_string() {
   // show_strcpy();
   // show_strcat();
+  show_strncat();
   // show_string_compare();
   // show_strchr();
   // show_string_compare_insensitive();
   // show_strcspn();
   // show_strcsp();
-  show_strdup();
+  // show_strdup();
 }
