@@ -22,6 +22,7 @@
 #include "_stdio.h"
 #include "_stdlib.h"
 #include "_string.h"
+#include "_time.h"
 #include "snake.h"
 
 void printf_str();
@@ -357,7 +358,8 @@ int main() {
   // show_stdio();
   // show_stdlib();
   // show_signal();
-  show_string();
+  // show_string();
+  show_time();
   return 0;
 }
 
