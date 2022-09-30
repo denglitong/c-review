@@ -27,15 +27,34 @@ void show_asctime() {
   struct tm t;
   t.tm_isdst = 0;           // 不试行夏令时
   t.tm_year = 2022 - 1900;  // 自 1900.01.01:00:00:00 后的时间
-  t.tm_mon = 9;
-  t.tm_mday = 30;
-  t.tm_wday = 5;  // 一周的第几天，从周日开始算，0-6
+  t.tm_mon = 8;             // 一年中的第几月，0-11
+  t.tm_mday = 30;           // 1-31
+  t.tm_wday = 5;            // 一周的第几天，从周日开始算，0-6
   t.tm_hour = 10;
   t.tm_min = 59;
   t.tm_sec = 46;
   char *str;
   str = asctime(&t);
-  printf("%s\n", str);
+  printf("%s\n", str);  // Fri Oct 30 10:59:46 2022
+}
+
+/**
+ * 把日期和时间转换为字符串
+ *  Www Mmm dd hh:mm:ss yyyy
+    Www 表示星期几
+    Mmm 是以字母表示的月
+    dd 表示一月中的第几
+    hh:mm:ss 表示时
+    yyyy 表示年份
+ */
+void show_ctime() {
+  time_t t;
+  // 获取系统当前时间
+  time(&t);
+  t = time(NULL);
+  t = time(0);
+  char *str = ctime(&t);  // 将时间t转换为字符串
+  printf("%s\n", str);    // Fri Sep 30 11:17:04 2022
 }
 
 void show_clock() {
@@ -52,6 +71,7 @@ void show_clock() {
 }
 
 void show_time() {
-  // show_asctime();
-  show_clock();
+  show_asctime();
+  show_ctime();
+  // show_clock();
 }
