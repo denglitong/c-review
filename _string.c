@@ -27,7 +27,20 @@ void show_strcat() {
   printf("dst: %s\n", dst);
 }
 
+void show_string_compare() {
+  char *buf1 = "aaa", *buf2 = "bbb";
+  int ptr = strcmp(buf1, buf2);
+  if (ptr > 0) {
+    printf("%s > %s\n", buf1, buf2);
+  } else if (ptr == 0) {
+    printf("%s = %s\n", buf1, buf2);
+  } else {
+    printf("%s < %s\n", buf1, buf2);
+  }
+}
+
 void show_string() {
   // show_strcpy();
-  show_strcat();
+  // show_strcat();
+  show_string_compare();
 }
