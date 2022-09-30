@@ -136,6 +136,14 @@ void show_strdup() {
   free(ptr);
 }
 
+void show_strstr() {
+  char *str1 = "I like www.dotcpp.com very much!";
+  char *str2 = "www.dotcpp.com";
+  // 查找子字符串在目标字符串中首次出现的位置
+  char *ptr = strstr(str1, str2);
+  printf("the substring is from position %d: %s\n", ptr - str1, ptr);
+}
+
 void show_string() {
   // show_strcpy();
   // show_strcat();
@@ -144,9 +152,10 @@ void show_string() {
   // show_string_compare();
   // show_strncmp();
   // show_strchr();
-  show_strpbrk();
+  // show_strpbrk();
   // show_string_compare_insensitive();
   // show_strcspn();
   // show_strcsp();
   // show_strdup();
+  show_strstr();
 }
