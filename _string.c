@@ -144,6 +144,21 @@ void show_strstr() {
   printf("the substring is from position %d: %s\n", ptr - str1, ptr);
 }
 
+void show_strtok() {
+  char input[50] = "I like|www.dotcpp.com very,much";
+  char *separator = " |,";  // 分隔符的集合
+  // 第一次分割返回第一个匹配的值
+  char *p = strtok(input, separator);
+  if (p) {
+    printf("%s\n", p);
+  }
+  // 后续分割，传入 NULL 表示从上次隐式保存的位置继续分割，
+  // 同时会修改input源字符串，所以源字符串只能是数组类型，不能是字符指针（指向的字符串常量不可修改）
+  while (p = strtok(NULL, separator)) {
+    printf("%s\n", p);
+  }
+}
+
 void show_string() {
   // show_strcpy();
   // show_strcat();
@@ -157,5 +172,6 @@ void show_string() {
   // show_strcspn();
   // show_strcsp();
   // show_strdup();
-  show_strstr();
+  // show_strstr();
+  show_strtok();
 }
