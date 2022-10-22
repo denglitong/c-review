@@ -13,6 +13,7 @@
 #include <string.h>
 
 #include "_assert.h"
+#include "_common.h"
 #include "_ctype.h"
 #include "_io.h"
 #include "_math.h"
@@ -23,6 +24,7 @@
 #include "_stdlib.h"
 #include "_string.h"
 #include "_time.h"
+#include "helper.h"
 #include "snake.h"
 
 void printf_str();
@@ -189,6 +191,17 @@ void show_int_storage_endian();
 void show_operator_short_circuit();
 
 void show_sizeof_keyword();
+
+unsigned char bit_revert(unsigned char a) {
+  unsigned char r = 0;
+  for (unsigned char i = 0; i < 8; ++i) {
+    printf("bit: i - %d\n", (a & (1 << i)) >> i);
+    r += ((a & (1 << i)) >> i) << (7 - i);
+  }
+  return r;
+}
+
+void show_type_overflow();
 
 /**
  * C 程序 = 主函数 + m * 自定义函数 + n * 文件包含
@@ -359,7 +372,16 @@ int main() {
   // show_stdlib();
   // show_signal();
   // show_string();
-  show_time();
+  // show_time();
+
+  // run_helper();
+
+  // unsigned char r = bit_revert(0b01110000);
+  // printf("before r = 0b01110000\n");
+  // printf("after  r = 0b%s", TO_BASE(r, 2));
+
+  show_type_overflow();
+
   return 0;
 }
 
@@ -1824,34 +1846,6 @@ void bit_operators() {
   printf("%d %d\n", a << 2, b >> 3);
 }
 
-#include <assert.h>
-#include <limits.h>
-
-#define TO_BASE_N (sizeof(unsigned) * CHAR_BIT + 1)
-
-//                               v--compound literal--v
-#define TO_BASE(x, b) my_to_base((char[TO_BASE_N]){""}, (x), (b))
-
-// Tailor the details of the conversion function as needed
-// This one does not display unneeded leading zeros
-// Use return value, not `buf`
-char *my_to_base(char buf[TO_BASE_N], unsigned i, int base) {
-  assert(base >= 2 && base <= 36);
-  char *s = &buf[TO_BASE_N - 1];
-  *s = '\0';
-  do {
-    s--;
-    *s = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i % base];
-    i /= base;
-  } while (i);
-
-  // Could employ memmove here to move the used buffer to the beginning
-  // size_t len = &buf[TO_BASE_N] - s;
-  // memmove(buf, s, len);
-
-  return s;
-}
-
 // https://www.dotcpp.com/oj/problem1772.html
 void left_shift_then_right_shift() {
   unsigned int a;
@@ -2070,4 +2064,16 @@ void show_sizeof_keyword() {
   // 所以在运行时根本不会有 i++ 这个表达式，也就不会有求值
   printf("sizeof(i++) is: %d\n", sizeof(i++));
   printf("i: %d\n", i);
+}
+
+void show_type_overflow() {
+  unsigned char a;
+  unsigned short b;
+  unsigned short c;
+
+  a = 100;
+  b = 700;
+  // unsigned short overflow 65536
+  c = a * b;
+  printf("c = %ld\n", c);  // 4464
 }
